@@ -12,6 +12,7 @@ const Album = ({ name, image, tracks, id, artist, url }: IAlbum) => {
     setAlbumName,
     setAlbumUrl,
     setHideAlbums,
+    setAlbumImage,
   } = useSelectedAlbumStore();
 
   const handleAlbumOnClick = () => {
@@ -22,6 +23,7 @@ const Album = ({ name, image, tracks, id, artist, url }: IAlbum) => {
     setAlbumName(name);
     setAlbumUrl(url);
     setHideAlbums(true);
+    setAlbumImage(image);
   };
 
   return (
