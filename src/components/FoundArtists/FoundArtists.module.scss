@@ -2,12 +2,28 @@
 
 .foundArtists {
   @include mixins.flex_container(column, center, center);
+  margin-top: 2rem;
 
   ul {
     list-style: none;
+    padding: 0;
 
     li {
+      @include mixins.flex_container(row, center, center);
       cursor: pointer;
+      outline: 0.1rem solid var(--color-white);
+      border-radius: 1rem;
+      width: 20rem;
+      height: 2rem;
+      margin-bottom: 0.7rem;
+      font-family: var(--font-primary);
+
+      &:hover {
+        background-color: var(--color-orange);
+        color: var(--color-black);
+        outline: none;
+        transform: scale(1.1);
+      }
     }
   }
 }
