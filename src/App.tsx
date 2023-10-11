@@ -8,10 +8,13 @@ import "@styles/globals.scss";
 import SearchSection from "@components/SearchSection";
 import styles from "./App.module.scss";
 import Container from "@components/elements/Container";
+import AlbumsList from "@components/AlbumsList";
+import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 
 const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
   const [foundArtists, setFoundArtists] = useState<IArtist[]>([]);
+  const { albums } = useSelectedArtistStore();
   // const [showPlayer, setShowPlayer] = useState(false);
   // const [loading, setLoading] = useState(false);
 
@@ -68,6 +71,7 @@ const App = () => {
           getArtistData={getArtistData}
         />
         <FoundArtists foundArtists={foundArtists} />
+        <AlbumsList returnedArtistData={albums} />
       </div>
     </Container>
   );

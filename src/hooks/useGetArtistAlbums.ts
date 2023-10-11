@@ -4,7 +4,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { useState } from "react";
 
 const useGetArtistAlbums = () => {
-  const { setAlbumsUrls, setArtistUrl } = useSelectedArtistStore();
+  const { setAlbums, setArtistUrl } = useSelectedArtistStore();
   const [isAlbumsLoading, setIsAlbumsLoading] = useState(false);
 
   // useEffect(() => {
@@ -15,6 +15,8 @@ const useGetArtistAlbums = () => {
 
   //   setShowLoader(false);
   // }, [isAlbumsLoading, artistUrl, setShowLoader]);
+
+  console.log("isAlbumsLoading", isAlbumsLoading);
 
   const getAlbums = async (artistUrl: string) => {
     setIsAlbumsLoading(true);
@@ -29,7 +31,7 @@ const useGetArtistAlbums = () => {
     await axios
       .request(getAlbumsOptions)
       .then((response: AxiosResponse<any, any>) => {
-        setAlbumsUrls(response.data);
+        setAlbums(response.data);
       })
       .finally(() => setIsAlbumsLoading(false))
       .catch((error) => {
