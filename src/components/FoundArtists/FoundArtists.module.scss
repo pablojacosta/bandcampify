@@ -1,8 +1,8 @@
+@use "@styles/_mixins" as mixins;
+
 .foundArtists {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include mixins.flex_container(column, center, center);
+
   ul {
     list-style: none;
 

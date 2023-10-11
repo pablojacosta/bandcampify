@@ -1,7 +1,6 @@
+@use "@styles/_mixins" as mixins;
+
 .searchSection {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include mixins.flex_container(column, center, center);
   gap: 2rem;
 }
