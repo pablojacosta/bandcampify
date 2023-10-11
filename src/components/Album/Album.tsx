@@ -3,6 +3,7 @@ import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import TrackList from "../TrackList";
 import { IAlbum } from "../../interfaces/album";
 import styles from "./Album.module.scss";
+import Separator from "@components/elements/Separator";
 
 const Album = ({
   name,
@@ -62,6 +63,7 @@ const Album = ({
           />
         )}
       </div>
+      <Separator color="white" className={styles.separator} />
       {showTracks && albumNameToShowTracks === name && (
         <TrackList
           tracks={tracks}
