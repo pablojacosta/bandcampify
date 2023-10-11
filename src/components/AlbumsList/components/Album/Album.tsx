@@ -1,5 +1,5 @@
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
-import { IAlbum } from "../../interfaces/album";
+import { IAlbum } from "../../../../interfaces/album";
 import styles from "./Album.module.scss";
 import Separator from "@components/elements/Separator";
 

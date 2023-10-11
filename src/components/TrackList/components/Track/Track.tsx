@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ITrack } from "../../interfaces/track";
+import { ITrack } from "../../../../interfaces/track";
 import styles from "./Track.module.scss";
 import { BiPlay } from "react-icons/bi";
 

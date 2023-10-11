@@ -1,4 +1,4 @@
-import Track from "../Track";
+import Track from "./components/Track";
 import { ITrackList } from "../../interfaces/trackList";
 import styles from "./TrackList.module.scss";
 

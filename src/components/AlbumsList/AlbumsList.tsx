@@ -1,5 +1,5 @@
 import { IAlbum } from "interfaces/album";
-import Album from "../Album";
+import Album from "./components/Album";
 import { IAlbumsList } from "interfaces/albumsList";
 import styles from "./AlbumsList.module.scss";
 
