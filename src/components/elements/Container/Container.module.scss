@@ -1,0 +1,14 @@
+@use "@styles/responsives" as responsives;
+
+.container {
+  max-width: 75rem;
+  margin: 0 auto;
+
+  @include responsives.resolution__laptop__ml {
+    padding: 0 2.37rem;
+  }
+
+  @include responsives.resolution__mobile__l {
+    padding: 0 1.06rem;
+  }
+}
