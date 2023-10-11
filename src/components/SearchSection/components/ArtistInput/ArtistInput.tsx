@@ -1,4 +1,4 @@
-import { IArtistInput } from "../../interfaces/artistInput";
+import { IArtistInput } from "../../../../interfaces/artistInput";
 
 const ArtistInput = ({
   handleArtistFilterChange,

@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import ArtistInput from "@components/ArtistInput";
-import SearchArtistButton from "@components/SearchArtistButton";
+
 import { useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 import FoundArtists from "@components/FoundArtists";
 import { IArtist } from "interfaces/artist";
 import "@styles/globals.scss";
+import SearchSection from "@components/SearchSection";
+import styles from "./App.module.scss";
+import Container from "@components/elements/Container";
 
 const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
@@ -56,25 +58,18 @@ const App = () => {
   };
 
   return (
-    <div>
-      <div>
-        <div>Bandcampify</div>
+    <Container>
+      <div className={styles.app}>
+        <h1>Bandcampify</h1>
+        <SearchSection
+          handleArtistFilterChange={handleArtistFilterChange}
+          filteredArtist={filteredArtist}
+          onKeyDown={onKeyDown}
+          getArtistData={getArtistData}
+        />
+        <FoundArtists foundArtists={foundArtists} />
       </div>
-
-      <div>
-        <div>
-          <div>
-            <ArtistInput
-              handleArtistFilterChange={handleArtistFilterChange}
-              filteredArtist={filteredArtist}
-              onKeyDown={onKeyDown}
-            />
-            <SearchArtistButton getArtistData={getArtistData} />
-          </div>
-          <FoundArtists foundArtists={foundArtists} />
-        </div>
-      </div>
-    </div>
+    </Container>
   );
 };
 

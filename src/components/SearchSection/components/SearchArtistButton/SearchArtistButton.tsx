@@ -1,4 +1,4 @@
-import { ISearchArtistButton } from "../../interfaces/searchArtistButton";
+import { ISearchArtistButton } from "../../../../interfaces/searchArtistButton";
 
 const SearchArtistButton = ({ getArtistData }: ISearchArtistButton) => {
   return <button onClick={getArtistData}>Search!</button>;
