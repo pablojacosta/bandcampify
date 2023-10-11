@@ -9,9 +9,13 @@ const TrackList = ({
   albumId,
   albumName,
   albumUrl,
+  albumImage,
 }: ITrackList) => {
   return (
     <div className={styles.trackList}>
+      <picture>
+        <img src={albumImage} alt="Album Image" />
+      </picture>
       <ul>
         {tracks.map((track, index) => (
           <li key={`${albumId}_${track.name}`}>

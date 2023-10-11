@@ -25,6 +25,7 @@ const App = () => {
     albumName,
     albumUrl,
     hideAlbums,
+    albumImage,
   } = useSelectedAlbumStore();
   const [artistError, setArtistError] = useState(false);
   const [showTrackList, setShowTrackList] = useState(false);
@@ -99,6 +100,7 @@ const App = () => {
             albumId={albumId}
             albumName={albumName}
             albumUrl={albumUrl}
+            albumImage={albumImage}
           />
         )}
       </div>

@@ -8,4 +8,5 @@ export interface ITrackList {
   albumId: number;
   albumName: string;
   albumUrl: string;
+  albumImage: string;
 }
