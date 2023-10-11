@@ -2,7 +2,7 @@
 
 .album {
   cursor: pointer;
-  width: 25rem;
+  width: 30rem;
 
   .albumData {
     @include mixins.flex_container(row, flex-start, center);
