@@ -1,0 +1,9 @@
+.separator {
+  border-top-style: solid;
+  border-top-width: 0.125rem;
+  margin-bottom: 1rem;
+
+  &.white {
+    border-color: var(--color-white);
+  }
+}
