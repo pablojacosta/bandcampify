@@ -11,7 +11,7 @@ const ArtistInput = ({
       value={filteredArtist}
       placeholder="Search Artist/Band"
       onKeyDown={onKeyDown}
-    ></input>
+    />
   );
 };
 
