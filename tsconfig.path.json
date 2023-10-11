@@ -11,7 +11,8 @@
       "@store/*": ["./store/*"],
       "@utils/*": ["./utils/*"],
       "@constants/*": ["./constants/*"],
-      "@assets/*": ["./assets/*"]
+      "@assets/*": ["./assets/*"],
+      "@interfaces/*": ["./iterfaces/*"]
     }
   }
 }
