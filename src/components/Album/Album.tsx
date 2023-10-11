@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import TrackList from "../TrackList";
 import { IAlbum } from "../../interfaces/album";
+import styles from "./Album.module.scss";
 
 const Album = ({
   name,
@@ -20,12 +21,17 @@ const Album = ({
   const [plusSize, setPlusSize] = useState("1.0em");
 
   return (
-    <div>
-      <div>
-        <div>
+    <div className={styles.album}>
+      <div className={styles.albumData}>
+        <picture className={styles.image}>
           <img src={image} />
-        </div>
-        <a onClick={() => handlePlayClick(artist, id, name, url)}>{name}</a>
+        </picture>
+        <a
+          onClick={() => handlePlayClick(artist, id, name, url)}
+          className={styles.albumName}
+        >
+          {name}
+        </a>
         {showTracks && albumNameToShowTracks === name ? (
           <FaMinusCircle
             color="white"

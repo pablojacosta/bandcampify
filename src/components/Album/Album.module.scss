@@ -1,0 +1,19 @@
+@use "@styles/_mixins" as mixins;
+
+.album {
+  .albumData {
+    @include mixins.flex_container(row, flex-start, center);
+    gap: 1rem;
+
+    .image {
+      img {
+        width: 3rem;
+        height: auto;
+      }
+    }
+  }
+
+  .albumName {
+    font-family: var(--font-secondary);
+  }
+}
