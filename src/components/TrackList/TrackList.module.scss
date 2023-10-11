@@ -3,4 +3,9 @@
 .trackList {
   @include mixins.flex_container(column, center, flex-start);
   margin-left: 50px;
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
 }

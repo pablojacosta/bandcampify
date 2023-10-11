@@ -11,22 +11,24 @@ const TrackList = ({
   albumUrl,
 }: ITrackList) => {
   return (
-    <ul className={styles.trackList}>
-      {tracks.map((track, index) => (
-        <li key={track.id}>
-          <Track
-            handleTrackPlayClick={handleTrackPlayClick}
-            name={track.name}
-            id={track.id}
-            artist={artist}
-            albumId={albumId}
-            albumName={albumName}
-            albumUrl={albumUrl}
-            index={index}
-          />
-        </li>
-      ))}
-    </ul>
+    <div className={styles.trackList}>
+      <ul>
+        {tracks.map((track, index) => (
+          <li key={`${albumId}_${track.name}`}>
+            <Track
+              handleTrackPlayClick={handleTrackPlayClick}
+              name={track.name}
+              id={track.id}
+              artist={artist}
+              albumId={albumId}
+              albumName={albumName}
+              albumUrl={albumUrl}
+              index={index}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
