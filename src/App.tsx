@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ArtistInput from "@components/ArtistInput";
 import SearchArtistButton from "@components/SearchArtistButton";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 import FoundArtists from "@components/FoundArtists";
 import { IArtist } from "interfaces/artist";
@@ -39,6 +39,7 @@ const App = () => {
       .then((response): any => {
         if (typeof response.data === "string") {
           setArtistError(true);
+          console.log("Error: ", artistError);
         }
         setFoundArtists(response.data);
       })
