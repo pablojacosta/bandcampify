@@ -30,6 +30,8 @@ const App = () => {
   const [artistError, setArtistError] = useState(false);
   const [showTrackList, setShowTrackList] = useState(false);
   const showAlbumsList = hideArtists && !hideAlbums;
+  const isReadyForTrackList =
+    showTracks && tracks && albumArtist && albumId && albumName && albumUrl;
   // const [showPlayer, setShowPlayer] = useState(false);
   // const [loading, setLoading] = useState(false);
 
@@ -65,17 +67,10 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (
-      showTracks &&
-      tracks &&
-      albumArtist &&
-      albumId &&
-      albumName &&
-      albumUrl
-    ) {
+    if (isReadyForTrackList) {
       setShowTrackList(true);
     }
-  }, [albumArtist, albumId, albumName, albumUrl, showTracks, tracks]);
+  }, [isReadyForTrackList]);
 
   return (
     <Container>
