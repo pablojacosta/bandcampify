@@ -15,8 +15,6 @@ const FoundArtists = ({ foundArtists }: IFoundArtists) => {
     useSelectedArtistStore();
 
   useEffect(() => {
-    console.log("artistUrl", artistUrl);
-
     const getAlbumsOptions: AxiosRequestConfig<any> = {
       method: "GET",
       url: "http://localhost:3001/albums",
