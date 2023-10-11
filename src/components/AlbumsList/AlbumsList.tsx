@@ -7,8 +7,6 @@ const AlbumsList = ({
   returnedArtistData,
   handlePlayClick,
   handleTrackPlayClick,
-  handleAlbumPlusClick,
-  handleAlbumMinusClick,
   showTracks,
   albumNameToShowTracks,
 }: IAlbumsList) => {
@@ -29,8 +27,6 @@ const AlbumsList = ({
                 tracks={album.tracks}
                 handlePlayClick={handlePlayClick}
                 handleTrackPlayClick={handleTrackPlayClick}
-                handleAlbumPlusClick={handleAlbumPlusClick}
-                handleAlbumMinusClick={handleAlbumMinusClick}
                 showTracks={showTracks}
                 albumNameToShowTracks={albumNameToShowTracks}
               />
