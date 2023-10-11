@@ -16,7 +16,7 @@ const AlbumsList = ({
         {returnedArtistData
           .filter((album: IAlbum) => album.tracks.length !== 0)
           .map((album: IAlbum) => (
-            <li>
+            <li key={album.id}>
               <Album
                 key={album.id}
                 name={album.name}
