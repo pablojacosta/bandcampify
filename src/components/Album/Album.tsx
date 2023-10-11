@@ -23,14 +23,12 @@ const Album = ({ name, image, tracks, id, artist, url }: IAlbum) => {
   };
 
   return (
-    <div className={styles.album}>
+    <div className={styles.album} onClick={handleAlbumOnClick}>
       <div className={styles.albumData}>
         <picture className={styles.image}>
           <img src={image} />
         </picture>
-        <a onClick={handleAlbumOnClick} className={styles.albumName}>
-          {name}
-        </a>
+        <a className={styles.albumName}>{name}</a>
       </div>
       <Separator color="white" className={styles.separator} />
     </div>

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 import FoundArtists from "@components/FoundArtists";
 import { IArtist } from "interfaces/artist";
@@ -11,24 +11,18 @@ import Container from "@components/elements/Container";
 import AlbumsList from "@components/AlbumsList";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import TrackList from "@components/TrackList";
+import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 
 const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
   const [foundArtists, setFoundArtists] = useState<IArtist[]>([]);
-  const { albums, hideArtists, showTracks, tracks } = useSelectedArtistStore();
+  const { albums, hideArtists } = useSelectedArtistStore();
+  const { showTracks, tracks, albumArtist, albumId, albumName, albumUrl } =
+    useSelectedAlbumStore();
+  const [artistError, setArtistError] = useState(false);
+  const [showTrackList, setShowTrackList] = useState(false);
   // const [showPlayer, setShowPlayer] = useState(false);
   // const [loading, setLoading] = useState(false);
-
-  // const [selectedAlbumArtist, setSelectedAlbumArtist] = useState("");
-  // const [selectedAlbumId, setSelectedAlbumId] = useState<number>();
-  // const [selectedAlbumUrl, setSelectedAlbumUrl] = useState("");
-  // const [selectedAlbumName, setSelectedAlbumName] = useState("");
-  // const [selectedTrackId, setSelectedTrackId] = useState("");
-  const [artistError, setArtistError] = useState(false);
-
-  // const [showTracks, setShowTracks] = useState(false);
-  // const [albumNameToShowTracks, setalbumNameToShowTracks] = useState("");
-  // const [plusToggle, setPlusToggle] = useState(false);
 
   const handleArtistFilterChange = (event: any) => {
     setFilteredArtist(event.target.value);
@@ -61,6 +55,22 @@ const App = () => {
     }
   };
 
+  useEffect(() => {
+    if (
+      showTracks &&
+      tracks &&
+      albumArtist &&
+      albumId &&
+      albumName &&
+      albumUrl
+    ) {
+      setShowTrackList(true);
+    }
+  }, [albumArtist, albumId, albumName, albumUrl, showTracks, tracks]);
+
+  console.log("showTrackList", showTrackList);
+  console.log(" tracks", tracks);
+
   return (
     <Container>
       <div className={styles.app}>
@@ -73,14 +83,14 @@ const App = () => {
         />
         {!hideArtists && <FoundArtists foundArtists={foundArtists} />}
         {hideArtists && <AlbumsList returnedArtistData={albums} />}
-        {showTracks && tracks && (
+        {showTrackList && tracks && (
           <TrackList
             tracks={tracks}
             handleTrackPlayClick={undefined}
-            artist={""}
-            albumId={0}
-            albumName={""}
-            albumUrl={""}
+            artist={albumArtist}
+            albumId={albumId}
+            albumName={albumName}
+            albumUrl={albumUrl}
           />
         )}
       </div>
@@ -89,14 +99,3 @@ const App = () => {
 };
 
 export default App;
-
-{
-  /* <TrackList
-tracks={tracks}
-handleTrackPlayClick={handleTrackPlayClick}
-artist={artist}
-albumId={id}
-albumName={name}
-albumUrl={url}
-/> */
-}
