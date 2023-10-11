@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import TrackList from "../TrackList";
 import { IAlbum } from "../../interfaces/album";
 import styles from "./Album.module.scss";
@@ -14,13 +12,9 @@ const Album = ({
   tracks,
   handlePlayClick,
   handleTrackPlayClick,
-  handleAlbumPlusClick,
-  handleAlbumMinusClick,
   showTracks,
   albumNameToShowTracks,
 }: IAlbum) => {
-  const [plusSize, setPlusSize] = useState("1.0em");
-
   return (
     <div className={styles.album}>
       <div className={styles.albumData}>
@@ -33,35 +27,6 @@ const Album = ({
         >
           {name}
         </a>
-        {showTracks && albumNameToShowTracks === name ? (
-          <FaMinusCircle
-            color="white"
-            onMouseEnter={() => {
-              setPlusSize("1.1em");
-            }}
-            onMouseLeave={() => {
-              setPlusSize("1.0em");
-            }}
-            size={plusSize}
-            onClick={() => {
-              handleAlbumMinusClick(name);
-            }}
-          />
-        ) : (
-          <FaPlusCircle
-            color="white"
-            onMouseEnter={() => {
-              setPlusSize("1.1em");
-            }}
-            onMouseLeave={() => {
-              setPlusSize("1.0em");
-            }}
-            size={plusSize}
-            onClick={() => {
-              handleAlbumPlusClick(name);
-            }}
-          />
-        )}
       </div>
       <Separator color="white" className={styles.separator} />
       {showTracks && albumNameToShowTracks === name && (
