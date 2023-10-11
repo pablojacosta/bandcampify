@@ -3,13 +3,7 @@ import Album from "../Album";
 import { IAlbumsList } from "interfaces/albumsList";
 import styles from "./AlbumsList.module.scss";
 
-const AlbumsList = ({
-  returnedArtistData,
-  handlePlayClick,
-  handleTrackPlayClick,
-  showTracks,
-  albumNameToShowTracks,
-}: IAlbumsList) => {
+const AlbumsList = ({ returnedArtistData }: IAlbumsList) => {
   return (
     <div className={styles.albumsList}>
       <ul>
@@ -18,17 +12,12 @@ const AlbumsList = ({
           .map((album: IAlbum) => (
             <li key={album.id}>
               <Album
-                key={album.id}
                 name={album.name}
                 url={album.url}
                 image={album.image}
                 id={album.id}
                 artist={album.artist}
                 tracks={album.tracks}
-                handlePlayClick={handlePlayClick}
-                handleTrackPlayClick={handleTrackPlayClick}
-                showTracks={showTracks}
-                albumNameToShowTracks={albumNameToShowTracks}
               />
             </li>
           ))}

@@ -10,11 +10,12 @@ import styles from "./App.module.scss";
 import Container from "@components/elements/Container";
 import AlbumsList from "@components/AlbumsList";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
+import TrackList from "@components/TrackList";
 
 const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
   const [foundArtists, setFoundArtists] = useState<IArtist[]>([]);
-  const { albums, hideArtists } = useSelectedArtistStore();
+  const { albums, hideArtists, showTracks, tracks } = useSelectedArtistStore();
   // const [showPlayer, setShowPlayer] = useState(false);
   // const [loading, setLoading] = useState(false);
 
@@ -72,9 +73,30 @@ const App = () => {
         />
         {!hideArtists && <FoundArtists foundArtists={foundArtists} />}
         {hideArtists && <AlbumsList returnedArtistData={albums} />}
+        {showTracks && tracks && (
+          <TrackList
+            tracks={tracks}
+            handleTrackPlayClick={undefined}
+            artist={""}
+            albumId={0}
+            albumName={""}
+            albumUrl={""}
+          />
+        )}
       </div>
     </Container>
   );
 };
 
 export default App;
+
+{
+  /* <TrackList
+tracks={tracks}
+handleTrackPlayClick={handleTrackPlayClick}
+artist={artist}
+albumId={id}
+albumName={name}
+albumUrl={url}
+/> */
+}

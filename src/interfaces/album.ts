@@ -8,10 +8,4 @@ export interface IAlbum {
   id: number;
   artist: string;
   tracks: ITrack[];
-  handlePlayClick?: any;
-  handleTrackPlayClick?: any;
-  handleAlbumPlusClick?: any;
-  handleAlbumMinusClick?: any;
-  showTracks?: boolean;
-  albumNameToShowTracks?: string;
 }
