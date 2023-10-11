@@ -77,19 +77,18 @@ const App = () => {
     }
   }, [albumArtist, albumId, albumName, albumUrl, showTracks, tracks]);
 
-  console.log("showTrackList", showTrackList);
-  console.log(" tracks", tracks);
-
   return (
     <Container>
       <div className={styles.app}>
         <h1>Bandcampify</h1>
-        <SearchSection
-          handleArtistFilterChange={handleArtistFilterChange}
-          filteredArtist={filteredArtist}
-          onKeyDown={onKeyDown}
-          getArtistData={getArtistData}
-        />
+        {!showTrackList && (
+          <SearchSection
+            handleArtistFilterChange={handleArtistFilterChange}
+            filteredArtist={filteredArtist}
+            onKeyDown={onKeyDown}
+            getArtistData={getArtistData}
+          />
+        )}
         {!hideArtists && <FoundArtists foundArtists={foundArtists} />}
         {showAlbumsList && <AlbumsList returnedArtistData={albums} />}
         {showTrackList && tracks && (
