@@ -17,10 +17,18 @@ const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
   const [foundArtists, setFoundArtists] = useState<IArtist[]>([]);
   const { albums, hideArtists } = useSelectedArtistStore();
-  const { showTracks, tracks, albumArtist, albumId, albumName, albumUrl } =
-    useSelectedAlbumStore();
+  const {
+    showTracks,
+    tracks,
+    albumArtist,
+    albumId,
+    albumName,
+    albumUrl,
+    hideAlbums,
+  } = useSelectedAlbumStore();
   const [artistError, setArtistError] = useState(false);
   const [showTrackList, setShowTrackList] = useState(false);
+  const showAlbumsList = hideArtists && !hideAlbums;
   // const [showPlayer, setShowPlayer] = useState(false);
   // const [loading, setLoading] = useState(false);
 
@@ -82,7 +90,7 @@ const App = () => {
           getArtistData={getArtistData}
         />
         {!hideArtists && <FoundArtists foundArtists={foundArtists} />}
-        {hideArtists && <AlbumsList returnedArtistData={albums} />}
+        {showAlbumsList && <AlbumsList returnedArtistData={albums} />}
         {showTrackList && tracks && (
           <TrackList
             tracks={tracks}

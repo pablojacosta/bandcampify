@@ -13,9 +13,8 @@ const TrackList = ({
   return (
     <ul className={styles.trackList}>
       {tracks.map((track, index) => (
-        <li>
+        <li key={track.id}>
           <Track
-            key={track.id}
             handleTrackPlayClick={handleTrackPlayClick}
             name={track.name}
             id={track.id}
