@@ -3,4 +3,19 @@
 .track {
   @include mixins.flex_container(row, flex-start, center);
   gap: 1rem;
+  width: 25rem;
+
+  &:hover {
+    background-image: linear-gradient(
+      to left,
+      #393737 0%,
+      rgba(217, 217, 217, 0) 100%
+    );
+  }
+
+  .trackNumber {
+    line-height: 1.4375rem;
+    color: #cdcdcd;
+    padding: 0.5rem;
+  }
 }

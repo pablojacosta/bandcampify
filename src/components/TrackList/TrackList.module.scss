@@ -1,7 +1,7 @@
 @use "@styles/_mixins" as mixins;
 
 .trackList {
-  @include mixins.flex_container(column, center, flex-start);
+  @include mixins.flex_container(column, center, center);
   margin-top: 2rem;
 
   ul {
