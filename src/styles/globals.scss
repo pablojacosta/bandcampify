@@ -1,0 +1,89 @@
+@use "./_colors.scss";
+@use "./_fonts.scss";
+@use "@styles/_responsives" as responsives;
+
+:root {
+  --font-primary: #{fonts.$fontPrimary};
+  --font-secondary: #{fonts.$fontSecondary};
+
+  --color-white: #{colors.$colorWhite};
+  --color-black: #{colors.$colorBlack};
+  --color-orange: #{colors.$colorOrange};
+  --color-gray: #{colors.$colorGray};
+
+  --gradient-alpha: #{colors.$gradientAlpha};
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: var(--font-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h6 {
+  margin: 0;
+  font-family: var(--font-secondary);
+  font-weight: normal;
+  padding: 0;
+  background-color: var(--color-black);
+}
+
+h1 {
+  text-align: center;
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  margin-bottom: 4rem;
+  padding: 2rem;
+}
+
+h3 {
+  letter-spacing: 0.04rem;
+  font-size: 1.875rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+p {
+  color: #cdcdcd;
+  line-height: 1.4375rem;
+}
+
+ul {
+  font-family: var(--font-secondary);
+}
+
+button {
+  background-color: var(--color-gray);
+  border: none;
+  border-radius: 1rem;
+  width: 8rem;
+  height: 2.3rem;
+  font-family: var(--font-secondary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04rem;
+  cursor: pointer;
+  color: #ffffff;
+
+  @include responsives.resolution__mobile__m {
+    font-size: 0.75rem;
+    width: 7rem;
+  }
+
+  &:hover {
+    background-color: var(--color-white);
+    color: var(--color-gray);
+  }
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+}

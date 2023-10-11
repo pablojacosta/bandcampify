@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "roboto";
+  src: url("@assets/fonts/roboto/Roboto-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("@assets/fonts/roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("@assets/fonts/roboto/Roboto-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "raleway";
+  src: url("@assets/fonts/raleway/Raleway-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+$fontPrimary: "roboto", sans-serif;
+$fontSecondary: "raleway", "sans-serif";
