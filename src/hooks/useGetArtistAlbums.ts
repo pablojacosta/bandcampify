@@ -4,7 +4,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { useState } from "react";
 
 const useGetArtistAlbums = () => {
-  const { setAlbums, setArtistUrl } = useSelectedArtistStore();
+  const { setAlbums, setArtistUrl, setHideArtists } = useSelectedArtistStore();
   const [isAlbumsLoading, setIsAlbumsLoading] = useState(false);
 
   // useEffect(() => {
@@ -21,6 +21,7 @@ const useGetArtistAlbums = () => {
   const getAlbums = async (artistUrl: string) => {
     setIsAlbumsLoading(true);
     setArtistUrl(artistUrl);
+    setHideArtists(true);
 
     const getAlbumsOptions: AxiosRequestConfig<any> = {
       method: "GET",

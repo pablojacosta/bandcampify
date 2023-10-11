@@ -14,7 +14,7 @@ import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
   const [foundArtists, setFoundArtists] = useState<IArtist[]>([]);
-  const { albums } = useSelectedArtistStore();
+  const { albums, hideArtists } = useSelectedArtistStore();
   // const [showPlayer, setShowPlayer] = useState(false);
   // const [loading, setLoading] = useState(false);
 
@@ -70,8 +70,8 @@ const App = () => {
           onKeyDown={onKeyDown}
           getArtistData={getArtistData}
         />
-        <FoundArtists foundArtists={foundArtists} />
-        <AlbumsList returnedArtistData={albums} />
+        {!hideArtists && <FoundArtists foundArtists={foundArtists} />}
+        {hideArtists && <AlbumsList returnedArtistData={albums} />}
       </div>
     </Container>
   );
