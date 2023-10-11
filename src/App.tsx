@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 import FoundArtists from "@components/FoundArtists";
 import { IArtist } from "interfaces/artist";
+import "@styles/globals.scss";
 
 const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
