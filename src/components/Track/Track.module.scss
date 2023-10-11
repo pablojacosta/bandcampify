@@ -1,0 +1,6 @@
+@use "@styles/_mixins" as mixins;
+
+.track {
+  @include mixins.flex_container(row, flex-start, center);
+  gap: 1rem;
+}

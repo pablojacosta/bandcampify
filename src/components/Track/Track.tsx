@@ -1,4 +1,5 @@
 import { ITrack } from "../../interfaces/track";
+import styles from "./Track.module.scss";
 
 const Track = ({
   handleTrackPlayClick,
@@ -11,7 +12,7 @@ const Track = ({
   index,
 }: ITrack) => {
   return (
-    <div>
+    <div className={styles.track}>
       <p>{index + 1} </p>
       <a
         onClick={() =>
