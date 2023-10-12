@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ITrack } from "./track";
+import { IFilteredTrack } from "./filteredTrack";
 
 export interface IAlbum {
   name: string;
   url: string;
   image: string;
-  id: string;
+  id: number;
   artist: string;
-  tracks: ITrack[];
+  tracks: IFilteredTrack[] | [];
 }

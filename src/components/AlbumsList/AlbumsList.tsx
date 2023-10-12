@@ -3,40 +3,17 @@ import { IAlbum } from "interfaces/album";
 import Album from "./components/Album";
 import { IAlbumsList } from "interfaces/albumsList";
 import styles from "./AlbumsList.module.scss";
-import { IFilteredTrack } from "interfaces/filteredTrack";
+import { getSanitizedAlbums } from "@utils/helpers/getSanitizedAlbums";
 
 const AlbumsList = ({ returnedArtistData }: IAlbumsList) => {
-  const filteredAlbums = returnedArtistData.filter(
-    (album: IAlbum) => album.tracks.length !== 0
-  );
+  const albums = getSanitizedAlbums(returnedArtistData);
 
-  const filteredTracks = returnedArtistData
-    .filter((album: IAlbum) => album.tracks.length === 0)
-    .map((album: IAlbum) => ({ name: album.name, id: album.id }));
-
-  const filteredUniqueTracks: IFilteredTrack[] = filteredTracks.filter(
-    (obj: IFilteredTrack, index: number) => {
-      return (
-        index ===
-        filteredTracks.findLastIndex((o: IFilteredTrack) => obj.id === o.id)
-      );
-    }
-  );
-
-  for (const track of filteredUniqueTracks) {
-    for (let i = 0; i < filteredAlbums.length; i++) {
-      for (let j = 0; j < filteredAlbums[i].tracks.length; j++) {
-        if (filteredAlbums[i].tracks[j].name.localeCompare(track.name) === 0) {
-          filteredAlbums[i].tracks[j].id = track.id;
-        }
-      }
-    }
-  }
+  console.log("albums", albums);
 
   return (
     <div className={styles.albumsList}>
       <ul>
-        {filteredAlbums.map((album: IAlbum) => (
+        {albums.map((album: IAlbum) => (
           <li key={album.id}>
             <Album
               name={album.name}

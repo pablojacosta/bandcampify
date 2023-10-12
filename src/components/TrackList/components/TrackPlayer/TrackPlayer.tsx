@@ -9,7 +9,7 @@ const TrackPlayer = () => {
     <div className={styles.trackPlayer}>
       <iframe
         style={{ border: 0, width: 500, height: 150 }}
-        src={`https://bandcamp.com/EmbeddedPlayer/album=${albumId}/size=medium/bgcol=333333/linkcol=e6682b/artwork=false/track=${trackId}/transparent=true/`}
+        src={`https://bandcamp.com/EmbeddedPlayer/album=${albumId}/size=medium/bgcol=333333/linkcol=1ed760/artwork=false/track=${trackId}/transparent=true/`}
         seamless
       ></iframe>
     </div>
