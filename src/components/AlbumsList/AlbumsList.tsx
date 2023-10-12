@@ -22,7 +22,7 @@ const AlbumsList = ({ returnedArtistData }: IAlbumsList) => {
 
   return (
     <div className={styles.albumsList}>
-      <h1>Albums</h1>
+      <h2>Albums</h2>
       <ul>
         {albums.map((album: IAlbum) => {
           const handleAlbumOnClick = () => {

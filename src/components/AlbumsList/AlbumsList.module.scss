@@ -1,6 +1,13 @@
 @use "@styles/_mixins" as mixins;
 
 .albumsList {
+  width: 100%;
+  margin-top: 2rem;
+
+  h2 {
+    text-align: left;
+  }
+
   ul {
     padding: 0;
     list-style: none;
