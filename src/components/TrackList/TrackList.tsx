@@ -12,8 +12,9 @@ const TrackList = ({
   albumUrl,
   albumImage,
 }: ITrackList) => {
-  const { setShowPlayer, showPlayer } = useSelectedAlbumStore();
-  const handleOnPlayClick = () => {
+  const { setShowPlayer, showPlayer, setTrackId } = useSelectedAlbumStore();
+  const handleOnPlayClick = (trackId: string) => {
+    setTrackId(trackId);
     setShowPlayer(true);
   };
 
@@ -26,13 +27,14 @@ const TrackList = ({
         {tracks.map((track, index) => (
           <li key={`${albumId}_${track.name}`}>
             <Track
-              handleOnPlayClick={() => handleOnPlayClick()}
+              handleOnPlayClick={() => handleOnPlayClick(track.id)}
               name={track.name}
               artist={artist}
               albumId={albumId}
               albumName={albumName}
               albumUrl={albumUrl}
               index={index}
+              id={track.id}
             />
           </li>
         ))}

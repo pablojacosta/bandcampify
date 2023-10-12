@@ -26,7 +26,7 @@ const AlbumsList = ({ returnedArtistData }: IAlbumsList) => {
   for (const track of filteredUniqueTracks) {
     for (let i = 0; i < filteredAlbums.length; i++) {
       for (let j = 0; j < filteredAlbums[i].tracks.length; j++) {
-        if (filteredAlbums[i].tracks[j].name === track.name) {
+        if (filteredAlbums[i].tracks[j].name.localeCompare(track.name) === 0) {
           filteredAlbums[i].tracks[j].id = track.id;
         }
       }
