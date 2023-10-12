@@ -3,16 +3,7 @@ import { ITrack } from "../../../../interfaces/track";
 import styles from "./Track.module.scss";
 import { BiPlay } from "react-icons/bi";
 
-const Track = ({
-  handleTrackPlayClick,
-  name,
-  id,
-  artist,
-  albumId,
-  albumName,
-  albumUrl,
-  index,
-}: ITrack) => {
+const Track = ({ handleOnPlayClick, name, index }: ITrack) => {
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseOver = () => {
@@ -28,17 +19,12 @@ const Track = ({
       className={styles.track}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
+      onClick={() => handleOnPlayClick()}
     >
       <div className={styles.trackNumber}>
         {!isHovering ? <>{index + 1}</> : <BiPlay className={styles.play} />}
       </div>
-      <a
-        onClick={() =>
-          handleTrackPlayClick(artist, albumId, albumName, albumUrl, id)
-        }
-      >
-        {name}
-      </a>
+      <a>{name}</a>
     </div>
   );
 };

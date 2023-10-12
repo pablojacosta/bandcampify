@@ -32,8 +32,6 @@ const App = () => {
   const showAlbumsList = hideArtists && !hideAlbums;
   const isReadyForTrackList =
     showTracks && tracks && albumArtist && albumId && albumName && albumUrl;
-  // const [showPlayer, setShowPlayer] = useState(false);
-  // const [loading, setLoading] = useState(false);
 
   const handleArtistFilterChange = (event: any) => {
     setFilteredArtist(event.target.value);
@@ -89,7 +87,6 @@ const App = () => {
         {showTrackList && tracks && (
           <TrackList
             tracks={tracks}
-            handleTrackPlayClick={undefined}
             artist={albumArtist}
             albumId={albumId}
             albumName={albumName}

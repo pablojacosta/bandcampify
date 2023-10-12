@@ -5,7 +5,7 @@ export interface IAlbum {
   name: string;
   url: string;
   image: string;
-  id: number;
+  id: string;
   artist: string;
   tracks: ITrack[];
 }

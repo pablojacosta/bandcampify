@@ -1,16 +1,22 @@
 import Track from "./components/Track";
 import { ITrackList } from "../../interfaces/trackList";
 import styles from "./TrackList.module.scss";
+import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
+import TrackPlayer from "./components/TrackPlayer";
 
 const TrackList = ({
   tracks,
-  handleTrackPlayClick,
   artist,
   albumId,
   albumName,
   albumUrl,
   albumImage,
 }: ITrackList) => {
+  const { setShowPlayer, showPlayer } = useSelectedAlbumStore();
+  const handleOnPlayClick = () => {
+    setShowPlayer(true);
+  };
+
   return (
     <div className={styles.trackList}>
       <picture>
@@ -20,9 +26,8 @@ const TrackList = ({
         {tracks.map((track, index) => (
           <li key={`${albumId}_${track.name}`}>
             <Track
-              handleTrackPlayClick={handleTrackPlayClick}
+              handleOnPlayClick={() => handleOnPlayClick()}
               name={track.name}
-              id={track.id}
               artist={artist}
               albumId={albumId}
               albumName={albumName}
@@ -32,6 +37,7 @@ const TrackList = ({
           </li>
         ))}
       </ul>
+      {showPlayer && <TrackPlayer />}
     </div>
   );
 };

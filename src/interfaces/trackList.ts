@@ -3,9 +3,8 @@ import { ITrack } from "./track";
 
 export interface ITrackList {
   tracks: ITrack[];
-  handleTrackPlayClick: any;
   artist: string;
-  albumId: number;
+  albumId: string;
   albumName: string;
   albumUrl: string;
   albumImage: string;

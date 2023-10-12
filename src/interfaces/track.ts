@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ITrack {
-  handleTrackPlayClick: any;
+  handleOnPlayClick: any;
   name: string;
-  id: number;
   artist: string;
-  albumId: number;
+  albumId: string;
   albumName: string;
   albumUrl: string;
   index: number;
