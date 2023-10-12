@@ -1,0 +1,18 @@
+@use "@styles/_mixins" as mixins;
+
+.songsList {
+  width: 100%;
+  margin-top: 2rem;
+
+  h2 {
+    text-align: left;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+    @include mixins.flex_container(row, center, center);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

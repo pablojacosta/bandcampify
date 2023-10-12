@@ -8,7 +8,12 @@ export const getSanitizedAlbums = (data: IReturnedData[]) => {
 
   const filteredTracks = data
     .filter((track: IReturnedData) => track.tracks.length === 0)
-    .map((track: IReturnedData) => ({ name: track.name, id: track.id }));
+    .map((track: IReturnedData) => ({
+      name: track.name,
+      id: track.id,
+      image: track.image,
+      artist: track.artist,
+    }));
 
   const filteredUniqueTracks: IFilteredTrack[] = filteredTracks.filter(
     (obj: IFilteredTrack, index: number) => {
@@ -29,5 +34,5 @@ export const getSanitizedAlbums = (data: IReturnedData[]) => {
     }
   }
 
-  return filteredAlbums;
+  return { filteredAlbums, filteredUniqueTracks };
 };

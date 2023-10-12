@@ -27,7 +27,7 @@ const TrackList = ({
         {tracks.map((track, index) => (
           <li key={`${albumId}_${track.name}`}>
             <Track
-              handleOnPlayClick={() => handleOnPlayClick(track.id)}
+              handleOnPlayClick={() => handleOnPlayClick(track.id.toString())}
               name={track.name}
               artist={artist}
               albumId={albumId}

@@ -12,6 +12,7 @@ import AlbumsList from "@components/AlbumsList";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import TrackList from "@components/TrackList";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
+import SongsList from "@components/SongsList";
 
 const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
@@ -70,6 +71,8 @@ const App = () => {
     }
   }, [isReadyForTrackList]);
 
+  console.log("albums", albums);
+
   return (
     <Container>
       <div className={styles.app}>
@@ -84,6 +87,7 @@ const App = () => {
         )}
         {!hideArtists && <FoundArtists foundArtists={foundArtists} />}
         {showAlbumsList && <AlbumsList returnedArtistData={albums} />}
+        <SongsList returnedArtistData={albums} />
         {showTrackList && tracks && (
           <TrackList
             tracks={tracks}

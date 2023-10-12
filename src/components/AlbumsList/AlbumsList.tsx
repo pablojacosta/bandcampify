@@ -8,7 +8,7 @@ import { EListedElementTypes } from "@constants/enums";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 
 const AlbumsList = ({ returnedArtistData }: IAlbumsList) => {
-  const albums = getSanitizedAlbums(returnedArtistData);
+  const { filteredAlbums: albums } = getSanitizedAlbums(returnedArtistData);
   const {
     setTracks,
     setShowTracks,
