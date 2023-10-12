@@ -25,9 +25,11 @@
       position: relative;
 
       &:hover {
-        .playButton {
-          transition-timing-function: ease-in;
-          opacity: 1;
+        .text {
+          .playButton {
+            transition-timing-function: ease-in;
+            opacity: 1;
+          }
         }
       }
 

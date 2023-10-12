@@ -13,8 +13,8 @@ const TrackList = ({
   albumImage,
 }: ITrackList) => {
   const { setShowPlayer, showPlayer, setTrackId } = useSelectedAlbumStore();
-  const handleOnPlayClick = (trackId: string) => {
-    setTrackId(trackId);
+  const handleOnPlayClick = (trackId: number) => {
+    setTrackId(trackId.toString());
     setShowPlayer(true);
   };
 
@@ -24,20 +24,24 @@ const TrackList = ({
         <img src={albumImage} alt="Album Image" />
       </picture>
       <ul>
-        {tracks.map((track, index) => (
-          <li key={`${albumId}_${track.name}`}>
-            <Track
-              handleOnPlayClick={() => handleOnPlayClick(track.id.toString())}
-              name={track.name}
-              artist={artist}
-              albumId={albumId}
-              albumName={albumName}
-              albumUrl={albumUrl}
-              index={index}
-              id={track.id}
-            />
-          </li>
-        ))}
+        {tracks.map((track, index) => {
+          console.log("track", track);
+
+          return (
+            <li key={`${albumId}_${track.name}`}>
+              <Track
+                handleOnPlayClick={() => handleOnPlayClick(track.id)}
+                name={track.name}
+                artist={artist}
+                albumId={albumId}
+                albumName={albumName}
+                albumUrl={albumUrl}
+                index={index}
+                id={track.id}
+              />
+            </li>
+          );
+        })}
       </ul>
       {showPlayer && <TrackPlayer />}
     </div>

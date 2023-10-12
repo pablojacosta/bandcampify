@@ -28,12 +28,14 @@ const App = () => {
     hideAlbums,
     albumImage,
     hasAlbums,
+    setHasAlbums,
   } = useSelectedAlbumStore();
   const [artistError, setArtistError] = useState(false);
   const [showTrackList, setShowTrackList] = useState(false);
   const { hasSongs } = useSongsStore();
   const hideArtistsToShowLists = hideArtists && !hideAlbums;
-  const showAlbumsList = hideArtistsToShowLists && hasAlbums;
+  const showAlbumsList = hasAlbums && !hideAlbums;
+  const showFoundArtists = !hideArtists && foundArtists.length > 0;
   const showSongsList = hideArtistsToShowLists && hasSongs;
   const isReadyForTrackList =
     showTracks && tracks && albumArtist && albumId && albumName && albumUrl;
@@ -75,7 +77,12 @@ const App = () => {
     }
   }, [isReadyForTrackList]);
 
-  console.log("albums", albums);
+  useEffect(() => {
+    if (albums.length) {
+      setHasAlbums(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [albums]);
 
   return (
     <Container>
@@ -89,7 +96,7 @@ const App = () => {
             getArtistData={getArtistData}
           />
         )}
-        {!hideArtists && <FoundArtists foundArtists={foundArtists} />}
+        {showFoundArtists && <FoundArtists foundArtists={foundArtists} />}
         {showAlbumsList && <AlbumsList returnedArtistData={albums} />}
         {showSongsList && <SongsList returnedArtistData={albums} />}
         {showTrackList && tracks && (

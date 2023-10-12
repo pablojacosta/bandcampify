@@ -13,5 +13,6 @@
     list-style: none;
     @include mixins.flex_container(row, center, center);
     flex-wrap: wrap;
+    gap: 1rem;
   }
 }
