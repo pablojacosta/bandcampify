@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const useGetArtistAlbums = () => {
   const { setAlbums, setArtistUrl, setHideArtists } = useSelectedArtistStore();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isAlbumsLoading, setIsAlbumsLoading] = useState(false);
 
   // useEffect(() => {
@@ -16,7 +17,7 @@ const useGetArtistAlbums = () => {
   //   setShowLoader(false);
   // }, [isAlbumsLoading, artistUrl, setShowLoader]);
 
-  console.log("isAlbumsLoading", isAlbumsLoading);
+  // console.log("isAlbumsLoading", isAlbumsLoading);
 
   const getAlbums = async (artistUrl: string) => {
     setIsAlbumsLoading(true);
