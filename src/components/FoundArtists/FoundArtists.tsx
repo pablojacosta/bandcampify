@@ -22,7 +22,7 @@ const FoundArtists = ({ foundArtists }: IFoundArtists) => {
             >
               <div className={styles.content}>
                 <picture>
-                  <img src={artist.imageUrl} alt="Artis Image" />
+                  <img src={artist.imageUrl} alt="Artist Image" />
                 </picture>
                 <p className={styles.artistName}>{artist.name}</p>
                 <p className={styles.artistTag}>Artist</p>
