@@ -1,8 +1,8 @@
-import { ITrack } from "interfaces/track";
+import { IFilteredTrack } from "interfaces/filteredTrack";
 import { create } from "zustand";
 
 interface ISelectedAlbumStore {
-  tracks: ITrack[] | null;
+  tracks: IFilteredTrack[] | null;
   showTracks: boolean;
   albumUrl: string;
   albumId: string;
@@ -12,7 +12,7 @@ interface ISelectedAlbumStore {
   albumImage: string;
   showPlayer: boolean;
   trackId: string;
-  setTracks: (trackList: ITrack[]) => void;
+  setTracks: (trackList: IFilteredTrack[]) => void;
   setShowTracks: (showTracks: boolean) => void;
   setAlbumUrl: (albumUrl: string) => void;
   setAlbumId: (albumId: string) => void;
@@ -40,7 +40,7 @@ const initialState = {
 
 export const useSelectedAlbumStore = create<ISelectedAlbumStore>()((set) => ({
   ...initialState,
-  setTracks: (tracks: ITrack[]) =>
+  setTracks: (tracks: IFilteredTrack[]) =>
     set((state) => ({
       ...state,
       tracks,

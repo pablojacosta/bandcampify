@@ -1,6 +1,10 @@
+@use "@styles/_mixins" as mixins;
+
 .albumsList {
   ul {
     padding: 0;
     list-style: none;
+    @include mixins.flex_container(row, center, center);
+    flex-wrap: wrap;
   }
 }

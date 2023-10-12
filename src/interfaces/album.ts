@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IFilteredTrack } from "./filteredTrack";
 
 export interface IAlbum {

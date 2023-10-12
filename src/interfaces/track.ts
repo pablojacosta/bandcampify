@@ -7,5 +7,5 @@ export interface ITrack {
   albumName: string;
   albumUrl: string;
   index: number;
-  id: string;
+  id: number;
 }

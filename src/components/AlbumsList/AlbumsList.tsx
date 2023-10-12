@@ -1,30 +1,51 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { IAlbum } from "interfaces/album";
-import Album from "./components/Album";
 import { IAlbumsList } from "interfaces/albumsList";
 import styles from "./AlbumsList.module.scss";
 import { getSanitizedAlbums } from "@utils/helpers/getSanitizedAlbums";
+import ListedElement from "@components/shared/ListedElement";
+import { EListedElementTypes } from "@constants/enums";
+import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 
 const AlbumsList = ({ returnedArtistData }: IAlbumsList) => {
   const albums = getSanitizedAlbums(returnedArtistData);
-
-  console.log("albums", albums);
+  const {
+    setTracks,
+    setShowTracks,
+    setAlbumArtist,
+    setAlbumId,
+    setAlbumName,
+    setAlbumUrl,
+    setHideAlbums,
+    setAlbumImage,
+  } = useSelectedAlbumStore();
 
   return (
     <div className={styles.albumsList}>
+      <h1>Albums</h1>
       <ul>
-        {albums.map((album: IAlbum) => (
-          <li key={album.id}>
-            <Album
-              name={album.name}
-              url={album.url}
+        {albums.map((album: IAlbum) => {
+          const handleAlbumOnClick = () => {
+            setTracks(album.tracks);
+            setShowTracks(true);
+            setAlbumArtist(album.artist);
+            setAlbumId(album.id.toString());
+            setAlbumName(album.name);
+            setAlbumUrl(album.url);
+            setHideAlbums(true);
+            setAlbumImage(album.image);
+          };
+
+          return (
+            <ListedElement
+              key={`${album.id}`}
+              onClick={handleAlbumOnClick}
               image={album.image}
-              id={album.id}
-              artist={album.artist}
-              tracks={album.tracks}
+              name={album.name}
+              type={EListedElementTypes.ALBUM}
             />
-          </li>
-        ))}
+          );
+        })}
       </ul>
     </div>
   );
