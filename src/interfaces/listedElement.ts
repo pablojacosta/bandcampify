@@ -7,4 +7,5 @@ export interface IListedElement {
   image: string;
   name: string;
   type: EListedElementTypes;
+  artist?: string;
 }

@@ -40,6 +40,7 @@ const SongsList = ({ returnedArtistData }: ISongsList) => {
               image={song.image}
               name={song.name}
               type={EListedElementTypes.TRACK}
+              artist={song.artist}
             />
           );
         })}

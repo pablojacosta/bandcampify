@@ -39,35 +39,116 @@
         margin-top: 1rem;
       }
 
-      .artistName {
-        height: 1.875rem;
-        width: 9rem;
-        color: var(--color-white);
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        font-weight: 700;
+      .text {
+        .name {
+          height: 1.875rem;
+          width: 9rem;
+          color: var(--color-white);
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          font-weight: 700;
+        }
+
+        .tag {
+          font-size: 0.875rem;
+          margin-top: 0;
+        }
+
+        .playButton {
+          @include mixins.flex_container(row, center, center);
+          background-color: var(--color-green);
+          border-radius: 50%;
+          width: 2.5rem;
+          height: 2.5rem;
+          position: absolute;
+          bottom: 7rem;
+          right: 0;
+          opacity: 0;
+          transition: opacity 200ms;
+
+          &:hover {
+            transform: scale(1.08);
+          }
+        }
+      }
+    }
+  }
+
+  &.isSong {
+    width: 100%;
+    max-width: 35rem;
+    position: relative;
+
+    li {
+      @include mixins.flex_container(row, flex-start, center);
+      height: 3.5rem;
+      width: 100%;
+
+      &:hover {
+        .content {
+          .text {
+            .playButton {
+              transition-timing-function: ease-in;
+              opacity: 1;
+            }
+          }
+        }
       }
 
-      .artistTag {
-        font-size: 0.875rem;
-        margin-top: 0;
-      }
+      .content {
+        @include mixins.flex_container(row, flex-end, center);
+        margin: 0;
+        gap: 1rem;
+        padding-left: 0.5rem;
+        position: relative;
 
-      .playButton {
-        @include mixins.flex_container(row, center, center);
-        background-color: var(--color-green);
-        border-radius: 50%;
-        width: 2.5rem;
-        height: 2.5rem;
-        position: absolute;
-        bottom: 7rem;
-        right: 0;
-        opacity: 0;
-        transition: opacity 200ms;
+        picture {
+          width: 2.5rem;
+          height: 2.5rem;
 
-        &:hover {
-          transform: scale(1.08);
+          img {
+            border-radius: 0%;
+            width: 2.5rem;
+            height: 2.5rem;
+            margin: 0;
+          }
+        }
+
+        .text {
+          height: 3.5rem;
+          @include mixins.flex_container(column, center, flex-start);
+          padding-top: 0.1rem;
+
+          .name {
+            line-height: normal;
+            height: 1rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 0.825rem;
+          }
+
+          .tag {
+            font-size: 0.825rem;
+            margin: 0;
+          }
+
+          .playButton {
+            @include mixins.flex_container(row, center, center);
+            background-color: transparent;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            opacity: 0;
+            transition: opacity 200ms;
+
+            &:hover {
+              transform: scale(1);
+            }
+          }
         }
       }
     }
