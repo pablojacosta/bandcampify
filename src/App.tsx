@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useEffect, useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 import FoundArtists from "@components/FoundArtists";
@@ -13,6 +12,7 @@ import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import TrackList from "@components/TrackList";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import SongsList from "@components/SongsList";
+import { useSongsStore } from "@store/useSongsStore";
 
 const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
@@ -27,10 +27,14 @@ const App = () => {
     albumUrl,
     hideAlbums,
     albumImage,
+    hasAlbums,
   } = useSelectedAlbumStore();
   const [artistError, setArtistError] = useState(false);
   const [showTrackList, setShowTrackList] = useState(false);
-  const showAlbumsList = hideArtists && !hideAlbums;
+  const { hasSongs } = useSongsStore();
+  const hideArtistsToShowLists = hideArtists && !hideAlbums;
+  const showAlbumsList = hideArtistsToShowLists && hasAlbums;
+  const showSongsList = hideArtistsToShowLists && hasSongs;
   const isReadyForTrackList =
     showTracks && tracks && albumArtist && albumId && albumName && albumUrl;
 
@@ -87,7 +91,7 @@ const App = () => {
         )}
         {!hideArtists && <FoundArtists foundArtists={foundArtists} />}
         {showAlbumsList && <AlbumsList returnedArtistData={albums} />}
-        <SongsList returnedArtistData={albums} />
+        {showSongsList && <SongsList returnedArtistData={albums} />}
         {showTrackList && tracks && (
           <TrackList
             tracks={tracks}

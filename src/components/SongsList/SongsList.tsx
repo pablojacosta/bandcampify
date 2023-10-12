@@ -4,13 +4,20 @@ import { getSanitizedAlbums } from "@utils/helpers/getSanitizedAlbums";
 import { IFilteredTrack } from "interfaces/filteredTrack";
 import { EListedElementTypes } from "@constants/enums";
 import ListedElement from "@components/shared/ListedElement";
+import { useEffect } from "react";
+import { useSongsStore } from "@store/useSongsStore";
 
 const SongsList = ({ returnedArtistData }: ISongsList) => {
   const { filteredUniqueTracks: songs } =
     getSanitizedAlbums(returnedArtistData);
+  const { setHasSongs } = useSongsStore();
 
-  console.log("returnedArtistData", returnedArtistData);
-  console.log("songs", songs);
+  useEffect(() => {
+    if (songs.length) {
+      setHasSongs(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.songsList}>
