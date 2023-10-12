@@ -1,7 +1,6 @@
 import useGetArtistAlbums from "@hooks/useGetArtistAlbums";
 import styles from "./FoundArtists.module.scss";
 import { IFoundArtists } from "interfaces/foundArtist";
-import Separator from "@components/elements/Separator";
 
 const FoundArtists = ({ foundArtists }: IFoundArtists) => {
   const { getAlbums } = useGetArtistAlbums();
@@ -15,9 +14,14 @@ const FoundArtists = ({ foundArtists }: IFoundArtists) => {
               key={`${artist.name}_${artist.genre}`}
               onClick={() => getAlbums(artist.url)}
             >
-              {artist.name}
+              <div className={styles.content}>
+                <picture>
+                  <img src={artist.imageUrl} alt="Artis Image" />
+                </picture>
+                <p className={styles.artistName}>{artist.name}</p>
+                <p className={styles.artistTag}>Artist</p>
+              </div>
             </li>
-            <Separator color="white" />
           </>
         ))}
       </ul>

@@ -5,4 +5,5 @@ export interface IArtist {
   tags: string[];
   type: string;
   url: string;
+  imageUrl: string;
 }

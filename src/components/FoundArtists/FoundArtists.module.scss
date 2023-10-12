@@ -5,11 +5,14 @@
   margin-top: 2rem;
 
   ul {
+    @include mixins.flex_container(row, center, center);
+    flex-wrap: wrap;
     list-style: none;
     padding: 0;
+    gap: 1rem;
 
     li {
-      @include mixins.flex_container(row, flex-start, center);
+      @include mixins.flex_container(column, flex-start, flex-start);
       cursor: pointer;
       width: 20rem;
       height: 2.7rem;
@@ -17,13 +20,41 @@
       color: var(--color-white);
       font-size: 1rem;
       border-radius: 0.7rem;
+      width: 11.844rem;
+      height: 16.719rem;
+      background-color: hsla(0, 0%, 100%, 0.02);
+      transition: background-color 0.8s;
 
       &:hover {
-        background-image: linear-gradient(
-          to left,
-          #393737 0%,
-          rgba(217, 217, 217, 0) 100%
-        );
+        background-color: hsla(0, 0%, 100%, 0.05);
+        transition-timing-function: ease-out;
+      }
+
+      .content {
+        margin: 0 auto;
+
+        img {
+          border-radius: 50%;
+          width: 9rem;
+          height: 9rem;
+          object-fit: cover;
+          margin-top: 1rem;
+        }
+
+        .artistName {
+          height: 1.875rem;
+          width: 9rem;
+          color: var(--color-white);
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          font-weight: 700;
+        }
+
+        .artistTag {
+          font-size: 0.875rem;
+          margin-top: 0;
+        }
       }
     }
   }
