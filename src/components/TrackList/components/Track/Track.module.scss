@@ -4,6 +4,7 @@
   @include mixins.flex_container(row, flex-start, center);
   gap: 1rem;
   width: 25rem;
+  border-radius: 0.7rem;
 
   &:hover {
     background-image: linear-gradient(
