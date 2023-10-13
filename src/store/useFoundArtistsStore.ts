@@ -11,7 +11,7 @@ const initialState = {
   foundArtists: null,
 };
 
-export const useLoaderStore = create<IFoundArtistsStore>()((set) => ({
+export const useFoundArtistsStore = create<IFoundArtistsStore>()((set) => ({
   ...initialState,
   setFoundArtists: (foundArtists: IArtist[]) =>
     set((state) => ({

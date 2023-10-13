@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosRequestConfig } from "axios";
 import { useState } from "react";
-import { IArtist } from "interfaces/artist";
+import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
 
 const useGetArtistData = (filteredArtist: string) => {
   const [artistError, setArtistError] = useState(false);
-  const [foundArtists, setFoundArtists] = useState<IArtist[]>([]);
+  const { setFoundArtists } = useFoundArtistsStore();
 
   const getArtistData = async () => {
     const getArtistDataOptions: AxiosRequestConfig<any> = {
