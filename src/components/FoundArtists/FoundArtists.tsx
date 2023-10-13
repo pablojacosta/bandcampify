@@ -13,7 +13,7 @@ const FoundArtists = ({ foundArtists }: IFoundArtists) => {
       <ul>
         {foundArtists.map((artist) => (
           <ListedElement
-            key={`${artist.name}_${artist.genre}`}
+            key={artist.name}
             onClick={() => getAlbums(artist.url)}
             image={artist.imageUrl}
             name={artist.name}

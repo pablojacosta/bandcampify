@@ -4,7 +4,6 @@ import { BiPlay } from "react-icons/bi";
 import { EListedElementTypes } from "@constants/enums";
 
 const ListedElement = ({
-  key,
   onClick,
   name,
   image,
@@ -21,7 +20,7 @@ const ListedElement = ({
 
   return (
     <div className={`${styles.listedElement} ${isSong ? styles.isSong : ""}`}>
-      <li key={key} onClick={onClick}>
+      <li onClick={onClick}>
         <div className={styles.content}>
           <picture>
             <img src={image} alt="Listed Element Image" />
