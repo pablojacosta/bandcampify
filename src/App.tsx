@@ -13,6 +13,7 @@ import TrackList from "@components/TrackList";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import SongsList from "@components/SongsList";
 import { useSongsStore } from "@store/useSongsStore";
+import Loader from "@components/shared/Loader";
 
 const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
@@ -88,6 +89,7 @@ const App = () => {
     <Container>
       <div className={styles.app}>
         <h1>Bandcampify</h1>
+        <Loader />
         {!showTrackList && (
           <SearchSection
             handleArtistFilterChange={handleArtistFilterChange}
