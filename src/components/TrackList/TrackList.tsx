@@ -25,25 +25,21 @@ const TrackList = ({
         <img src={albumImage} alt="Album Image" />
       </picture>
       <ul>
-        {tracks.map((track, index) => {
-          console.log("track", track);
-
-          return (
-            <li key={`${albumId}_${track.name}`}>
-              <Track
-                handleOnPlayClick={() => handleOnPlayClick(track.id)}
-                name={track.name}
-                artist={artist}
-                albumId={albumId}
-                albumName={albumName}
-                albumUrl={albumUrl}
-                index={index}
-                id={track.id}
-                duration={track.duration}
-              />
-            </li>
-          );
-        })}
+        {tracks.map((track, index) => (
+          <li key={`${albumId}_${track.name}`}>
+            <Track
+              handleOnPlayClick={() => handleOnPlayClick(track.id)}
+              name={track.name}
+              artist={artist}
+              albumId={albumId}
+              albumName={albumName}
+              albumUrl={albumUrl}
+              index={index}
+              id={track.id}
+              duration={track.duration}
+            />
+          </li>
+        ))}
       </ul>
       {showPlayer && <TrackPlayer type={ETrackPlayerType.ALBUM} />}
     </div>
