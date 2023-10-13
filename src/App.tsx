@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import axios, { AxiosRequestConfig } from "axios";
 import FoundArtists from "@components/FoundArtists";
-import { IArtist } from "interfaces/artist";
 import "@styles/globals.scss";
 import SearchSection from "@components/SearchSection";
 import styles from "./App.module.scss";
@@ -15,11 +13,14 @@ import SongsList from "@components/SongsList";
 import { useSongsStore } from "@store/useSongsStore";
 import Loader from "@components/shared/Loader";
 import { useLoaderStore } from "@store/useLoaderStore";
+import useGetArtistData from "@hooks/useGetArtistData";
+import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
 
 const App = () => {
   const { showLoader } = useLoaderStore();
   const [filteredArtist, setFilteredArtist] = useState("");
-  const [foundArtists, setFoundArtists] = useState<IArtist[]>([]);
+  const { getArtistData } = useGetArtistData(filteredArtist);
+  const { foundArtists } = useFoundArtistsStore();
   const { albums, hideArtists } = useSelectedArtistStore();
   const {
     showTracks,
@@ -33,39 +34,18 @@ const App = () => {
     hasAlbums,
     setHasAlbums,
   } = useSelectedAlbumStore();
-  const [artistError, setArtistError] = useState(false);
   const [showTrackList, setShowTrackList] = useState(false);
   const { hasSongs } = useSongsStore();
   const hideArtistsToShowLists = hideArtists && !hideAlbums;
   const showAlbumsList = hasAlbums && !hideAlbums;
-  const showFoundArtists = !hideArtists && foundArtists.length > 0;
+  const showFoundArtists =
+    !hideArtists && foundArtists && foundArtists.length > 0;
   const showSongsList = hideArtistsToShowLists && hasSongs;
   const isReadyForTrackList =
     showTracks && tracks && albumArtist && albumId && albumName && albumUrl;
 
   const handleArtistFilterChange = (event: any) => {
     setFilteredArtist(event.target.value);
-  };
-
-  const getArtistDataOptions: AxiosRequestConfig<any> = {
-    method: "GET",
-    url: "http://localhost:3001/artist",
-    params: { artist: filteredArtist },
-  };
-
-  const getArtistData = () => {
-    axios
-      .request(getArtistDataOptions)
-      .then((response): any => {
-        if (typeof response.data === "string") {
-          setArtistError(true);
-          console.log("Error: ", artistError);
-        }
-        setFoundArtists(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   const onKeyDown = (e: any) => {
