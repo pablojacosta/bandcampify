@@ -10,7 +10,6 @@ import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import TrackList from "@components/TrackList";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import SongsList from "@components/SongsList";
-import { useSongsStore } from "@store/useSongsStore";
 import Loader from "@components/shared/Loader";
 import { useLoaderStore } from "@store/useLoaderStore";
 import useGetArtistData from "@hooks/useGetArtistData";
@@ -35,12 +34,9 @@ const App = () => {
     setHasAlbums,
   } = useSelectedAlbumStore();
   const [showTrackList, setShowTrackList] = useState(false);
-  const { hasSongs } = useSongsStore();
-  const hideArtistsToShowLists = hideArtists && !hideAlbums;
   const showAlbumsList = hasAlbums && !hideAlbums;
   const showFoundArtists =
     !hideArtists && foundArtists && foundArtists.length > 0;
-  const showSongsList = hideArtistsToShowLists && hasSongs;
   const isReadyForTrackList =
     showTracks && tracks && albumArtist && albumId && albumName && albumUrl;
 
@@ -82,7 +78,7 @@ const App = () => {
         {showLoader && <Loader />}
         {showFoundArtists && <FoundArtists foundArtists={foundArtists} />}
         {showAlbumsList && <AlbumsList returnedArtistData={albums} />}
-        {showSongsList && <SongsList returnedArtistData={albums} />}
+        <SongsList returnedArtistData={albums} />
         {showTrackList && tracks && (
           <TrackList
             tracks={tracks}

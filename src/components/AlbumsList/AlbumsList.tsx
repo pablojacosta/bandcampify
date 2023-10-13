@@ -19,34 +19,39 @@ const AlbumsList = ({ returnedArtistData }: IAlbumsList) => {
     setHideAlbums,
     setAlbumImage,
   } = useSelectedAlbumStore();
+  const hasAlbums = albums.length > 0;
 
   return (
     <div className={styles.albumsList}>
-      <h2>Albums</h2>
-      <ul>
-        {albums.map((album: IAlbum) => {
-          const handleAlbumOnClick = () => {
-            setTracks(album.tracks);
-            setShowTracks(true);
-            setAlbumArtist(album.artist);
-            setAlbumId(album.id.toString());
-            setAlbumName(album.name);
-            setAlbumUrl(album.url);
-            setHideAlbums(true);
-            setAlbumImage(album.image);
-          };
+      {hasAlbums && (
+        <>
+          <h2>Albums</h2>
+          <ul>
+            {albums.map((album: IAlbum) => {
+              const handleAlbumOnClick = () => {
+                setTracks(album.tracks);
+                setShowTracks(true);
+                setAlbumArtist(album.artist);
+                setAlbumId(album.id.toString());
+                setAlbumName(album.name);
+                setAlbumUrl(album.url);
+                setHideAlbums(true);
+                setAlbumImage(album.image);
+              };
 
-          return (
-            <ListedElement
-              key={`${album.id}`}
-              onClick={handleAlbumOnClick}
-              image={album.image}
-              name={album.name}
-              type={EListedElementTypes.ALBUM}
-            />
-          );
-        })}
-      </ul>
+              return (
+                <ListedElement
+                  key={`${album.id}`}
+                  onClick={handleAlbumOnClick}
+                  image={album.image}
+                  name={album.name}
+                  type={EListedElementTypes.ALBUM}
+                />
+              );
+            })}
+          </ul>
+        </>
+      )}
     </div>
   );
 };

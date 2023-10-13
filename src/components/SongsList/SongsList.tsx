@@ -11,40 +11,47 @@ const SongsList = ({ returnedArtistData }: ISongsList) => {
   const { filteredUniqueTracks: songs } =
     getSanitizedAlbums(returnedArtistData);
   const { setHasSongs } = useSongsStore();
+  const hasSongs = songs.length > 0;
 
   useEffect(() => {
-    if (songs.length) {
-      setHasSongs(true);
+    if (!hasSongs) {
+      return;
     }
+
+    setHasSongs(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [hasSongs]);
 
   return (
     <div className={styles.songsList}>
-      <h2>Songs</h2>
-      <ul>
-        {songs.map((song: IFilteredTrack) => {
-          const handleSongOnClick = () => {
-            // setAlbumArtist(album.artist);
-            // setAlbumId(album.id.toString());
-            // setAlbumName(album.name);
-            // setAlbumUrl(album.url);
-            // setHideAlbums(true);
-            // setAlbumImage(album.image);
-          };
+      {hasSongs && (
+        <>
+          <h2>Songs</h2>
+          <ul>
+            {songs.map((song: IFilteredTrack) => {
+              const handleSongOnClick = () => {
+                // setAlbumArtist(album.artist);
+                // setAlbumId(album.id.toString());
+                // setAlbumName(album.name);
+                // setAlbumUrl(album.url);
+                // setHideAlbums(true);
+                // setAlbumImage(album.image);
+              };
 
-          return (
-            <ListedElement
-              key={`${song.id}`}
-              onClick={handleSongOnClick}
-              image={song.image}
-              name={song.name}
-              type={EListedElementTypes.TRACK}
-              artist={song.artist}
-            />
-          );
-        })}
-      </ul>
+              return (
+                <ListedElement
+                  key={`${song.id}`}
+                  onClick={handleSongOnClick}
+                  image={song.image}
+                  name={song.name}
+                  type={EListedElementTypes.TRACK}
+                  artist={song.artist}
+                />
+              );
+            })}
+          </ul>
+        </>
+      )}
     </div>
   );
 };

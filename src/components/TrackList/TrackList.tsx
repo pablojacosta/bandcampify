@@ -2,7 +2,7 @@ import Track from "./components/Track";
 import { ITrackList } from "../../interfaces/trackList";
 import styles from "./TrackList.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
-import TrackPlayer from "./components/TrackPlayer";
+import TrackPlayer from "@components/shared/TrackPlayer";
 
 const TrackList = ({
   tracks,
