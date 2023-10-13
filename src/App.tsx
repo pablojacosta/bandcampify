@@ -71,7 +71,6 @@ const App = () => {
     <Container>
       <div className={styles.app}>
         <h1>Bandcampify</h1>
-        {showLoader && <Loader />}
         {!showTrackList && (
           <SearchSection
             handleArtistFilterChange={handleArtistFilterChange}
@@ -80,6 +79,7 @@ const App = () => {
             getArtistData={getArtistData}
           />
         )}
+        {showLoader && <Loader />}
         {showFoundArtists && <FoundArtists foundArtists={foundArtists} />}
         {showAlbumsList && <AlbumsList returnedArtistData={albums} />}
         {showSongsList && <SongsList returnedArtistData={albums} />}

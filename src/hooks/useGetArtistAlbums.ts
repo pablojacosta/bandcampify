@@ -1,26 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { useState } from "react";
 
 const useGetArtistAlbums = () => {
   const { setAlbums, setArtistUrl, setHideArtists } = useSelectedArtistStore();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isAlbumsLoading, setIsAlbumsLoading] = useState(false);
-
-  // useEffect(() => {
-  //   if (!artistUrl || isAlbumsLoading) {
-  //     setShowLoader(true);
-  //     return;
-  //   }
-
-  //   setShowLoader(false);
-  // }, [isAlbumsLoading, artistUrl, setShowLoader]);
-
-  // console.log("isAlbumsLoading", isAlbumsLoading);
+  const { setShowLoader } = useLoaderStore();
 
   const getAlbums = async (artistUrl: string) => {
-    setIsAlbumsLoading(true);
+    setShowLoader(true);
     setArtistUrl(artistUrl);
     setHideArtists(true);
 
@@ -35,7 +23,7 @@ const useGetArtistAlbums = () => {
       .then((response: AxiosResponse<any, any>) => {
         setAlbums(response.data);
       })
-      .finally(() => setIsAlbumsLoading(false))
+      .finally(() => setShowLoader(false))
       .catch((error) => {
         console.log(error);
       });

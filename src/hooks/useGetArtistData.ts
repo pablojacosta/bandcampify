@@ -2,12 +2,16 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useState } from "react";
 import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
+import { useLoaderStore } from "@store/useLoaderStore";
 
 const useGetArtistData = (filteredArtist: string) => {
   const [artistError, setArtistError] = useState(false);
   const { setFoundArtists } = useFoundArtistsStore();
+  const { setShowLoader } = useLoaderStore();
 
   const getArtistData = async () => {
+    setShowLoader(true);
+
     const getArtistDataOptions: AxiosRequestConfig<any> = {
       method: "GET",
       url: "http://localhost:3001/artist",
@@ -23,6 +27,7 @@ const useGetArtistData = (filteredArtist: string) => {
         }
         setFoundArtists(response.data);
       })
+      .finally(() => setShowLoader(false))
       .catch((error) => {
         console.log(error);
       });
