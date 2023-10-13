@@ -3,3 +3,8 @@ export const enum EListedElementTypes {
   ARTIST = "Artist",
   TRACK = "Track",
 }
+
+export const enum ETrackPlayerType {
+  SONG = "song",
+  ALBUM = "album",
+}

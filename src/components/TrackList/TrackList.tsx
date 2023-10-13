@@ -3,6 +3,7 @@ import { ITrackList } from "../../interfaces/trackList";
 import styles from "./TrackList.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import TrackPlayer from "@components/shared/TrackPlayer";
+import { ETrackPlayerType } from "@constants/enums";
 
 const TrackList = ({
   tracks,
@@ -43,7 +44,7 @@ const TrackList = ({
           );
         })}
       </ul>
-      {showPlayer && <TrackPlayer />}
+      {showPlayer && <TrackPlayer type={ETrackPlayerType.ALBUM} />}
     </div>
   );
 };
