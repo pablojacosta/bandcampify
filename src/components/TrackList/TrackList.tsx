@@ -14,7 +14,7 @@ const TrackList = ({
 }: ITrackList) => {
   const { setShowPlayer, showPlayer, setTrackId } = useSelectedAlbumStore();
   const handleOnPlayClick = (trackId: number) => {
-    setTrackId(trackId.toString());
+    setTrackId(trackId);
     setShowPlayer(true);
   };
 
