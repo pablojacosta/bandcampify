@@ -8,4 +8,5 @@ export interface ITrack {
   albumUrl: string;
   index: number;
   id: number;
+  duration: string;
 }

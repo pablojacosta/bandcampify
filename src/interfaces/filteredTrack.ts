@@ -3,4 +3,5 @@ export interface IFilteredTrack {
   id: number;
   image: string;
   artist: string;
+  duration: string;
 }

@@ -39,6 +39,7 @@ const TrackList = ({
                 albumUrl={albumUrl}
                 index={index}
                 id={track.id}
+                duration={track.duration}
               />
             </li>
           );

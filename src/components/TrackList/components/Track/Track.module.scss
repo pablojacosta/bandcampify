@@ -1,7 +1,7 @@
 @use "@styles/_mixins" as mixins;
 
 .track {
-  @include mixins.flex_container(row, flex-start, center);
+  @include mixins.flex_container(row, space-between, center);
   gap: 1rem;
   width: 25rem;
   border-radius: 0.7rem;
@@ -14,9 +14,19 @@
     );
   }
 
-  .trackNumber {
-    line-height: 1.4375rem;
-    color: #cdcdcd;
-    padding: 0.5rem;
+  .left {
+    @include mixins.flex_container(row, flex-start, center);
+
+    .trackNumber {
+      line-height: 1.4375rem;
+      color: #cdcdcd;
+      padding: 0.5rem;
+    }
+  }
+
+  .duration {
+    font-size: 0.875rem;
+    font-family: var(--font-secondary);
+    padding-right: 1rem;
   }
 }
