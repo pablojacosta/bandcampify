@@ -78,7 +78,7 @@ const App = () => {
         {showLoader && <Loader />}
         {showFoundArtists && <FoundArtists foundArtists={foundArtists} />}
         {showAlbumsList && <AlbumsList returnedArtistData={albums} />}
-        <SongsList returnedArtistData={albums} />
+        {!hideAlbums && <SongsList returnedArtistData={albums} />}
         {showTrackList && tracks && (
           <TrackList
             tracks={tracks}

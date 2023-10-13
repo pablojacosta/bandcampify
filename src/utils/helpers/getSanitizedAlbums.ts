@@ -1,4 +1,4 @@
-import { IFilteredTrack } from "interfaces/filteredTrack";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IReturnedData } from "interfaces/returnedData";
 
 export const getSanitizedAlbums = (data: IReturnedData[]) => {
@@ -15,11 +15,12 @@ export const getSanitizedAlbums = (data: IReturnedData[]) => {
       artist: track.artist,
     }));
 
-  const filteredUniqueTracks: IFilteredTrack[] = filteredTracks.filter(
-    (obj: IFilteredTrack, index: number) => {
+  console.log("filteredAlbums", filteredAlbums);
+
+  const filteredUniqueTracks: any[] = filteredTracks.filter(
+    (obj: any, index: number) => {
       return (
-        index ===
-        filteredTracks.findLastIndex((o: IFilteredTrack) => obj.id === o.id)
+        index === filteredTracks.findLastIndex((o: any) => obj.id === o.id)
       );
     }
   );

@@ -19,6 +19,8 @@ const TrackList = ({
     setShowPlayer(true);
   };
 
+  console.log("tracks", tracks);
+
   return (
     <div className={styles.trackList}>
       <picture>

@@ -21,6 +21,8 @@ const AlbumsList = ({ returnedArtistData }: IAlbumsList) => {
   } = useSelectedAlbumStore();
   const hasAlbums = albums.length > 0;
 
+  console.log("albums", albums);
+
   return (
     <div className={styles.albumsList}>
       {hasAlbums && (

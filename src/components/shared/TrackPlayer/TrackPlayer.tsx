@@ -13,6 +13,7 @@ const TrackPlayer = ({ type }: ITrackPlayer) => {
       ? `https://bandcamp.com/EmbeddedPlayer/album=${albumId}/size=medium/bgcol=333333/linkcol=1ed760/artwork=false/track=${trackId}/transparent=true/`
       : `https://bandcamp.com/EmbeddedPlayer/track=${songId}/size=medium/bgcol=333333/linkcol=1ed760/artwork=false//transparent=true/`;
 
+  console.log("src", src);
   return (
     <div className={styles.trackPlayer}>
       <iframe
