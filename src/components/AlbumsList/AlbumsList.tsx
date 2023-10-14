@@ -19,6 +19,10 @@ const AlbumsList = ({ albums }: IAlbumsList) => {
   console.log("albums", albums);
 
   const songs = albums.filter((album: IAlbum) => album.tracks.length === 1);
+  const sanitizedSongs = songs.filter((obj, index) => {
+    return index === songs.findLastIndex((o) => obj.name === o.name);
+  });
+
   const fullAlbums = albums.filter((album: IAlbum) => album.tracks.length > 1);
 
   return (
@@ -56,7 +60,7 @@ const AlbumsList = ({ albums }: IAlbumsList) => {
         <>
           <h2>Songs</h2>
           <ul>
-            {songs.map((song: IAlbum) => {
+            {sanitizedSongs.map((song: IAlbum) => {
               const handleAlbumOnClick = () => {
                 setTracks(song.tracks);
                 setShowTracks(true);
