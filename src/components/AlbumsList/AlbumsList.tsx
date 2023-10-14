@@ -16,6 +16,8 @@ const AlbumsList = ({ albums }: IAlbumsList) => {
     setAlbumImage,
   } = useSelectedAlbumStore();
 
+  console.log("albums", albums);
+
   return (
     <div className={styles.albumsList}>
       <h2>Albums</h2>
@@ -31,13 +33,20 @@ const AlbumsList = ({ albums }: IAlbumsList) => {
             setAlbumImage(album.imageUrl);
           };
 
+          const isOneTrack = album.tracks.length === 1;
+
           return (
             <ListedElement
               key={`${album.name}`}
               onClick={() => handleAlbumOnClick()}
               image={album.imageUrl}
               name={album.name}
-              type={EListedElementTypes.ALBUM}
+              artist={album.artist.name}
+              type={
+                !isOneTrack
+                  ? EListedElementTypes.ALBUM
+                  : EListedElementTypes.TRACK
+              }
             />
           );
         })}
