@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IAlbum } from "interfaces/album";
 import { IAlbumsList } from "interfaces/albumsList";
 import styles from "./AlbumsList.module.scss";
