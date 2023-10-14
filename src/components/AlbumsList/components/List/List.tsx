@@ -4,6 +4,7 @@ import { IAlbum } from "interfaces/album";
 import { EListType, EListedElementTypes } from "@constants/enums";
 import ListedElement from "@components/shared/ListedElement";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
+import { Link } from "react-router-dom";
 
 const List = ({ items, type }: IList) => {
   const listedElementType =
@@ -36,14 +37,16 @@ const List = ({ items, type }: IList) => {
           };
 
           return (
-            <ListedElement
-              key={`${item.name}`}
-              onClick={() => handleAlbumOnClick()}
-              image={item.imageUrl}
-              name={item.name}
-              artist={item.artist.name}
-              type={listedElementType}
-            />
+            <Link to="/tracks">
+              <ListedElement
+                key={`${item.name}`}
+                onClick={() => handleAlbumOnClick()}
+                image={item.imageUrl}
+                name={item.name}
+                artist={item.artist.name}
+                type={listedElementType}
+              />
+            </Link>
           );
         })}
       </ul>

@@ -1,21 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import FoundArtists from "@components/FoundArtists";
 import "@styles/globals.scss";
-import SearchSection from "@components/SearchSection";
-import styles from "./App.module.scss";
 import Container from "@components/elements/Container";
-import AlbumsList from "@components/AlbumsList";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import TrackList from "@components/TrackList";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
-import Loader from "@components/shared/Loader";
-import { useLoaderStore } from "@store/useLoaderStore";
 import useGetArtistData from "@hooks/useGetArtistData";
 import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
+import { Routes, Route } from "react-router-dom";
+import TopSection from "@components/TopSection";
 
 const App = () => {
-  const { showLoader } = useLoaderStore();
   const [filteredArtist, setFilteredArtist] = useState("");
   const { getArtistData } = useGetArtistData(filteredArtist);
   const { foundArtists } = useFoundArtistsStore();
@@ -31,8 +26,9 @@ const App = () => {
     albumImage,
     hasAlbums,
     setHasAlbums,
+    setShowTrackList,
+    showTrackList,
   } = useSelectedAlbumStore();
-  const [showTrackList, setShowTrackList] = useState(false);
   const showAlbumsList = hasAlbums && !hideAlbums;
   const showFoundArtists =
     !hideArtists && foundArtists && foundArtists.length > 0;
@@ -53,7 +49,7 @@ const App = () => {
     if (isReadyForTrackList) {
       setShowTrackList(true);
     }
-  }, [isReadyForTrackList]);
+  }, [isReadyForTrackList, setShowTrackList]);
 
   useEffect(() => {
     if (albums.length) {
@@ -64,30 +60,35 @@ const App = () => {
 
   return (
     <Container>
-      <div className={styles.app}>
-        <h1>Bandcampify</h1>
-        {!showTrackList && (
-          <SearchSection
-            handleArtistFilterChange={handleArtistFilterChange}
-            filteredArtist={filteredArtist}
-            onKeyDown={onKeyDown}
-            getArtistData={getArtistData}
-          />
-        )}
-        {showLoader && <Loader />}
-        {showFoundArtists && <FoundArtists foundArtists={foundArtists} />}
-        {showAlbumsList && <AlbumsList albums={albums} />}
-        {showTrackList && tracks && (
-          <TrackList
-            tracks={tracks}
-            artist={albumArtist}
-            albumId={albumId}
-            albumName={albumName}
-            albumUrl={albumUrl}
-            albumImage={albumImage}
-          />
-        )}
-      </div>
+      <h1>Bandcampify</h1>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <TopSection
+              showTrackList={showTrackList}
+              handleArtistFilterChange={handleArtistFilterChange}
+              filteredArtist={filteredArtist}
+              onKeyDown={onKeyDown}
+              showFoundArtists={showFoundArtists}
+              showAlbumsList={showAlbumsList}
+            />
+          }
+        />
+        <Route
+          path="/tracks"
+          element={
+            <TrackList
+              tracks={tracks!}
+              artist={albumArtist}
+              albumId={albumId}
+              albumName={albumName}
+              albumUrl={albumUrl}
+              albumImage={albumImage}
+            />
+          }
+        />
+      </Routes>
     </Container>
   );
 };
