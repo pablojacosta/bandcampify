@@ -2,7 +2,6 @@
 import { IAlbum } from "interfaces/album";
 import { IAlbumsList } from "interfaces/albumsList";
 import styles from "./AlbumsList.module.scss";
-// import { getSanitizedAlbums } from "@utils/helpers/getSanitizedAlbums";
 import ListedElement from "@components/shared/ListedElement";
 import { EListedElementTypes } from "@constants/enums";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
