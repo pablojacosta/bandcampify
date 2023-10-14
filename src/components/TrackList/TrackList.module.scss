@@ -12,6 +12,10 @@
       @include mixins.flex_container(row, center, center);
       gap: 0.5rem;
     }
+
+    a {
+      text-decoration: none;
+    }
   }
 
   ul {
