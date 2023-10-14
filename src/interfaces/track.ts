@@ -2,11 +2,6 @@
 export interface ITrack {
   handleOnPlayClick: any;
   name: string;
-  artist: string;
-  albumId: string;
-  albumName: string;
-  albumUrl: string;
   index: number;
-  id: number;
   duration: string;
 }

@@ -3,18 +3,11 @@ import { ITrackList } from "../../interfaces/trackList";
 import styles from "./TrackList.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import TrackPlayer from "@components/shared/TrackPlayer";
-import { ETrackPlayerType } from "@constants/enums";
+import { getTrackId } from "@utils/helpers/getTrackId";
 
-const TrackList = ({
-  tracks,
-  artist,
-  albumId,
-  albumName,
-  albumUrl,
-  albumImage,
-}: ITrackList) => {
+const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
   const { setShowPlayer, showPlayer, setTrackId } = useSelectedAlbumStore();
-  const handleOnPlayClick = (trackId: number) => {
+  const handleOnPlayClick = (trackId: string) => {
     setTrackId(trackId);
     setShowPlayer(true);
   };
@@ -30,20 +23,17 @@ const TrackList = ({
         {tracks.map((track, index) => (
           <li key={`${albumId}_${track.name}`}>
             <Track
-              handleOnPlayClick={() => handleOnPlayClick(123)}
+              handleOnPlayClick={() =>
+                handleOnPlayClick(getTrackId(track.streamUrl))
+              }
               name={track.name}
-              artist={artist}
-              albumId={albumId}
-              albumName={albumName}
-              albumUrl={albumUrl}
               index={index}
-              id={123}
               duration={track.duration.toString()}
             />
           </li>
         ))}
       </ul>
-      {showPlayer && <TrackPlayer type={ETrackPlayerType.ALBUM} />}
+      {showPlayer && <TrackPlayer />}
     </div>
   );
 };
