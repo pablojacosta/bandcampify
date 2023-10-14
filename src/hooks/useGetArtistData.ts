@@ -3,14 +3,20 @@ import axios, { AxiosRequestConfig } from "axios";
 import { useState } from "react";
 import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
 import { useLoaderStore } from "@store/useLoaderStore";
+import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
+import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 
 const useGetArtistData = (filteredArtist: string) => {
   const [artistError, setArtistError] = useState(false);
   const { setFoundArtists } = useFoundArtistsStore();
   const { setShowLoader } = useLoaderStore();
+  const { setHideArtists, setAlbums } = useSelectedArtistStore();
+  const { setHideAlbums } = useSelectedAlbumStore();
 
   const getArtistData = async () => {
     setShowLoader(true);
+    setHideArtists(true);
+    setHideAlbums(true);
 
     const getArtistDataOptions: AxiosRequestConfig<any> = {
       method: "GET",
@@ -26,6 +32,9 @@ const useGetArtistData = (filteredArtist: string) => {
           console.log("Error: ", artistError);
         }
         setFoundArtists(response.data);
+        setHideArtists(false);
+        setAlbums([]);
+        setHideAlbums(false);
       })
       .finally(() => setShowLoader(false))
       .catch((error) => {
