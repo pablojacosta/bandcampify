@@ -1,5 +1,5 @@
-import { IAlbum, IAlbumTrack } from "interfaces/album";
-// import { IFilteredTrack } from "interfaces/filteredTrack";
+import { IAlbum } from "interfaces/album";
+import { IAlbumTrack } from "interfaces/albumTrack";
 import { create } from "zustand";
 
 interface ISelectedAlbumStore {

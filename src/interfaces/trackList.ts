@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { IAlbumTrack } from "./album";
-// import { IFilteredTrack } from "./filteredTrack";
+import { IAlbumTrack } from "./albumTrack";
 
 export interface ITrackList {
   tracks: IAlbumTrack[];

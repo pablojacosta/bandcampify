@@ -1,18 +1,5 @@
-export interface IAlbumTrack {
-  name: string;
-  duration: number;
-  streamUrl: string;
-  position: number;
-  url: string;
-}
-
-export interface IAlbumRelease {
-  name: string;
-  format: string;
-  description: string;
-  url: string;
-  imageUrl: string;
-}
+import { IAlbumRelease } from "./albumRelease";
+import { IAlbumTrack } from "./albumTrack";
 
 export interface IAlbum {
   type: string;
