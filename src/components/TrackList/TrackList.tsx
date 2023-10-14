@@ -6,7 +6,7 @@ import TrackPlayer from "@components/shared/TrackPlayer";
 import { getTrackId } from "@utils/helpers/getTrackId";
 import { formatDuration } from "@utils/helpers/formatDuration";
 import LeftArrow from "@components/elements/Icons/LeftArrow";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
   const {
@@ -21,23 +21,23 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
     setTrackId(trackId);
     setShowPlayer(true);
   };
-  const navigate = useNavigate();
 
   const handleGoBackClick = () => {
     setHasAlbums(true);
     setHideAlbums(false);
     setShowTrackList(false);
     setShowPlayer(false);
-    navigate(-1);
   };
 
   return (
     <div className={styles.trackList}>
       <div className={styles.goBackButton}>
-        <button onClick={handleGoBackClick}>
-          <LeftArrow />
-          Go Back
-        </button>
+        <Link to="/">
+          <button onClick={handleGoBackClick}>
+            <LeftArrow />
+            Go Back
+          </button>
+        </Link>
       </div>
       <picture>
         <img src={albumImage} alt="Album Image" />
