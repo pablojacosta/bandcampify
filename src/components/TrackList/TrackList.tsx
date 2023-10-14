@@ -4,6 +4,7 @@ import styles from "./TrackList.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import TrackPlayer from "@components/shared/TrackPlayer";
 import { getTrackId } from "@utils/helpers/getTrackId";
+import { formatDuration } from "@utils/helpers/formatDuration";
 
 const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
   const { setShowPlayer, showPlayer, setTrackId } = useSelectedAlbumStore();
@@ -26,7 +27,7 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
               }
               name={track.name}
               index={index}
-              duration={track.duration.toString()}
+              duration={formatDuration(track.duration)}
             />
           </li>
         ))}
