@@ -37,7 +37,7 @@ const App = () => {
   const showFoundArtists =
     !hideArtists && foundArtists && foundArtists.length > 0;
   const isReadyForTrackList =
-    showTracks && tracks && albumArtist && albumId && albumName && albumUrl;
+    showTracks && tracks && albumArtist && albumName && albumUrl;
 
   const handleArtistFilterChange = (event: any) => {
     setFilteredArtist(event.target.value);

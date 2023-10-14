@@ -30,15 +30,15 @@ const TrackList = ({
         {tracks.map((track, index) => (
           <li key={`${albumId}_${track.name}`}>
             <Track
-              handleOnPlayClick={() => handleOnPlayClick(track.id)}
+              handleOnPlayClick={() => handleOnPlayClick(123)}
               name={track.name}
               artist={artist}
               albumId={albumId}
               albumName={albumName}
               albumUrl={albumUrl}
               index={index}
-              id={track.id}
-              duration={track.duration}
+              id={123}
+              duration={track.duration.toString()}
             />
           </li>
         ))}
