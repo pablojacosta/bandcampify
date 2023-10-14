@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IFilteredTrack } from "./filteredTrack";
+import { IAlbumTrack } from "./album";
+// import { IFilteredTrack } from "./filteredTrack";
 
 export interface ITrackList {
-  tracks: IFilteredTrack[];
+  tracks: IAlbumTrack[];
   artist: string;
   albumId: string;
   albumName: string;

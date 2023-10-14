@@ -21,6 +21,7 @@ const useGetArtistAlbums = () => {
     await axios
       .request(getAlbumsOptions)
       .then((response: AxiosResponse<any, any>) => {
+        console.log("responseData", response.data);
         setAlbums(response.data);
       })
       .finally(() => setShowLoader(false))

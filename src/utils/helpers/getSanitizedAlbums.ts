@@ -15,8 +15,6 @@ export const getSanitizedAlbums = (data: IReturnedData[]) => {
       artist: track.artist,
     }));
 
-  console.log("filteredAlbums", filteredAlbums);
-
   const filteredUniqueTracks: any[] = filteredTracks.filter(
     (obj: any, index: number) => {
       return (

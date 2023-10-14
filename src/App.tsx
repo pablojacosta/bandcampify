@@ -9,7 +9,6 @@ import AlbumsList from "@components/AlbumsList";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import TrackList from "@components/TrackList";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
-import SongsList from "@components/SongsList";
 import Loader from "@components/shared/Loader";
 import { useLoaderStore } from "@store/useLoaderStore";
 import useGetArtistData from "@hooks/useGetArtistData";
@@ -77,8 +76,7 @@ const App = () => {
         )}
         {showLoader && <Loader />}
         {showFoundArtists && <FoundArtists foundArtists={foundArtists} />}
-        {showAlbumsList && <AlbumsList returnedArtistData={albums} />}
-        {!hideAlbums && <SongsList returnedArtistData={albums} />}
+        {showAlbumsList && <AlbumsList albums={albums} />}
         {showTrackList && tracks && (
           <TrackList
             tracks={tracks}

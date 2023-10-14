@@ -1,4 +1,6 @@
+import { IAlbum } from "./album";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IAlbumsList {
-  returnedArtistData: any;
+  albums: IAlbum[];
 }
