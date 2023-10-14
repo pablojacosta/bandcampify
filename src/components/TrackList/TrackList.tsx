@@ -5,6 +5,7 @@ import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import TrackPlayer from "@components/shared/TrackPlayer";
 import { getTrackId } from "@utils/helpers/getTrackId";
 import { formatDuration } from "@utils/helpers/formatDuration";
+import LeftArrow from "@components/elements/Icons/LeftArrow";
 
 const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
   const { setShowPlayer, showPlayer, setTrackId } = useSelectedAlbumStore();
@@ -15,6 +16,12 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
 
   return (
     <div className={styles.trackList}>
+      <div className={styles.goBackButton}>
+        <button>
+          <LeftArrow />
+          Go Back
+        </button>
+      </div>
       <picture>
         <img src={albumImage} alt="Album Image" />
       </picture>
