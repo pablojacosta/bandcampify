@@ -18,8 +18,6 @@ const AlbumsList = ({ albums }: IAlbumsList) => {
     setAlbumImage,
   } = useSelectedAlbumStore();
 
-  console.log("albums", albums);
-
   return (
     <div className={styles.albumsList}>
       <h2>Albums</h2>

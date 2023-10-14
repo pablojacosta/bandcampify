@@ -21,7 +21,6 @@ const useGetOneAlbumData = () => {
     await axios
       .request(getOneAlbumOptions)
       .then((response: AxiosResponse<any, any>) => {
-        console.log("responseData", response.data);
         setSelectedAlbum(response.data);
       })
       .finally(() => setShowLoader(false))

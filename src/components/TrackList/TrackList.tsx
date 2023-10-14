@@ -12,8 +12,6 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
     setShowPlayer(true);
   };
 
-  console.log("tracks", tracks);
-
   return (
     <div className={styles.trackList}>
       <picture>

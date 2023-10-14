@@ -6,8 +6,6 @@ const TrackPlayer = () => {
   const { trackId } = useSelectedAlbumStore();
   const src = `https://bandcamp.com/EmbeddedPlayer/track=${trackId}/size=medium/bgcol=333333/linkcol=1ed760/artwork=false//transparent=true/`;
 
-  console.log("src", src);
-  console.log("trackId", trackId);
   return (
     <div className={styles.trackPlayer}>
       <iframe
