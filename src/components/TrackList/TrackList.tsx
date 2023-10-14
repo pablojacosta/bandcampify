@@ -27,6 +27,7 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
     setHasAlbums(true);
     setHideAlbums(false);
     setShowTrackList(false);
+    setShowPlayer(false);
     navigate(-1);
   };
 
