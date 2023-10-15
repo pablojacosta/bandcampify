@@ -3,7 +3,10 @@
 .app {
   .header {
     background-color: var(--color-black);
+  }
 
+  .header,
+  h1 {
     @include responsives.resolution__tablet {
       font-size: 1.5rem;
     }
