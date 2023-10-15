@@ -12,6 +12,11 @@
     button {
       @include mixins.flex_container(row, center, center);
       gap: 0.5rem;
+
+      @include responsives.resolution__mobile__m {
+        height: 1.8rem;
+        width: 6rem;
+      }
     }
 
     a {
