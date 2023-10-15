@@ -1,3 +1,5 @@
+@use "@styles/_responsives" as responsives;
+
 .artistInput {
   position: relative;
 
@@ -29,6 +31,20 @@
 
     &:focus {
       outline: 0.125rem solid var(--color-white);
+    }
+
+    @include responsives.resolution__mobile__m {
+      width: 15rem;
+    }
+
+    @include responsives.resolution__mobile__s {
+      width: 10rem;
+      font-size: 0.825rem;
+    }
+
+    @include responsives.resolution__mobile__xxs {
+      width: 8rem;
+      font-size: 0.75rem;
     }
   }
 
