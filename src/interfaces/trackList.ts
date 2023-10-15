@@ -3,7 +3,7 @@ import { IAlbumTrack } from "./albumTrack";
 export interface ITrackList {
   tracks: IAlbumTrack[];
   artist: string;
-  albumId: string;
+  albumId: number;
   albumName: string;
   albumUrl: string;
   albumImage: string;
