@@ -1,0 +1,8 @@
+@use "@styles/_responsives" as responsives;
+
+.searchArtistButton {
+  @include responsives.resolution__mobile__m {
+    height: 1.8rem;
+    width: 6rem;
+  }
+}
