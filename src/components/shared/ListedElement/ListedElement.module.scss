@@ -95,6 +95,13 @@
           &:hover {
             transform: scale(1.08);
           }
+
+          @include responsives.resolution__tablet {
+            width: 2rem;
+            height: 2rem;
+            bottom: 5rem;
+            right: 0;
+          }
         }
       }
     }
