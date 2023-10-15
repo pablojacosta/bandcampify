@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { MouseEvent } from "react";
+
 export interface ISearchArtistButton {
-  getArtistData: any;
+  getArtistData: (event: MouseEvent<HTMLButtonElement>) => void;
 }
