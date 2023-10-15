@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ChangeEvent, KeyboardEvent } from "react";
+
 export interface IArtistInput {
-  handleArtistFilterChange: any;
+  handleArtistFilterChange: (event: ChangeEvent<HTMLInputElement>) => void;
   filteredArtist: string;
-  onKeyDown: any;
+  onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
 }

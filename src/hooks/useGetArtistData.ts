@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { useState } from "react";
 import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
 import { useLoaderStore } from "@store/useLoaderStore";
@@ -26,7 +26,7 @@ const useGetArtistData = (filteredArtist: string) => {
 
     await axios
       .request(getArtistDataOptions)
-      .then((response): any => {
+      .then((response: AxiosResponse<any, any>) => {
         if (typeof response.data === "string") {
           setArtistError(true);
           console.log("Error: ", artistError);
