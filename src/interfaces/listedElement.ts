@@ -1,8 +1,8 @@
 import { EListedElementTypes } from "@constants/enums";
+import { MouseEvent } from "react";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IListedElement {
-  onClick: any;
+  onClick: (event: MouseEvent<HTMLLIElement>) => void;
   image: string;
   name: string;
   type: EListedElementTypes;
