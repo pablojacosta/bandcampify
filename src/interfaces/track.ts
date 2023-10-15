@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ITrack {
-  handleOnPlayClick: any;
+  handleOnPlayClick: () => void;
   name: string;
   index: number;
   duration: string;
