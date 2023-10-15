@@ -1,9 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ChangeEvent, KeyboardEvent } from "react";
+
 export interface ITopSection {
   showTrackList: boolean;
-  handleArtistFilterChange: (e: any) => void;
+  handleArtistFilterChange: (event: ChangeEvent<HTMLInputElement>) => void;
   filteredArtist: string;
-  onKeyDown: (e: any) => void;
+  onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
   showFoundArtists: boolean | null;
   showAlbumsList: boolean;
 }
