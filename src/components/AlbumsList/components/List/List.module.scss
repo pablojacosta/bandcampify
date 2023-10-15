@@ -1,4 +1,16 @@
+@use "@styles/_responsives" as responsives;
+
 .list {
+  h2 {
+    @include responsives.resolution__tablet {
+      font-size: 1.2rem;
+    }
+
+    @include responsives.resolution__mobile__m {
+      font-size: 1rem;
+    }
+  }
+
   ul {
     a {
       text-decoration: none;
