@@ -77,7 +77,6 @@
           @include responsives.resolution__tablet {
             font-size: 0.7rem;
             margin-top: -1rem;
-            // width: 9rem;
           }
         }
 
@@ -102,8 +101,6 @@
   }
 
   &.isSong {
-    width: 100%;
-    max-width: 35rem;
     position: relative;
 
     li {
@@ -152,11 +149,18 @@
             margin-top: 0;
             margin-bottom: 0.5rem;
             font-size: 0.825rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
           }
 
           .tag {
             font-size: 0.825rem;
             margin: 0;
+            width: 10rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
           }
 
           .playButton {
