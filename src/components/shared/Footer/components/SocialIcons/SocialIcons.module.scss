@@ -1,0 +1,20 @@
+@use "@styles/_responsives" as responsives;
+
+.socialIcons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  .githubIcon,
+  .linkedinIcon {
+    width: 2rem;
+    height: auto;
+
+    &:hover {
+      filter: drop-shadow(0 0 0.5rem var(--color-white));
+      transform: scale(1.1);
+      transform-origin: center;
+    }
+  }
+}

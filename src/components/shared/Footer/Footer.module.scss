@@ -1,18 +1,15 @@
+@use "@styles/_responsives" as responsives;
 @use "@styles/_mixins" as mixins;
 
-.trackPlayer {
+.footer {
+  padding: 0.5rem 0 0.5rem 0;
   position: fixed;
-  bottom: 3.8rem;
+  bottom: 0;
   width: 100%;
   @include mixins.flex_container(row, center, center);
   background-color: var(--color-black);
 
-  iframe {
-    margin-top: 0.5rem;
-    margin-bottom: -1.5rem;
-  }
-
-  .footerSpace {
-    height: 6.6rem;
+  &.removeBg {
+    background: none;
   }
 }

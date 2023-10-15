@@ -9,6 +9,7 @@ import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
 import { Routes, Route } from "react-router-dom";
 import TopSection from "@components/TopSection";
 import styles from "./App.module.scss";
+import Footer from "@components/shared/Footer";
 
 const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
@@ -91,6 +92,8 @@ const App = () => {
           />
         </Routes>
       </Container>
+      <div className={styles.footerSpace} />
+      <Footer />
     </div>
   );
 };

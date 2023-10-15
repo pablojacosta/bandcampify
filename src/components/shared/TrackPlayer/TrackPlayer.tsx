@@ -21,6 +21,7 @@ const TrackPlayer = () => {
   return (
     <div className={styles.trackPlayer}>
       <iframe style={style} src={src} seamless />
+      <div className={styles.footerSpace} />
     </div>
   );
 };
