@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { IAlbum } from "interfaces/album";
 import { create } from "zustand";
 
 interface ISelectedArtistStore {
   artistUrl: string;
-  albums: any[];
+  albums: IAlbum[];
   hideArtists: boolean;
   setArtistUrl: (artistUrl: string) => void;
-  setAlbums: (albums: any[]) => void;
+  setAlbums: (albums: IAlbum[]) => void;
   setHideArtists: (hideArtists: boolean) => void;
   clearStore: () => void;
 }
@@ -24,7 +24,7 @@ export const useSelectedArtistStore = create<ISelectedArtistStore>()((set) => ({
       ...state,
       artistUrl,
     })),
-  setAlbums: (albums: any[]) =>
+  setAlbums: (albums: IAlbum[]) =>
     set((state) => ({
       ...state,
       albums,
