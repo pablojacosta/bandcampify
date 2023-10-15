@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import styles from "./SearchSection.module.scss";
 import ArtistInput from "@components/SearchSection/components/ArtistInput";
 import SearchArtistButton from "@components/SearchSection/components/SearchArtistButton";
+import { ChangeEvent, KeyboardEvent } from "react";
 
 interface ISearchSection {
-  handleArtistFilterChange: (event: any) => void;
+  handleArtistFilterChange: (event: ChangeEvent<HTMLInputElement>) => void;
   filteredArtist: string;
-  onKeyDown: (event: any) => void;
+  onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
   getArtistData: () => void;
 }
 
