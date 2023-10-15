@@ -27,11 +27,20 @@
 
   .left {
     @include mixins.flex_container(row, flex-start, center);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 
     .trackNumber {
       line-height: 1.4375rem;
       color: #cdcdcd;
       padding: 0.5rem;
+    }
+
+    a {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
 
