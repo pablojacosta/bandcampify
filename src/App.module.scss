@@ -1,7 +1,7 @@
 @use "@styles/_responsives" as responsives;
 
 .app {
-  h1 {
+  .header {
     background-color: var(--color-black);
 
     @include responsives.resolution__tablet {

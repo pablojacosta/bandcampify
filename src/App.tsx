@@ -60,7 +60,7 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <h1>Bandcampify</h1>
+      <h1 className={styles.header}>Bandcampify</h1>
       <Container>
         <Routes>
           <Route
