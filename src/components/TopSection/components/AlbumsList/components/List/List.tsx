@@ -37,7 +37,7 @@ const List = ({ items, type }: IList) => {
           };
 
           return (
-            <Link to="/tracks">
+            <Link to="/tracks" key={`${item.name}`}>
               <ListedElement
                 key={`${item.name}`}
                 onClick={() => handleAlbumOnClick()}

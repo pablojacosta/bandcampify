@@ -1,8 +1,8 @@
 import styles from "./SearchSection.module.scss";
-import ArtistInput from "@components/SearchSection/components/ArtistInput";
-import SearchArtistButton from "@components/SearchSection/components/SearchArtistButton";
 import Container from "@components/elements/Container";
 import { ChangeEvent, KeyboardEvent } from "react";
+import ArtistInput from "./components/ArtistInput";
+import SearchArtistButton from "./components/SearchArtistButton";
 
 interface ISearchSection {
   handleArtistFilterChange: (event: ChangeEvent<HTMLInputElement>) => void;

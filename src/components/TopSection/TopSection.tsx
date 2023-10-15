@@ -1,13 +1,13 @@
-import SearchSection from "@components/SearchSection";
 import styles from "./TopSection.module.scss";
 import Loader from "@components/shared/Loader";
-import FoundArtists from "@components/FoundArtists";
-import AlbumsList from "@components/AlbumsList";
+import AlbumsList from "@components/TopSection/components/AlbumsList";
 import useGetArtistData from "@hooks/useGetArtistData";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { ITopSection } from "interfaces/topSection";
 import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
+import SearchSection from "./components/SearchSection";
+import FoundArtists from "./components/FoundArtists";
 
 const TopSection = ({
   showTrackList,
