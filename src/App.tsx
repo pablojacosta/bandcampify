@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import "@styles/globals.scss";
 import Container from "@components/elements/Container";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
@@ -35,11 +34,11 @@ const App = () => {
   const isReadyForTrackList =
     showTracks && tracks && albumArtist && albumName && albumUrl;
 
-  const handleArtistFilterChange = (event: any) => {
+  const handleArtistFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFilteredArtist(event.target.value);
   };
 
-  const onKeyDown = (e: any) => {
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
       getArtistData();
     }
