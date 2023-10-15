@@ -1,0 +1,15 @@
+@use "@styles/_responsives" as responsives;
+
+.app {
+  h1 {
+    background-color: var(--color-black);
+
+    @include responsives.resolution__tablet {
+      font-size: 1.5rem;
+    }
+
+    @include responsives.resolution__mobile__m {
+      font-size: 1rem;
+    }
+  }
+}

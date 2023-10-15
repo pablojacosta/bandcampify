@@ -8,6 +8,7 @@ import useGetArtistData from "@hooks/useGetArtistData";
 import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
 import { Routes, Route } from "react-router-dom";
 import TopSection from "@components/TopSection";
+import styles from "./App.module.scss";
 
 const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
@@ -58,37 +59,39 @@ const App = () => {
   }, [albums]);
 
   return (
-    <Container>
+    <div className={styles.app}>
       <h1>Bandcampify</h1>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <TopSection
-              showTrackList={showTrackList}
-              handleArtistFilterChange={handleArtistFilterChange}
-              filteredArtist={filteredArtist}
-              onKeyDown={onKeyDown}
-              showFoundArtists={showFoundArtists}
-              showAlbumsList={showAlbumsList}
-            />
-          }
-        />
-        <Route
-          path="/tracks"
-          element={
-            <TrackList
-              tracks={tracks!}
-              artist={albumArtist}
-              albumId={albumId}
-              albumName={albumName}
-              albumUrl={albumUrl}
-              albumImage={albumImage}
-            />
-          }
-        />
-      </Routes>
-    </Container>
+      <Container>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <TopSection
+                showTrackList={showTrackList}
+                handleArtistFilterChange={handleArtistFilterChange}
+                filteredArtist={filteredArtist}
+                onKeyDown={onKeyDown}
+                showFoundArtists={showFoundArtists}
+                showAlbumsList={showAlbumsList}
+              />
+            }
+          />
+          <Route
+            path="/tracks"
+            element={
+              <TrackList
+                tracks={tracks!}
+                artist={albumArtist}
+                albumId={albumId}
+                albumName={albumName}
+                albumUrl={albumUrl}
+                albumImage={albumImage}
+              />
+            }
+          />
+        </Routes>
+      </Container>
+    </div>
   );
 };
 
