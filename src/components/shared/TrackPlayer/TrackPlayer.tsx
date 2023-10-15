@@ -3,11 +3,14 @@ import styles from "./TrackPlayer.module.scss";
 import useMediaQuery from "@hooks/useMediaQuery";
 
 const TrackPlayer = () => {
-  const { trackId } = useSelectedAlbumStore();
+  const { trackId, albumId } = useSelectedAlbumStore();
   const isMobileBreakpoint = useMediaQuery(563);
   const isSmallBreakpoint = useMediaQuery(416);
   const isExtraSmallBreakpoint = useMediaQuery(330);
-  const src = `https://bandcamp.com/EmbeddedPlayer/track=${trackId}/size=medium/bgcol=333333/linkcol=1ed760/artwork=false/transparent=true/`;
+  const src =
+    albumId !== 0
+      ? `https://bandcamp.com/EmbeddedPlayer/album=${albumId}/track=${trackId}/size=large/bgcol=333333/tracklist=false/linkcol=1ed760/artwork=small/transparent=true/`
+      : `https://bandcamp.com/EmbeddedPlayer/track=${trackId}/size=large/bgcol=333333/tracklist=false/linkcol=1ed760/artwork=small/transparent=true/`;
 
   const style =
     !isMobileBreakpoint && !isSmallBreakpoint && !isExtraSmallBreakpoint

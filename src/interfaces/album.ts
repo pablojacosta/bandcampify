@@ -1,6 +1,15 @@
 import { IAlbumRelease } from "./albumRelease";
 import { IAlbumTrack } from "./albumTrack";
 
+export interface IAdditionalProperty {
+  name: string;
+  value: number;
+}
+
+export interface IRawAlbumRelease {
+  additionalProperty: IAdditionalProperty[];
+}
+
 export interface IAlbum {
   type: string;
   name: string;
@@ -19,4 +28,10 @@ export interface IAlbum {
     description: string;
     imageUrl: string;
   };
+  raw: {
+    basic: {
+      albumRelease: IRawAlbumRelease[];
+    };
+  };
+  albumId?: number;
 }
