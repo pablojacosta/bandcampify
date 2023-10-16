@@ -4,7 +4,7 @@
 .track {
   @include mixins.flex_container(row, space-between, center);
   gap: 1rem;
-  width: 25rem;
+  width: 75rem;
   border-radius: 0.7rem;
 
   @include responsives.resolution__mobile__m {
@@ -30,6 +30,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    text-transform: capitalize;
 
     .trackNumber {
       line-height: 1.4375rem;
@@ -41,6 +42,19 @@
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+      margin-left: 1rem;
+
+      .songName {
+        margin-bottom: 0.5rem;
+        color: var(--color-white);
+      }
+
+      .artistName {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: #b3b3b3;
+        font-size: 0.875rem;
+      }
     }
   }
 
