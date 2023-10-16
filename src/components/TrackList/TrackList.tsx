@@ -7,6 +7,7 @@ import { getTrackId } from "@utils/helpers/getTrackId";
 import { formatDuration } from "@utils/helpers/formatDuration";
 import LeftArrow from "@components/elements/Icons/LeftArrow";
 import { Link } from "react-router-dom";
+import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
 
 const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
   const {
@@ -30,6 +31,8 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
     setShowTrackList(false);
     setShowPlayer(false);
   };
+
+  console.log("total", formatDuration(getAlbumTotalDuration(tracks)));
 
   return (
     <div className={styles.trackList}>
