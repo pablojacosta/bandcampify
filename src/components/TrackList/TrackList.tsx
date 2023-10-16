@@ -16,6 +16,8 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
     setHideAlbums,
     setHasAlbums,
     setShowTrackList,
+    albumName,
+    albumArtist,
   } = useSelectedAlbumStore();
   const handleOnPlayClick = (trackId: string) => {
     setTrackId(trackId);
@@ -39,9 +41,16 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
           </button>
         </Link>
       </div>
-      <picture>
-        <img src={albumImage} alt="Album Image" />
-      </picture>
+      <div className={styles.top}>
+        <picture>
+          <img src={albumImage} alt="Album Image" />
+        </picture>
+        <div className={styles.topText}>
+          <p className={styles.type}>Album</p>
+          <h2>{albumName}</h2>
+          <h4>{albumArtist}</h4>
+        </div>
+      </div>
       <ul>
         {tracks.map((track, index) => (
           <li key={`${albumId}_${track.name}`}>

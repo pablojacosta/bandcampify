@@ -2,7 +2,7 @@
 @use "@styles/_responsives" as responsives;
 
 .trackList {
-  @include mixins.flex_container(column, center, center);
+  @include mixins.flex_container(column, center, flex-start);
   margin-top: 2rem;
   margin-bottom: 8rem;
 
@@ -21,6 +21,16 @@
 
     a {
       text-decoration: none;
+    }
+  }
+
+  .top {
+    @include mixins.flex_container(row, center, flex-end);
+    gap: 2rem;
+
+    h2 {
+      font-size: 4rem;
+      font-weight: 700;
     }
   }
 
