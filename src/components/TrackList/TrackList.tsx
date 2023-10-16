@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
 import { formatAlbumTotalDuration } from "@utils/helpers/formatAlbumTotalDuration";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
+import ClockIcon from "@components/elements/Icons/ClockIcon";
 
 const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
   const {
@@ -61,6 +62,15 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
             <span>{albumArtist}</span> • {tracks.length} songs,
             {formatAlbumTotalDuration(albumTotalDuration)}
           </h4>
+        </div>
+      </div>
+      <div className={styles.separator}>
+        <div className={styles.left}>
+          <p className={styles.trackNumber}>#</p>
+          <p className={styles.title}>Title</p>
+        </div>
+        <div className={styles.clock}>
+          <ClockIcon />
         </div>
       </div>
       <ul>

@@ -62,6 +62,30 @@
     }
   }
 
+  .separator {
+    @include mixins.flex_container(row, space-between, flex-start);
+    margin-top: 3rem;
+    width: 75rem;
+    height: 2rem;
+    color: #b3b3b3;
+    border-bottom: 0.063rem solid hsla(0, 0%, 100%, 0.1);
+
+    .left {
+      @include mixins.flex_container(row, space-between, flex-end);
+      .trackNumber {
+        margin: 0 0 0 0.5rem;
+      }
+
+      .title {
+        margin: 0 0 0 1.5rem;
+      }
+    }
+
+    .clock {
+      margin-right: 1.5rem;
+    }
+  }
+
   ul {
     padding: 0;
     list-style: none;
