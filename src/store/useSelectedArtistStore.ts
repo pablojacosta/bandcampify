@@ -5,9 +5,11 @@ interface ISelectedArtistStore {
   artistUrl: string;
   albums: IAlbum[];
   hideArtists: boolean;
+  artistImage: string;
   setArtistUrl: (artistUrl: string) => void;
   setAlbums: (albums: IAlbum[]) => void;
   setHideArtists: (hideArtists: boolean) => void;
+  setArtistImage: (artistImage: string) => void;
   clearStore: () => void;
 }
 
@@ -15,6 +17,7 @@ const initialState = {
   artistUrl: "",
   albums: [],
   hideArtists: false,
+  artistImage: "",
 };
 
 export const useSelectedArtistStore = create<ISelectedArtistStore>()((set) => ({
@@ -33,6 +36,11 @@ export const useSelectedArtistStore = create<ISelectedArtistStore>()((set) => ({
     set((state) => ({
       ...state,
       hideArtists,
+    })),
+  setArtistImage: (artistImage: string) =>
+    set((state) => ({
+      ...state,
+      artistImage,
     })),
   clearStore: () => set(() => ({ ...initialState })),
 }));

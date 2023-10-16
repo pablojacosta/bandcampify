@@ -28,9 +28,37 @@
     @include mixins.flex_container(row, center, flex-end);
     gap: 2rem;
 
-    h2 {
-      font-size: 4rem;
-      font-weight: 700;
+    .topText {
+      @include mixins.flex_container(column, center, flex-start);
+      gap: 1rem;
+
+      p {
+        margin: 0;
+      }
+
+      h2 {
+        font-size: 4rem;
+        font-weight: 700;
+      }
+
+      .albumData {
+        @include mixins.flex_container(row, flex-start, center);
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+
+        span {
+          text-transform: capitalize;
+        }
+
+        .artistImage {
+          img {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+      }
     }
   }
 

@@ -9,6 +9,7 @@ import LeftArrow from "@components/elements/Icons/LeftArrow";
 import { Link } from "react-router-dom";
 import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
 import { formatAlbumTotalDuration } from "@utils/helpers/formatAlbumTotalDuration";
+import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 
 const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
   const {
@@ -21,6 +22,7 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
     albumName,
     albumArtist,
   } = useSelectedAlbumStore();
+  const { artistImage } = useSelectedArtistStore();
   const handleOnPlayClick = (trackId: string) => {
     setTrackId(trackId);
     setShowPlayer(true);
@@ -52,8 +54,11 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
         <div className={styles.topText}>
           <p className={styles.type}>Album</p>
           <h2>{albumName}</h2>
-          <h4>
-            {albumArtist} • {tracks.length} songs,{" "}
+          <h4 className={styles.albumData}>
+            <picture className={styles.artistImage}>
+              <img src={artistImage} alt="artist image" />
+            </picture>
+            <span>{albumArtist}</span> • {tracks.length} songs,
             {formatAlbumTotalDuration(albumTotalDuration)}
           </h4>
         </div>
