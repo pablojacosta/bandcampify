@@ -48,7 +48,9 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
         <div className={styles.topText}>
           <p className={styles.type}>Album</p>
           <h2>{albumName}</h2>
-          <h4>{albumArtist}</h4>
+          <h4>
+            {albumArtist} • {tracks.length} songs
+          </h4>
         </div>
       </div>
       <ul>
