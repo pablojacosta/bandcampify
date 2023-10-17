@@ -60,7 +60,7 @@
 
   .duration {
     font-size: 0.875rem;
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     padding-right: 1rem;
 
     @include responsives.resolution__mobile__m {
