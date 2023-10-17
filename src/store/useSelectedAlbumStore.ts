@@ -1,4 +1,3 @@
-import { IAlbum } from "interfaces/album";
 import { IAlbumTrack } from "interfaces/albumTrack";
 import { create } from "zustand";
 
@@ -14,7 +13,7 @@ interface ISelectedAlbumStore {
   showPlayer: boolean;
   trackId: string;
   hasAlbums: boolean;
-  selectedAlbum: IAlbum | null;
+  releaseDate: string;
   showTrackList: boolean;
   setTracks: (trackList: IAlbumTrack[]) => void;
   setShowTracks: (showTracks: boolean) => void;
@@ -27,7 +26,7 @@ interface ISelectedAlbumStore {
   setShowPlayer: (showPlayer: boolean) => void;
   setTrackId: (trackId: string) => void;
   setHasAlbums: (hasAlbums: boolean) => void;
-  setSelectedAlbum: (selectedAlbum: IAlbum) => void;
+  setReleaseDate: (releaseDate: string) => void;
   setShowTrackList: (showTrackList: boolean) => void;
   clearStore: () => void;
 }
@@ -44,7 +43,7 @@ const initialState = {
   showPlayer: false,
   trackId: "",
   hasAlbums: false,
-  selectedAlbum: null,
+  releaseDate: "",
   showTrackList: false,
 };
 
@@ -105,10 +104,10 @@ export const useSelectedAlbumStore = create<ISelectedAlbumStore>()((set) => ({
       ...state,
       hasAlbums,
     })),
-  setSelectedAlbum: (selectedAlbum: IAlbum) =>
+  setReleaseDate: (releaseDate: string) =>
     set((state) => ({
       ...state,
-      selectedAlbum,
+      releaseDate,
     })),
   setShowTrackList: (showTrackList: boolean) =>
     set((state) => ({

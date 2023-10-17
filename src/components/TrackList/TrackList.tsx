@@ -11,6 +11,7 @@ import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
 import { formatAlbumTotalDuration } from "@utils/helpers/formatAlbumTotalDuration";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import ClockIcon from "@components/elements/Icons/ClockIcon";
+import { formatReleaseDate } from "@utils/helpers/formatReleaseDate";
 
 const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
   const {
@@ -22,6 +23,7 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
     setShowTrackList,
     albumName,
     albumArtist,
+    releaseDate,
   } = useSelectedAlbumStore();
   const { artistImage } = useSelectedArtistStore();
   const handleOnPlayClick = (trackId: string) => {
@@ -37,6 +39,7 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
   };
 
   const albumTotalDuration = formatDuration(getAlbumTotalDuration(tracks));
+  console.log("releaseDate", releaseDate);
 
   return (
     <div className={styles.trackList}>
@@ -58,7 +61,8 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
             <picture className={styles.artistImage}>
               <img src={artistImage} alt="artist image" />
             </picture>
-            <span>{albumArtist}</span> • {tracks.length} songs,{" "}
+            <span>{albumArtist}</span> • {formatReleaseDate(releaseDate)} •{" "}
+            {tracks.length} songs,{" "}
             {formatAlbumTotalDuration(albumTotalDuration)}
           </h4>
         </div>
