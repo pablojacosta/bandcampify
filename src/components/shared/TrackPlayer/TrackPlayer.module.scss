@@ -4,6 +4,7 @@
   position: fixed;
   bottom: 3.8rem;
   width: 100%;
+  margin-left: -2rem;
   @include mixins.flex_container(row, center, center);
   background-color: var(--color-black);
 
