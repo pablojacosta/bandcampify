@@ -64,4 +64,11 @@
       }
     }
   }
+
+  @include responsives.resolution__mobile__m {
+    img {
+      width: 10rem;
+      height: auto;
+    }
+  }
 }

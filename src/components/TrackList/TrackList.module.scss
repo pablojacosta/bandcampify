@@ -10,47 +10,4 @@
   @include responsives.resolution__tablet__s {
     @include mixins.flex_container(column, center, center);
   }
-
-  .goBackButton {
-    padding: 1rem 0;
-
-    a {
-      text-decoration: none;
-
-      button {
-        @include mixins.flex_container(row, center, center);
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        gap: 0.5rem;
-        background-color: rgba(0, 0, 0, 0.7);
-
-        @include responsives.resolution__mobile__m {
-          height: 1.8rem;
-          width: 6rem;
-        }
-
-        svg {
-          margin-left: -0.1rem;
-        }
-      }
-    }
-  }
-
-  ul {
-    padding-left: 0;
-    list-style: none;
-    width: 100%;
-
-    li {
-      cursor: pointer;
-    }
-  }
-
-  @include responsives.resolution__mobile__m {
-    img {
-      width: 10rem;
-      height: auto;
-    }
-  }
 }
