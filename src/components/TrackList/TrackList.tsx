@@ -5,22 +5,18 @@ import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import TrackPlayer from "@components/shared/TrackPlayer";
 import { getTrackId } from "@utils/helpers/getTrackId";
 import { formatDuration } from "@utils/helpers/formatDuration";
-import LeftArrow from "@components/elements/Icons/LeftArrow";
-import { Link } from "react-router-dom";
 import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
 import { formatAlbumTotalDuration } from "@utils/helpers/formatAlbumTotalDuration";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import ClockIcon from "@components/elements/Icons/ClockIcon";
 import { formatReleaseDate } from "@utils/helpers/formatReleaseDate";
+import GoBackButton from "./components/GoBackButton";
 
 const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
   const {
     setShowPlayer,
     showPlayer,
     setTrackId,
-    setHideAlbums,
-    setHasAlbums,
-    setShowTrackList,
     albumName,
     albumArtist,
     releaseDate,
@@ -31,25 +27,11 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
     setShowPlayer(true);
   };
 
-  const handleGoBackClick = () => {
-    setHasAlbums(true);
-    setHideAlbums(false);
-    setShowTrackList(false);
-    setShowPlayer(false);
-  };
-
   const albumTotalDuration = formatDuration(getAlbumTotalDuration(tracks));
-  console.log("releaseDate", releaseDate);
 
   return (
     <div className={styles.trackList}>
-      <div className={styles.goBackButton}>
-        <Link to="/">
-          <button onClick={handleGoBackClick}>
-            <LeftArrow />
-          </button>
-        </Link>
-      </div>
+      <GoBackButton />
       <div className={styles.top}>
         <picture>
           <img src={albumImage} alt="Album Image" />

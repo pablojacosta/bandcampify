@@ -7,6 +7,10 @@
   padding: 0 2rem 8rem 2rem;
   background: linear-gradient(180deg, #b83737 0%, #000000 38%);
 
+  @include responsives.resolution__tablet__s {
+    @include mixins.flex_container(column, center, center);
+  }
+
   .goBackButton {
     padding: 1rem 0;
 
@@ -37,18 +41,34 @@
     @include mixins.flex_container(row, center, flex-end);
     gap: 2rem;
 
+    @include responsives.resolution__tablet__s {
+      @include mixins.flex_container(column, center, center);
+    }
+
     .topText {
       @include mixins.flex_container(column, center, flex-start);
       gap: 1rem;
+      width: 100%;
 
       p {
         margin: 0;
       }
 
       h2 {
-        font-size: 4rem;
+        text-transform: capitalize;
+        font-size: 3rem;
         font-weight: 600;
         background: transparent;
+
+        @include responsives.resolution__laptop__s {
+          font-size: 2rem;
+        }
+
+        @include responsives.resolution__tablet__s {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
       }
 
       .albumData {
