@@ -4,9 +4,14 @@
 .trackListTop {
   @include mixins.flex_container(row, center, flex-end);
   gap: 2rem;
+  width: 100%;
 
-  @include responsives.resolution__tablet__s {
+  @include responsives.resolution__tablet {
     @include mixins.flex_container(column, center, flex-start);
+  }
+
+  .albumImage {
+    margin: 0 auto;
   }
 
   .topText {
@@ -43,9 +48,12 @@
       margin-top: 0.5rem;
       background: transparent;
       font-weight: 400;
+      min-width: 0;
 
       .artistName {
         text-transform: capitalize;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       .duration {

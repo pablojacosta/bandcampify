@@ -16,7 +16,7 @@ const TrackListTop = () => {
 
   return (
     <div className={styles.trackListTop}>
-      <picture>
+      <picture className={styles.albumImage}>
         <img src={albumImage} alt="Album Image" />
       </picture>
       <div className={styles.topText}>
@@ -25,12 +25,11 @@ const TrackListTop = () => {
         <h4 className={styles.albumData}>
           {!isMobileBreakpoint ? (
             <>
-              {" "}
               <picture className={styles.artistImage}>
                 <img src={artistImage} alt="artist image" />
               </picture>
               <span className={styles.artistName}>{albumArtist}</span>
-              <span className={styles.dot}>•</span>{" "}
+              <span className={styles.dot}>•</span>
               {formatReleaseDate(releaseDate)}
               <span className={styles.dot}>•</span> {tracks?.length} songs,
               <span className={styles.duration}>
