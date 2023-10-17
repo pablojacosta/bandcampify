@@ -1,6 +1,10 @@
 @use "@styles/_responsives" as responsives;
 
 .searchArtistButton {
+  border-radius: 31.25rem;
+  color: var(--color-black);
+  background-color: var(--color-white);
+
   @include responsives.resolution__mobile__m {
     height: 1.8rem;
     width: 6rem;

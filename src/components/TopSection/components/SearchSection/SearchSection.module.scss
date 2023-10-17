@@ -1,6 +1,6 @@
 @use "@styles/_mixins" as mixins;
 
 .searchSection {
-  @include mixins.flex_container(column, center, center);
+  @include mixins.flex_container(row, center, center);
   gap: 2rem;
 }
