@@ -47,7 +47,7 @@
 
       h2 {
         font-size: 4rem;
-        font-weight: 700;
+        font-weight: 600;
         background: transparent;
       }
 
@@ -56,9 +56,18 @@
         gap: 0.5rem;
         margin-top: 0.5rem;
         background: transparent;
+        font-weight: 400;
 
-        span {
+        .artistName {
           text-transform: capitalize;
+        }
+
+        .duration {
+          color: var(--color-gray);
+        }
+
+        .dot {
+          font-size: 0.5rem;
         }
 
         .artistImage {

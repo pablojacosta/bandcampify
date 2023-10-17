@@ -61,9 +61,13 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
             <picture className={styles.artistImage}>
               <img src={artistImage} alt="artist image" />
             </picture>
-            <span>{albumArtist}</span> • {formatReleaseDate(releaseDate)} •{" "}
-            {tracks.length} songs,{" "}
-            {formatAlbumTotalDuration(albumTotalDuration)}
+            <span className={styles.artistName}>{albumArtist}</span>
+            <span className={styles.dot}>•</span>
+            {formatReleaseDate(releaseDate)}
+            <span className={styles.dot}>•</span> {tracks.length} songs,
+            <span className={styles.duration}>
+              {formatAlbumTotalDuration(albumTotalDuration)}
+            </span>
           </h4>
         </div>
       </div>
