@@ -10,6 +10,7 @@
 
   .goBackButton {
     margin-bottom: 2rem;
+    padding-top: 2rem;
 
     button {
       @include mixins.flex_container(row, center, center);
