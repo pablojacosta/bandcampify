@@ -9,21 +9,28 @@
   background: linear-gradient(180deg, #b83737 0%, #000000 38%);
 
   .goBackButton {
-    margin-bottom: 2rem;
-    padding-top: 2rem;
-
-    button {
-      @include mixins.flex_container(row, center, center);
-      gap: 0.5rem;
-
-      @include responsives.resolution__mobile__m {
-        height: 1.8rem;
-        width: 6rem;
-      }
-    }
+    padding: 1rem 0;
 
     a {
       text-decoration: none;
+
+      button {
+        @include mixins.flex_container(row, center, center);
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        gap: 0.5rem;
+        background-color: rgba(0, 0, 0, 0.7);
+
+        @include responsives.resolution__mobile__m {
+          height: 1.8rem;
+          width: 6rem;
+        }
+
+        svg {
+          margin-left: -0.1rem;
+        }
+      }
     }
   }
 

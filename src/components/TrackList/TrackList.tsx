@@ -44,7 +44,6 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
         <Link to="/">
           <button onClick={handleGoBackClick}>
             <LeftArrow />
-            Go Back
           </button>
         </Link>
       </div>
