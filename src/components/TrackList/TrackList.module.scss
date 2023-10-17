@@ -7,7 +7,7 @@
   padding: 0 2rem 8rem 2rem;
   background: linear-gradient(180deg, #b83737 0%, #000000 38%);
 
-  @include responsives.resolution__tablet__s {
-    @include mixins.flex_container(column, center, center);
+  @include responsives.resolution__mobile__m {
+    padding-right: 1rem;
   }
 }

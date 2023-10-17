@@ -8,13 +8,7 @@
   border-radius: 0.7rem;
 
   @include responsives.resolution__mobile__m {
-    width: 20rem;
     font-size: 0.825rem;
-    height: 2rem;
-  }
-
-  @include responsives.resolution__mobile__s {
-    width: 15rem;
   }
 
   &:hover {
@@ -25,36 +19,35 @@
     );
   }
 
-  .left {
-    @include mixins.flex_container(row, flex-start, center);
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  .trackNumber {
+    // line-height: 1.4375rem;
+    color: #cdcdcd;
+    padding: 0.5rem;
+  }
+
+  .names {
+    // @include mixins.flex_container(row, flex-start, center);
     text-transform: capitalize;
+    min-width: 0;
+    width: 100%;
 
-    .trackNumber {
-      line-height: 1.4375rem;
-      color: #cdcdcd;
-      padding: 0.5rem;
-    }
-
-    a {
+    .songName {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      margin-left: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-white);
+      width: 100%;
+    }
 
-      .songName {
-        margin-bottom: 0.5rem;
-        color: var(--color-white);
-      }
-
-      .artistName {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-        color: var(--color-gray);
-        font-size: 0.875rem;
-      }
+    .artistName {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      color: var(--color-gray);
+      font-size: 0.875rem;
     }
   }
 
@@ -65,6 +58,7 @@
 
     @include responsives.resolution__mobile__m {
       font-size: 0.8rem;
+      // padding-right: 0;
     }
   }
 }
