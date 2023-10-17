@@ -3,8 +3,10 @@
 
 .trackList {
   @include mixins.flex_container(column, center, flex-start);
-  margin-top: 2rem;
+  margin-top: -2rem;
   margin-bottom: 8rem;
+  padding-left: 2rem;
+  background: linear-gradient(180deg, #b83737 0%, #000000 38%);
 
   .goBackButton {
     margin-bottom: 2rem;
@@ -39,12 +41,14 @@
       h2 {
         font-size: 4rem;
         font-weight: 700;
+        background: transparent;
       }
 
       .albumData {
         @include mixins.flex_container(row, flex-start, center);
         gap: 0.5rem;
         margin-top: 0.5rem;
+        background: transparent;
 
         span {
           text-transform: capitalize;

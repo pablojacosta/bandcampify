@@ -59,7 +59,7 @@ const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
             <picture className={styles.artistImage}>
               <img src={artistImage} alt="artist image" />
             </picture>
-            <span>{albumArtist}</span> • {tracks.length} songs,
+            <span>{albumArtist}</span> • {tracks.length} songs,{" "}
             {formatAlbumTotalDuration(albumTotalDuration)}
           </h4>
         </div>
