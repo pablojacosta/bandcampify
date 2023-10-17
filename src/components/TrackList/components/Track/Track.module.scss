@@ -20,13 +20,11 @@
   }
 
   .trackNumber {
-    // line-height: 1.4375rem;
     color: #cdcdcd;
     padding: 0.5rem;
   }
 
   .names {
-    // @include mixins.flex_container(row, flex-start, center);
     text-transform: capitalize;
     min-width: 0;
     width: 100%;
@@ -58,7 +56,6 @@
 
     @include responsives.resolution__mobile__m {
       font-size: 0.8rem;
-      // padding-right: 0;
     }
   }
 }
