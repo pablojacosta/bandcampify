@@ -1,6 +1,11 @@
 @use "@styles/_mixins" as mixins;
+@use "@styles/_responsives" as responsives;
 
 .searchSection {
   @include mixins.flex_container(row, center, center);
   gap: 2rem;
+
+  @include responsives.resolution__tablet__s {
+    @include mixins.flex_container(column, center, center);
+  }
 }
