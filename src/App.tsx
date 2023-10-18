@@ -20,11 +20,9 @@ const App = () => {
     showTracks,
     tracks,
     albumArtist,
-    albumId,
     albumName,
     albumUrl,
     hideAlbums,
-    albumImage,
     hasAlbums,
     setHasAlbums,
     setShowTrackList,
@@ -77,19 +75,7 @@ const App = () => {
               />
             }
           />
-          <Route
-            path="/tracks"
-            element={
-              <TrackList
-                tracks={tracks!}
-                artist={albumArtist}
-                albumId={albumId}
-                albumName={albumName}
-                albumUrl={albumUrl}
-                albumImage={albumImage}
-              />
-            }
-          />
+          <Route path="/tracks" element={<TrackList />} />
         </Routes>
       </Container>
       <div className={styles.footerSpace} />
