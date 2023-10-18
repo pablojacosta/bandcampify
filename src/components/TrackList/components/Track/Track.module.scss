@@ -4,17 +4,11 @@
 .track {
   @include mixins.flex_container(row, space-between, center);
   gap: 1rem;
-  width: 25rem;
+  max-width: 100%;
   border-radius: 0.7rem;
 
   @include responsives.resolution__mobile__m {
-    width: 20rem;
     font-size: 0.825rem;
-    height: 2rem;
-  }
-
-  @include responsives.resolution__mobile__s {
-    width: 15rem;
   }
 
   &:hover {
@@ -25,28 +19,39 @@
     );
   }
 
-  .left {
-    @include mixins.flex_container(row, flex-start, center);
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  .trackNumber {
+    color: #cdcdcd;
+    padding: 0.5rem;
+  }
 
-    .trackNumber {
-      line-height: 1.4375rem;
-      color: #cdcdcd;
-      padding: 0.5rem;
-    }
+  .names {
+    text-transform: capitalize;
+    min-width: 0;
+    width: 100%;
 
-    a {
+    .songName {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+      margin-bottom: 0.5rem;
+      color: var(--color-white);
+      width: 100%;
+    }
+
+    .artistName {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      color: var(--color-gray);
+      font-size: 0.875rem;
     }
   }
 
   .duration {
     font-size: 0.875rem;
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     padding-right: 1rem;
 
     @include responsives.resolution__mobile__m {

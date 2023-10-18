@@ -4,7 +4,6 @@
 
 :root {
   --font-primary: #{fonts.$fontPrimary};
-  --font-secondary: #{fonts.$fontSecondary};
 
   --color-white: #{colors.$colorWhite};
   --color-black: #{colors.$colorBlack};
@@ -30,22 +29,18 @@ h3,
 h4,
 h6 {
   margin: 0;
-  font-family: var(--font-secondary);
-  font-weight: normal;
+  font-family: var(--font-primary);
   padding: 0;
   background-color: var(--color-background);
 }
 
 h1 {
   text-align: center;
-  letter-spacing: 0.5rem;
-  text-transform: uppercase;
   margin-bottom: 2rem;
   padding: 2rem;
 }
 
 h3 {
-  letter-spacing: 0.04rem;
   font-size: 1.875rem;
   padding: 1rem;
   margin-bottom: 2rem;
@@ -57,19 +52,18 @@ p {
 }
 
 ul {
-  font-family: var(--font-secondary);
+  font-family: var(--font-primary);
 }
 
 button {
-  background-color: var(--color-green);
+  background-color: var(--color-white);
   border: none;
-  border-radius: 0.7rem;
+  border-radius: 31.25rem;
   width: 8rem;
-  height: 2.3rem;
-  font-family: var(--font-secondary);
+  height: 2.75rem;
+  font-family: var(--font-primary);
   font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.04rem;
   cursor: pointer;
   color: var(--color-black);
 

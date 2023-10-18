@@ -2,6 +2,8 @@
 
 .list {
   h2 {
+    padding-left: 2rem;
+
     @include responsives.resolution__tablet {
       font-size: 1.2rem;
     }

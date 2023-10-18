@@ -2,41 +2,8 @@
 @use "@styles/_responsives" as responsives;
 
 .trackList {
-  @include mixins.flex_container(column, center, center);
-  margin-top: 2rem;
-  margin-bottom: 8rem;
-
-  .goBackButton {
-    margin-bottom: 2rem;
-
-    button {
-      @include mixins.flex_container(row, center, center);
-      gap: 0.5rem;
-
-      @include responsives.resolution__mobile__m {
-        height: 1.8rem;
-        width: 6rem;
-      }
-    }
-
-    a {
-      text-decoration: none;
-    }
-  }
-
-  ul {
-    padding: 0;
-    list-style: none;
-
-    li {
-      cursor: pointer;
-    }
-  }
-
-  @include responsives.resolution__mobile__m {
-    img {
-      width: 10rem;
-      height: auto;
-    }
-  }
+  @include mixins.flex_container(column, center, flex-start);
+  margin-top: -2rem;
+  padding: 0 2rem 8rem 2rem;
+  background: linear-gradient(180deg, #b83737 0%, #000000 38%);
 }
