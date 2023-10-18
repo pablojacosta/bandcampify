@@ -3,10 +3,7 @@ import styles from "./TrackPlayer.module.scss";
 import useMediaQuery from "@hooks/useMediaQuery";
 
 const TrackPlayer = () => {
-  const { trackId } = useSelectedAlbumStore();
-  const { album } = useSelectedAlbumStore();
-  const albumId =
-    album?.raw.basic.albumRelease[0].additionalProperty[0].value ?? 0;
+  const { trackId, albumId } = useSelectedAlbumStore();
   const isMobileBreakpoint = useMediaQuery(563);
   const isSmallBreakpoint = useMediaQuery(416);
   const isExtraSmallBreakpoint = useMediaQuery(330);
@@ -24,6 +21,8 @@ const TrackPlayer = () => {
       : isMobileBreakpoint && isSmallBreakpoint && !isExtraSmallBreakpoint
       ? { border: 0, width: 300, height: 150 }
       : { border: 0, width: 250, height: 150 };
+
+  console.log("src", src);
 
   return (
     <div className={styles.trackPlayer}>
