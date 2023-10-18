@@ -1,7 +1,7 @@
 import { EListType } from "@constants/enums";
-import { IAlbum } from "./album";
+import { IAlbumMinInfo } from "./albumMinInfo";
 
 export interface IList {
-  items: IAlbum[];
+  items: IAlbumMinInfo[];
   type: EListType;
 }

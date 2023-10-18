@@ -1,4 +1,5 @@
 import { IAlbum } from "interfaces/album";
+import { IArtistInfo } from "interfaces/artistInfo";
 import { create } from "zustand";
 
 interface ISelectedArtistStore {
@@ -6,10 +7,12 @@ interface ISelectedArtistStore {
   albums: IAlbum[];
   hideArtists: boolean;
   artistImage: string;
+  artistInfo: IArtistInfo | null;
   setArtistUrl: (artistUrl: string) => void;
   setAlbums: (albums: IAlbum[]) => void;
   setHideArtists: (hideArtists: boolean) => void;
   setArtistImage: (artistImage: string) => void;
+  setArtistInfo: (artistInfo: IArtistInfo) => void;
   clearStore: () => void;
 }
 
@@ -18,6 +21,7 @@ const initialState = {
   albums: [],
   hideArtists: false,
   artistImage: "",
+  artistInfo: null,
 };
 
 export const useSelectedArtistStore = create<ISelectedArtistStore>()((set) => ({
@@ -41,6 +45,11 @@ export const useSelectedArtistStore = create<ISelectedArtistStore>()((set) => ({
     set((state) => ({
       ...state,
       artistImage,
+    })),
+  setArtistInfo: (artistInfo: IArtistInfo) =>
+    set((state) => ({
+      ...state,
+      artistInfo,
     })),
   clearStore: () => set(() => ({ ...initialState })),
 }));
