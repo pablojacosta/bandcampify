@@ -4,12 +4,14 @@ import { BiPlay } from "react-icons/bi";
 import useMediaQuery from "@hooks/useMediaQuery";
 import { ITrack } from "interfaces/track";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
+import { useSongsStore } from "@store/useSongsStore";
 
 const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const [isHovering, setIsHovering] = useState(false);
   const isMobileBreakpoint = useMediaQuery(563);
   const isMobileSmallBreakpoint = useMediaQuery(370);
   const { artistInfo } = useSelectedArtistStore();
+  const { isSong } = useSongsStore();
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -35,7 +37,7 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
         <p className={styles.songName}>{name}</p>
         <p className={styles.artistName}>{artistInfo?.name}</p>
       </div>
-      {!isMobileSmallBreakpoint && (
+      {!isMobileSmallBreakpoint && !isSong && (
         <div className={styles.duration}>
           <p>{duration}</p>
         </div>

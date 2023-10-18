@@ -61,7 +61,7 @@ const TrackListTop = () => {
             <p className={styles.type}>{!isSong ? "Album" : "Song"}</p>
             <h2>{itemName}</h2>
             <h4 className={styles.albumData}>
-              {!isMobileBreakpoint ? (
+              {!isMobileBreakpoint && !isSong ? (
                 <>
                   <picture className={styles.artistImage}>
                     <img src={artistImage} alt="artist image" />
@@ -73,9 +73,7 @@ const TrackListTop = () => {
                   {itemTracks?.length ?? 1}{" "}
                   {itemTracks?.length ? "songs" : "song"},
                   <span className={styles.duration}>
-                    {!isSong
-                      ? formatAlbumTotalDuration(itemTotalDuration)
-                      : "DURATION"}
+                    {formatAlbumTotalDuration(itemTotalDuration)}
                   </span>
                 </>
               ) : (
