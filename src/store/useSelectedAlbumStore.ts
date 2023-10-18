@@ -1,4 +1,3 @@
-import { emptyAlbum } from "@utils/mocks/emptyAlbum";
 import { IAlbum } from "interfaces/album";
 import { IAlbumTrack } from "interfaces/albumTrack";
 import { create } from "zustand";
@@ -13,7 +12,7 @@ interface ISelectedAlbumStore {
   trackId: string;
   hasAlbums: boolean;
   releaseDate: string;
-  album: IAlbum;
+  album: IAlbum | null;
   showTrackList: boolean;
   setTracks: (trackList: IAlbumTrack[]) => void;
   setShowTracks: (showTracks: boolean) => void;
@@ -40,7 +39,7 @@ const initialState = {
   hasAlbums: false,
   releaseDate: "",
   showTrackList: false,
-  album: emptyAlbum,
+  album: null,
 };
 
 export const useSelectedAlbumStore = create<ISelectedAlbumStore>()((set) => ({
