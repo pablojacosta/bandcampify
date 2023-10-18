@@ -9,7 +9,6 @@ import useMediaQuery from "@hooks/useMediaQuery";
 import { useEffect, useState } from "react";
 import { IAlbumTrack } from "interfaces/albumTrack";
 import { useLoaderStore } from "@store/useLoaderStore";
-import { useSongsStore } from "@store/useSongsStore";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 
 const TrackListTop = () => {
@@ -23,7 +22,7 @@ const TrackListTop = () => {
   const [itemReleaseDate, setItemReleaseDate] = useState("");
   const [itemTracks, setItemTracks] = useState<IAlbumTrack[] | null>(null);
   const [itemTotalDuration, setItemTotalDuration] = useState("");
-  const { isSong } = useSongsStore();
+  const { isTrack } = useSelectedTrackStore();
   const { track } = useSelectedTrackStore();
 
   useEffect(() => {
@@ -52,16 +51,16 @@ const TrackListTop = () => {
 
   return (
     <div className={styles.trackListTop}>
-      {(isSong || album) && (
+      {(isTrack || album) && (
         <>
           <picture className={styles.albumImage}>
             <img src={itemImage} alt="Album Image" />
           </picture>
           <div className={styles.topText}>
-            <p className={styles.type}>{!isSong ? "Album" : "Song"}</p>
+            <p className={styles.type}>{!isTrack ? "Album" : "Song"}</p>
             <h2>{itemName}</h2>
             <h4 className={styles.albumData}>
-              {!isMobileBreakpoint && !isSong ? (
+              {!isMobileBreakpoint && !isTrack ? (
                 <>
                   <picture className={styles.artistImage}>
                     <img src={artistImage} alt="artist image" />

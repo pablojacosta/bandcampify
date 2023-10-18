@@ -9,14 +9,14 @@ import useMediaQuery from "@hooks/useMediaQuery";
 import Loader from "@components/shared/Loader";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useEffect, useState } from "react";
-import { useSongsStore } from "@store/useSongsStore";
+import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 
 const TrackList = () => {
   const { showLoader } = useLoaderStore();
   const { showPlayer } = useSelectedAlbumStore();
   const isMobileBreakpoint = useMediaQuery(563);
   const [isLoading, setIsLoading] = useState(true);
-  const { isSong } = useSongsStore();
+  const { isTrack } = useSelectedTrackStore();
 
   useEffect(() => {
     if (showLoader) {
@@ -36,7 +36,7 @@ const TrackList = () => {
         <div className={styles.trackList}>
           <GoBackButton />
           <TrackListTop />
-          {!isMobileBreakpoint && !isSong && <TrackListHeader />}
+          {!isMobileBreakpoint && !isTrack && <TrackListHeader />}
           <ListedTracks />
           {showPlayer && <TrackPlayer />}
         </div>

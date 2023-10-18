@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { IAlbumMinInfo } from "interfaces/albumMinInfo";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import useGetAlbum from "@hooks/useGetAlbum";
-import { useSongsStore } from "@store/useSongsStore";
+import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import useGetTrack from "@hooks/useGetTrack";
 
 const List = ({ items, type }: IList) => {
@@ -20,7 +20,7 @@ const List = ({ items, type }: IList) => {
   const { artistInfo } = useSelectedArtistStore();
   const { getAlbum } = useGetAlbum();
   const { getTrack } = useGetTrack();
-  const { setIsSong } = useSongsStore();
+  const { setIsTrack } = useSelectedTrackStore();
 
   return (
     <div className={styles.list}>
@@ -38,7 +38,7 @@ const List = ({ items, type }: IList) => {
             getTrack(item.url);
             setShowTracks(true);
             setHideAlbums(true);
-            setIsSong(true);
+            setIsTrack(true);
           };
 
           return (

@@ -4,7 +4,6 @@ import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import { getTrackId } from "@utils/helpers/getTrackId";
 import Track from "../Track";
 import { useEffect, useState } from "react";
-import { useSongsStore } from "@store/useSongsStore";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 
 const ListedTracks = () => {
@@ -14,7 +13,7 @@ const ListedTracks = () => {
     setTrackId(trackId);
     setShowPlayer(true);
   };
-  const { isSong } = useSongsStore();
+  const { isTrack } = useSelectedTrackStore();
   const { track } = useSelectedTrackStore();
 
   useEffect(() => {
@@ -26,7 +25,7 @@ const ListedTracks = () => {
 
   return (
     <div className={styles.listedTracks}>
-      {!isSong && album && album.tracks ? (
+      {!isTrack && album && album.tracks ? (
         <ul>
           {album.tracks.map((track, index) => (
             <li key={`${albumId}_${track.name}`}>
