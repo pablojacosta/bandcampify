@@ -9,6 +9,7 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const [isHovering, setIsHovering] = useState(false);
   const { albumArtist } = useSelectedAlbumStore();
   const isMobileBreakpoint = useMediaQuery(563);
+  const isMobileSmallBreakpoint = useMediaQuery(370);
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -34,9 +35,11 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
         <p className={styles.songName}>{name}</p>
         <p className={styles.artistName}>{albumArtist}</p>
       </div>
-      <div className={styles.duration}>
-        <p>{duration}</p>
-      </div>
+      {!isMobileSmallBreakpoint && (
+        <div className={styles.duration}>
+          <p>{duration}</p>
+        </div>
+      )}
     </div>
   );
 };
