@@ -10,58 +10,72 @@ import { useEffect, useState } from "react";
 import { IAlbumTrack } from "interfaces/albumTrack";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useSongsStore } from "@store/useSongsStore";
+import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 
 const TrackListTop = () => {
   const { setShowLoader } = useLoaderStore();
   const { album } = useSelectedAlbumStore();
   const { artistImage } = useSelectedArtistStore();
   const isMobileBreakpoint = useMediaQuery(563);
-  const [albumImage, setAlbumImage] = useState("");
-  const [albumName, setAlbumName] = useState("");
-  const [albumArtist, setAlbumArtist] = useState("");
-  const [albumReleaseDate, setAlbumReleaseDate] = useState("");
-  const [albumTracks, setAlbumTracks] = useState<IAlbumTrack[] | null>(null);
-  const [albumTotalDuration, setAlbumTotalDuration] = useState("");
+  const [itemImage, setItemImage] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [itemArtist, setItemArtist] = useState("");
+  const [itemReleaseDate, setItemReleaseDate] = useState("");
+  const [itemTracks, setItemTracks] = useState<IAlbumTrack[] | null>(null);
+  const [itemTotalDuration, setItemTotalDuration] = useState("");
   const { isSong } = useSongsStore();
+  const { track } = useSelectedTrackStore();
 
   useEffect(() => {
-    if (!album) {
-      return;
+    if (album) {
+      const { imageUrl, name, artist, releaseDate, tracks } = album;
+
+      setItemImage(imageUrl);
+      setItemName(name);
+      setItemArtist(artist.name);
+      setItemReleaseDate(releaseDate);
+      setItemTracks(tracks);
+      setItemTotalDuration(formatDuration(getAlbumTotalDuration(tracks)));
     }
-
-    const { imageUrl, name, artist, releaseDate, tracks } = album;
-
-    setAlbumImage(imageUrl);
-    setAlbumName(name);
-    setAlbumArtist(artist.name);
-    setAlbumReleaseDate(releaseDate);
-    setAlbumTracks(tracks);
-    setAlbumTotalDuration(formatDuration(getAlbumTotalDuration(tracks)));
   }, [album, setShowLoader]);
+
+  useEffect(() => {
+    if (track) {
+      const { imageUrl, name, artist, releaseDate } = track;
+
+      setItemImage(imageUrl);
+      setItemName(name);
+      setItemArtist(artist.name);
+      setItemReleaseDate(releaseDate);
+    }
+  }, [track]);
 
   return (
     <div className={styles.trackListTop}>
-      {!isSong && album ? (
+      {(isSong || album) && (
         <>
           <picture className={styles.albumImage}>
-            <img src={albumImage} alt="Album Image" />
+            <img src={itemImage} alt="Album Image" />
           </picture>
           <div className={styles.topText}>
-            <p className={styles.type}>Album</p>
-            <h2>{albumName}</h2>
+            <p className={styles.type}>{!isSong ? "Album" : "Song"}</p>
+            <h2>{itemName}</h2>
             <h4 className={styles.albumData}>
               {!isMobileBreakpoint ? (
                 <>
                   <picture className={styles.artistImage}>
                     <img src={artistImage} alt="artist image" />
                   </picture>
-                  <span className={styles.artistName}>{albumArtist}</span>
+                  <span className={styles.artistName}>{itemArtist}</span>
                   <span className={styles.dot}>•</span>
-                  {formatReleaseDate(albumReleaseDate)}
-                  <span className={styles.dot}>•</span> {albumTracks?.length}
-                  songs,
+                  {formatReleaseDate(itemReleaseDate)}
+                  <span className={styles.dot}>•</span>{" "}
+                  {itemTracks?.length ?? 1}{" "}
+                  {itemTracks?.length ? "songs" : "song"},
                   <span className={styles.duration}>
-                    {formatAlbumTotalDuration(albumTotalDuration)}
+                    {!isSong
+                      ? formatAlbumTotalDuration(itemTotalDuration)
+                      : "DURATION"}
                   </span>
                 </>
               ) : (
@@ -69,14 +83,12 @@ const TrackListTop = () => {
                   <picture className={styles.artistImage}>
                     <img src={artistImage} alt="artist image" />
                   </picture>
-                  <span className={styles.artistName}>{albumArtist}</span>
+                  <span className={styles.artistName}>{itemArtist}</span>
                 </>
               )}
             </h4>
           </div>
         </>
-      ) : (
-        <div>hello</div>
       )}
     </div>
   );

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useLoaderStore } from "@store/useLoaderStore";
-import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
+import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const useGetTrack = () => {
-  const { setAlbum } = useSelectedAlbumStore();
+  const { setTrack } = useSelectedTrackStore();
   const { setShowLoader } = useLoaderStore();
 
   const getTrack = async (trackUrl: string) => {
@@ -19,7 +19,7 @@ const useGetTrack = () => {
     await axios
       .request(getTrackOptions)
       .then((response: AxiosResponse<any, any>) => {
-        setAlbum(response.data);
+        setTrack(response.data);
       })
       .finally(() => setShowLoader(false))
       .catch((error) => {

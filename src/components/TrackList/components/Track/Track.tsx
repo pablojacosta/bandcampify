@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { ITrack } from "../../../../interfaces/track";
 import styles from "./Track.module.scss";
 import { BiPlay } from "react-icons/bi";
-import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import useMediaQuery from "@hooks/useMediaQuery";
+import { ITrack } from "interfaces/track";
+import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 
 const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const [isHovering, setIsHovering] = useState(false);
-  const { albumArtist } = useSelectedAlbumStore();
   const isMobileBreakpoint = useMediaQuery(563);
   const isMobileSmallBreakpoint = useMediaQuery(370);
+  const { artistInfo } = useSelectedArtistStore();
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -33,7 +33,7 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
       )}
       <div className={styles.names}>
         <p className={styles.songName}>{name}</p>
-        <p className={styles.artistName}>{albumArtist}</p>
+        <p className={styles.artistName}>{artistInfo?.name}</p>
       </div>
       {!isMobileSmallBreakpoint && (
         <div className={styles.duration}>

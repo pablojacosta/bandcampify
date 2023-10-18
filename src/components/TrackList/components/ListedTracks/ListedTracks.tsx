@@ -5,6 +5,7 @@ import { getTrackId } from "@utils/helpers/getTrackId";
 import Track from "../Track";
 import { useEffect, useState } from "react";
 import { useSongsStore } from "@store/useSongsStore";
+import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 
 const ListedTracks = () => {
   const { setShowPlayer, setTrackId, album } = useSelectedAlbumStore();
@@ -14,6 +15,7 @@ const ListedTracks = () => {
     setShowPlayer(true);
   };
   const { isSong } = useSongsStore();
+  const { track } = useSelectedTrackStore();
 
   useEffect(() => {
     if (!album) {
@@ -40,7 +42,18 @@ const ListedTracks = () => {
           ))}
         </ul>
       ) : (
-        <div>hello</div>
+        <>
+          {track && (
+            <Track
+              handleOnPlayClick={() =>
+                handleOnPlayClick(getTrackId(track.streamUrl))
+              }
+              name={track.name}
+              index={0}
+              duration={"66666"}
+            />
+          )}
+        </>
       )}
     </div>
   );

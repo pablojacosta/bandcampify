@@ -11,8 +11,6 @@ const AlbumsList = () => {
   const hasAlbums = fullAlbums && fullAlbums.length > 0;
   const hasSongs = songs && songs.length > 0;
 
-  console.log("songs", songs);
-
   return (
     <div className={styles.albumsList}>
       {hasAlbums && <List items={fullAlbums} type={EListType.ALBUMS} />}

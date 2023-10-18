@@ -9,6 +9,7 @@ import { IAlbumMinInfo } from "interfaces/albumMinInfo";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import useGetAlbum from "@hooks/useGetAlbum";
 import { useSongsStore } from "@store/useSongsStore";
+import useGetTrack from "@hooks/useGetTrack";
 
 const List = ({ items, type }: IList) => {
   const listedElementType =
@@ -18,6 +19,7 @@ const List = ({ items, type }: IList) => {
   const { setShowTracks, setAlbumUrl, setHideAlbums } = useSelectedAlbumStore();
   const { artistInfo } = useSelectedArtistStore();
   const { getAlbum } = useGetAlbum();
+  const { getTrack } = useGetTrack();
   const { setIsSong } = useSongsStore();
 
   return (
@@ -33,8 +35,8 @@ const List = ({ items, type }: IList) => {
           };
 
           const handleSongOnClick = () => {
+            getTrack(item.url);
             setShowTracks(true);
-            setAlbumUrl(item.url);
             setHideAlbums(true);
             setIsSong(true);
           };
