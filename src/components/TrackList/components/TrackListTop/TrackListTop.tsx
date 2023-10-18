@@ -9,6 +9,7 @@ import useMediaQuery from "@hooks/useMediaQuery";
 import { useEffect, useState } from "react";
 import { IAlbumTrack } from "interfaces/albumTrack";
 import { useLoaderStore } from "@store/useLoaderStore";
+import { useSongsStore } from "@store/useSongsStore";
 
 const TrackListTop = () => {
   const { setShowLoader } = useLoaderStore();
@@ -21,6 +22,7 @@ const TrackListTop = () => {
   const [albumReleaseDate, setAlbumReleaseDate] = useState("");
   const [albumTracks, setAlbumTracks] = useState<IAlbumTrack[] | null>(null);
   const [albumTotalDuration, setAlbumTotalDuration] = useState("");
+  const { isSong } = useSongsStore();
 
   useEffect(() => {
     if (!album) {
@@ -39,7 +41,7 @@ const TrackListTop = () => {
 
   return (
     <div className={styles.trackListTop}>
-      {album && (
+      {!isSong && album ? (
         <>
           <picture className={styles.albumImage}>
             <img src={albumImage} alt="Album Image" />
@@ -73,6 +75,8 @@ const TrackListTop = () => {
             </h4>
           </div>
         </>
+      ) : (
+        <div>hello</div>
       )}
     </div>
   );

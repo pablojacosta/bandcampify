@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { IAlbumMinInfo } from "interfaces/albumMinInfo";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import useGetAlbum from "@hooks/useGetAlbum";
+import { useSongsStore } from "@store/useSongsStore";
 
 const List = ({ items, type }: IList) => {
   const listedElementType =
@@ -17,6 +18,7 @@ const List = ({ items, type }: IList) => {
   const { setShowTracks, setAlbumUrl, setHideAlbums } = useSelectedAlbumStore();
   const { artistInfo } = useSelectedArtistStore();
   const { getAlbum } = useGetAlbum();
+  const { setIsSong } = useSongsStore();
 
   return (
     <div className={styles.list}>
@@ -30,11 +32,22 @@ const List = ({ items, type }: IList) => {
             setHideAlbums(true);
           };
 
+          const handleSongOnClick = () => {
+            setShowTracks(true);
+            setAlbumUrl(item.url);
+            setHideAlbums(true);
+            setIsSong(true);
+          };
+
           return (
             <Link to="/tracks" key={`${item.title}`}>
               <ListedElement
                 key={`${item.title}`}
-                onClick={() => handleAlbumOnClick()}
+                onClick={
+                  listedElementType === EListedElementTypes.ALBUM
+                    ? () => handleAlbumOnClick()
+                    : () => handleSongOnClick()
+                }
                 image={item.coverImage}
                 name={item.title}
                 artist={artistInfo?.name}
