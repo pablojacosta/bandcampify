@@ -7,6 +7,7 @@ import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import { Link } from "react-router-dom";
 import { IAlbumMinInfo } from "interfaces/albumMinInfo";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
+import useGetAlbum from "@hooks/useGetAlbum";
 
 const List = ({ items, type }: IList) => {
   const listedElementType =
@@ -15,17 +16,13 @@ const List = ({ items, type }: IList) => {
       : EListedElementTypes.TRACK;
   // const isAlbum = listedElementType === EListedElementTypes.ALBUM;
   const {
-    // setTracks,
     setShowTracks,
-    // setAlbumArtist,
-    // setAlbumName,
     setAlbumUrl,
     setHideAlbums,
-    // setAlbumImage,
     // setAlbumId,
-    // setReleaseDate,
   } = useSelectedAlbumStore();
   const { artistInfo } = useSelectedArtistStore();
+  const { getAlbum } = useGetAlbum();
 
   return (
     <div className={styles.list}>
@@ -33,15 +30,11 @@ const List = ({ items, type }: IList) => {
       <ul>
         {items.map((item: IAlbumMinInfo) => {
           const handleAlbumOnClick = () => {
-            // setTracks(item.tracks);
+            getAlbum(item.url);
             setShowTracks(true);
-            // setAlbumArtist(item.artist.name);
-            // setAlbumName(item.name);
             setAlbumUrl(item.url);
             setHideAlbums(true);
-            // setAlbumImage(item.imageUrl);
             // setAlbumId(isAlbum && item.albumId ? item.albumId : 0);
-            // setReleaseDate(item.releaseDate);
           };
 
           return (

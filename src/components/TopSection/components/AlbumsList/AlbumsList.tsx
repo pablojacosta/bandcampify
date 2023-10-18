@@ -5,7 +5,6 @@ import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 
 const AlbumsList = () => {
   const { artistInfo } = useSelectedArtistStore();
-  console.log("artistInfo", artistInfo);
   const albums = artistInfo?.albums;
   const fullAlbums = albums?.filter((album) => album.url.includes("album"));
   const songs = albums?.filter((album) => album.url.includes("track"));

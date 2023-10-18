@@ -8,27 +8,27 @@ import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
 import useMediaQuery from "@hooks/useMediaQuery";
 
 const TrackListTop = () => {
-  const { albumName, albumArtist, releaseDate, albumImage, tracks } =
-    useSelectedAlbumStore();
+  const { album } = useSelectedAlbumStore();
   const { artistImage } = useSelectedArtistStore();
-  const albumTotalDuration = formatDuration(getAlbumTotalDuration(tracks!));
   const isMobileBreakpoint = useMediaQuery(563);
+  const { imageUrl, name, artist, releaseDate, tracks } = album;
+  const albumTotalDuration = formatDuration(getAlbumTotalDuration(tracks!));
 
   return (
     <div className={styles.trackListTop}>
       <picture className={styles.albumImage}>
-        <img src={albumImage} alt="Album Image" />
+        <img src={imageUrl} alt="Album Image" />
       </picture>
       <div className={styles.topText}>
         <p className={styles.type}>Album</p>
-        <h2>{albumName}</h2>
+        <h2>{name}</h2>
         <h4 className={styles.albumData}>
           {!isMobileBreakpoint ? (
             <>
               <picture className={styles.artistImage}>
                 <img src={artistImage} alt="artist image" />
               </picture>
-              <span className={styles.artistName}>{albumArtist}</span>
+              <span className={styles.artistName}>{artist.name}</span>
               <span className={styles.dot}>•</span>
               {formatReleaseDate(releaseDate)}
               <span className={styles.dot}>•</span> {tracks?.length} songs,
@@ -41,7 +41,7 @@ const TrackListTop = () => {
               <picture className={styles.artistImage}>
                 <img src={artistImage} alt="artist image" />
               </picture>
-              <span className={styles.artistName}>{albumArtist}</span>
+              <span className={styles.artistName}>{artist.name}</span>
             </>
           )}
         </h4>

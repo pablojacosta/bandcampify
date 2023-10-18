@@ -5,8 +5,8 @@ import { getTrackId } from "@utils/helpers/getTrackId";
 import Track from "../Track";
 
 const ListedTracks = () => {
-  const { setShowPlayer, setTrackId, albumId, tracks } =
-    useSelectedAlbumStore();
+  const { setShowPlayer, setTrackId, album } = useSelectedAlbumStore();
+  const albumId = album.raw.basic.additionalProperty[0].value;
   const handleOnPlayClick = (trackId: string) => {
     setTrackId(trackId);
     setShowPlayer(true);
@@ -14,9 +14,9 @@ const ListedTracks = () => {
 
   return (
     <div className={styles.listedTracks}>
-      {tracks && (
+      {album.tracks && (
         <ul>
-          {tracks.map((track, index) => (
+          {album.tracks.map((track, index) => (
             <li key={`${albumId}_${track.name}`}>
               <Track
                 handleOnPlayClick={() =>

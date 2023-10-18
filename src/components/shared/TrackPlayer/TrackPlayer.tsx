@@ -3,7 +3,9 @@ import styles from "./TrackPlayer.module.scss";
 import useMediaQuery from "@hooks/useMediaQuery";
 
 const TrackPlayer = () => {
-  const { trackId, albumId } = useSelectedAlbumStore();
+  const { trackId } = useSelectedAlbumStore();
+  const { album } = useSelectedAlbumStore();
+  const albumId = album.raw.basic.additionalProperty[0].value;
   const isMobileBreakpoint = useMediaQuery(563);
   const isSmallBreakpoint = useMediaQuery(416);
   const isExtraSmallBreakpoint = useMediaQuery(330);

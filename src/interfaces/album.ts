@@ -1,14 +1,7 @@
+import { IAlbumProperty } from "./albumProperty";
 import { IAlbumRelease } from "./albumRelease";
 import { IAlbumTrack } from "./albumTrack";
-
-export interface IAdditionalProperty {
-  name: string;
-  value: number;
-}
-
-export interface IRawAlbumRelease {
-  additionalProperty: IAdditionalProperty[];
-}
+import { IRawAlbumRelease } from "./rawAlbumRelease";
 
 export interface IAlbum {
   type: string;
@@ -31,6 +24,7 @@ export interface IAlbum {
   raw: {
     basic: {
       albumRelease: IRawAlbumRelease[];
+      additionalProperty: IAlbumProperty[];
     };
   };
   albumId?: number;
