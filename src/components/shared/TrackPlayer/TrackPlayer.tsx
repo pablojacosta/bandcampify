@@ -22,8 +22,6 @@ const TrackPlayer = () => {
       ? { border: 0, width: 300, height: 150 }
       : { border: 0, width: 250, height: 150 };
 
-  console.log("src", src);
-
   return (
     <div className={styles.trackPlayer}>
       <iframe style={style} src={src} seamless />
