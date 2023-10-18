@@ -16,7 +16,7 @@ const FoundArtists = ({ foundArtists }: IFoundArtists) => {
           {foundArtists.map((artist) => (
             <ListedElement
               key={`${artist.name}_${artist.genre}`}
-              onClick={() => getAlbums(artist.url)}
+              onClick={() => getAlbums(artist.url, artist.imageUrl)}
               image={artist.imageUrl}
               name={artist.name}
               type={EListedElementTypes.ARTIST}

@@ -1,0 +1,23 @@
+@use "@styles/_mixins" as mixins;
+@use "@styles/_responsives" as responsives;
+
+.goBackButton {
+  padding: 1rem 0;
+
+  a {
+    text-decoration: none;
+
+    button {
+      @include mixins.flex_container(row, center, center);
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      gap: 0.5rem;
+      background-color: rgba(0, 0, 0, 0.7);
+
+      svg {
+        margin-left: -0.1rem;
+      }
+    }
+  }
+}

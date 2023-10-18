@@ -4,13 +4,15 @@ import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const useGetArtistAlbums = () => {
-  const { setAlbums, setArtistUrl, setHideArtists } = useSelectedArtistStore();
+  const { setAlbums, setArtistUrl, setHideArtists, setArtistImage } =
+    useSelectedArtistStore();
   const { setShowLoader } = useLoaderStore();
 
-  const getAlbums = async (artistUrl: string) => {
+  const getAlbums = async (artistUrl: string, artistImage: string) => {
     setShowLoader(true);
     setArtistUrl(artistUrl);
     setHideArtists(true);
+    setArtistImage(artistImage);
 
     const getAlbumsOptions: AxiosRequestConfig<any> = {
       method: "GET",

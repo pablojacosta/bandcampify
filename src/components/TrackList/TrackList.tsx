@@ -1,61 +1,23 @@
-import Track from "./components/Track";
-import { ITrackList } from "../../interfaces/trackList";
 import styles from "./TrackList.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import TrackPlayer from "@components/shared/TrackPlayer";
-import { getTrackId } from "@utils/helpers/getTrackId";
-import { formatDuration } from "@utils/helpers/formatDuration";
-import LeftArrow from "@components/elements/Icons/LeftArrow";
-import { Link } from "react-router-dom";
 
-const TrackList = ({ tracks, albumId, albumImage }: ITrackList) => {
-  const {
-    setShowPlayer,
-    showPlayer,
-    setTrackId,
-    setHideAlbums,
-    setHasAlbums,
-    setShowTrackList,
-  } = useSelectedAlbumStore();
-  const handleOnPlayClick = (trackId: string) => {
-    setTrackId(trackId);
-    setShowPlayer(true);
-  };
+import GoBackButton from "./components/GoBackButton";
+import TrackListTop from "./components/TrackListTop";
+import TrackListHeader from "./components/TrackListHeader";
+import ListedTracks from "./components/ListedTracks";
+import useMediaQuery from "@hooks/useMediaQuery";
 
-  const handleGoBackClick = () => {
-    setHasAlbums(true);
-    setHideAlbums(false);
-    setShowTrackList(false);
-    setShowPlayer(false);
-  };
+const TrackList = () => {
+  const { showPlayer } = useSelectedAlbumStore();
+  const isMobileBreakpoint = useMediaQuery(563);
 
   return (
     <div className={styles.trackList}>
-      <div className={styles.goBackButton}>
-        <Link to="/">
-          <button onClick={handleGoBackClick}>
-            <LeftArrow />
-            Go Back
-          </button>
-        </Link>
-      </div>
-      <picture>
-        <img src={albumImage} alt="Album Image" />
-      </picture>
-      <ul>
-        {tracks.map((track, index) => (
-          <li key={`${albumId}_${track.name}`}>
-            <Track
-              handleOnPlayClick={() =>
-                handleOnPlayClick(getTrackId(track.streamUrl))
-              }
-              name={track.name}
-              index={index}
-              duration={formatDuration(track.duration)}
-            />
-          </li>
-        ))}
-      </ul>
+      <GoBackButton />
+      <TrackListTop />
+      {!isMobileBreakpoint && <TrackListHeader />}
+      <ListedTracks />
       {showPlayer && <TrackPlayer />}
     </div>
   );

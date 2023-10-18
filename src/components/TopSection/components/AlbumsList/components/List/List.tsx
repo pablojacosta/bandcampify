@@ -21,6 +21,7 @@ const List = ({ items, type }: IList) => {
     setHideAlbums,
     setAlbumImage,
     setAlbumId,
+    setReleaseDate,
   } = useSelectedAlbumStore();
 
   return (
@@ -37,6 +38,7 @@ const List = ({ items, type }: IList) => {
             setHideAlbums(true);
             setAlbumImage(item.imageUrl);
             setAlbumId(isAlbum && item.albumId ? item.albumId : 0);
+            setReleaseDate(item.releaseDate);
           };
 
           return (
