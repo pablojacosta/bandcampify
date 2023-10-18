@@ -8,8 +8,10 @@ import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
 import useMediaQuery from "@hooks/useMediaQuery";
 import { useEffect, useState } from "react";
 import { IAlbumTrack } from "interfaces/albumTrack";
+import { useLoaderStore } from "@store/useLoaderStore";
 
 const TrackListTop = () => {
+  const { setShowLoader } = useLoaderStore();
   const { album } = useSelectedAlbumStore();
   const { artistImage } = useSelectedArtistStore();
   const isMobileBreakpoint = useMediaQuery(563);
@@ -33,7 +35,7 @@ const TrackListTop = () => {
     setAlbumReleaseDate(releaseDate);
     setAlbumTracks(tracks);
     setAlbumTotalDuration(formatDuration(getAlbumTotalDuration(tracks)));
-  }, [album]);
+  }, [album, setShowLoader]);
 
   return (
     <div className={styles.trackListTop}>
