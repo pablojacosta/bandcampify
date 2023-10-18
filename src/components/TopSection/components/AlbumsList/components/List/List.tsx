@@ -14,13 +14,7 @@ const List = ({ items, type }: IList) => {
     type === EListType.ALBUMS
       ? EListedElementTypes.ALBUM
       : EListedElementTypes.TRACK;
-  // const isAlbum = listedElementType === EListedElementTypes.ALBUM;
-  const {
-    setShowTracks,
-    setAlbumUrl,
-    setHideAlbums,
-    // setAlbumId,
-  } = useSelectedAlbumStore();
+  const { setShowTracks, setAlbumUrl, setHideAlbums } = useSelectedAlbumStore();
   const { artistInfo } = useSelectedArtistStore();
   const { getAlbum } = useGetAlbum();
 
@@ -34,7 +28,6 @@ const List = ({ items, type }: IList) => {
             setShowTracks(true);
             setAlbumUrl(item.url);
             setHideAlbums(true);
-            // setAlbumId(isAlbum && item.albumId ? item.albumId : 0);
           };
 
           return (
