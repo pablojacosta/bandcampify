@@ -10,7 +10,7 @@ const useGetArtistData = (filteredArtist: string) => {
   const [artistError, setArtistError] = useState(false);
   const { setFoundArtists } = useFoundArtistsStore();
   const { setShowLoader } = useLoaderStore();
-  const { setHideArtists, setAlbums } = useSelectedArtistStore();
+  const { setHideArtists } = useSelectedArtistStore();
   const { setHideAlbums } = useSelectedAlbumStore();
 
   const getArtistData = async () => {
@@ -33,8 +33,6 @@ const useGetArtistData = (filteredArtist: string) => {
         }
         setFoundArtists(response.data);
         setHideArtists(false);
-        setAlbums([]);
-        setHideAlbums(false);
       })
       .finally(() => setShowLoader(false))
       .catch((error) => {
