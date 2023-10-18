@@ -5,7 +5,6 @@ import useGetArtistData from "@hooks/useGetArtistData";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { ITopSection } from "interfaces/topSection";
 import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
-import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import SearchSection from "./components/SearchSection";
 import FoundArtists from "./components/FoundArtists";
 
@@ -20,7 +19,6 @@ const TopSection = ({
   const { getArtistData } = useGetArtistData(filteredArtist);
   const { showLoader } = useLoaderStore();
   const { foundArtists } = useFoundArtistsStore();
-  const { albums } = useSelectedArtistStore();
 
   return (
     <div className={styles.topSection}>
@@ -36,7 +34,7 @@ const TopSection = ({
       {showFoundArtists && foundArtists && (
         <FoundArtists foundArtists={foundArtists} />
       )}
-      {showAlbumsList && <AlbumsList albums={albums} />}
+      {showAlbumsList && <AlbumsList />}
     </div>
   );
 };

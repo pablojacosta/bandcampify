@@ -10,16 +10,16 @@ const ListedElement = ({
   type,
   artist,
 }: IListedElement) => {
-  const isSong = type === EListedElementTypes.TRACK;
+  const isTrack = type === EListedElementTypes.TRACK;
   const iconStyle = {
-    color: !isSong ? "black" : "white",
+    color: !isTrack ? "black" : "white",
     fontSize: "2rem",
     paddingLeft: "0.15rem",
   };
-  const tag = !isSong ? type : artist;
+  const tag = !isTrack ? type : artist;
 
   return (
-    <div className={`${styles.listedElement} ${isSong ? styles.isSong : ""}`}>
+    <div className={`${styles.listedElement} ${isTrack ? styles.isTrack : ""}`}>
       <li onClick={onClick}>
         <div className={styles.content}>
           <picture>
