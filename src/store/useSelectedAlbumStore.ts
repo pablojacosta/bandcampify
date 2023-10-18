@@ -7,7 +7,6 @@ interface ISelectedAlbumStore {
   tracks: IAlbumTrack[] | null;
   showTracks: boolean;
   albumUrl: string;
-  albumArtist: string;
   albumName: string;
   hideAlbums: boolean;
   albumImage: string;
@@ -20,7 +19,6 @@ interface ISelectedAlbumStore {
   setTracks: (trackList: IAlbumTrack[]) => void;
   setShowTracks: (showTracks: boolean) => void;
   setAlbumUrl: (albumUrl: string) => void;
-  setAlbumArtist: (albumArtist: string) => void;
   setAlbumName: (albumName: string) => void;
   setHideAlbums: (hideAlbums: boolean) => void;
   setAlbumImage: (albumImage: string) => void;
@@ -37,7 +35,6 @@ const initialState = {
   tracks: null,
   showTracks: false,
   albumUrl: "",
-  albumArtist: "",
   albumName: "",
   hideAlbums: false,
   albumImage: "",
@@ -65,11 +62,6 @@ export const useSelectedAlbumStore = create<ISelectedAlbumStore>()((set) => ({
     set((state) => ({
       ...state,
       albumUrl,
-    })),
-  setAlbumArtist: (albumArtist: string) =>
-    set((state) => ({
-      ...state,
-      albumArtist,
     })),
   setAlbumName: (albumName: string) =>
     set((state) => ({
