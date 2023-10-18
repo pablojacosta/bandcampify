@@ -19,7 +19,6 @@ const App = () => {
   const {
     showTracks,
     tracks,
-    albumName,
     albumUrl,
     hideAlbums,
     hasAlbums,
@@ -32,7 +31,7 @@ const App = () => {
   const showAlbumsList = hasAlbums && !hideAlbums;
   const showFoundArtists =
     !hideArtists && foundArtists && foundArtists.length > 0;
-  const isReadyForTrackList = showTracks && tracks && albumName && albumUrl;
+  const isReadyForTrackList = showTracks && tracks && albumUrl;
 
   const handleArtistFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFilteredArtist(event.target.value);

@@ -10,6 +10,7 @@ const TrackPlayer = () => {
   const isMobileBreakpoint = useMediaQuery(563);
   const isSmallBreakpoint = useMediaQuery(416);
   const isExtraSmallBreakpoint = useMediaQuery(330);
+
   const src =
     albumId !== 0
       ? `https://bandcamp.com/EmbeddedPlayer/album=${albumId}/track=${trackId}/size=large/bgcol=333333/tracklist=false/linkcol=1ed760/artwork=small/transparent=true/`
