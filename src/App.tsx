@@ -15,12 +15,10 @@ const App = () => {
   const [filteredArtist, setFilteredArtist] = useState("");
   const { getArtistData } = useGetArtistData(filteredArtist);
   const { foundArtists } = useFoundArtistsStore();
-  const { albums, hideArtists } = useSelectedArtistStore();
+  const { hideArtists, artistInfo } = useSelectedArtistStore();
   const {
     showTracks,
     tracks,
-    albumArtist,
-    albumName,
     albumUrl,
     hideAlbums,
     hasAlbums,
@@ -28,11 +26,12 @@ const App = () => {
     setShowTrackList,
     showTrackList,
   } = useSelectedAlbumStore();
+  const albums = artistInfo?.albums;
+
   const showAlbumsList = hasAlbums && !hideAlbums;
   const showFoundArtists =
     !hideArtists && foundArtists && foundArtists.length > 0;
-  const isReadyForTrackList =
-    showTracks && tracks && albumArtist && albumName && albumUrl;
+  const isReadyForTrackList = showTracks && tracks && albumUrl;
 
   const handleArtistFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFilteredArtist(event.target.value);
@@ -51,7 +50,7 @@ const App = () => {
   }, [isReadyForTrackList, setShowTrackList]);
 
   useEffect(() => {
-    if (albums.length) {
+    if (albums && albums.length) {
       setHasAlbums(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

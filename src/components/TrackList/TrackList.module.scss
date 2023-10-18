@@ -2,8 +2,11 @@
 @use "@styles/_responsives" as responsives;
 
 .trackList {
-  @include mixins.flex_container(column, center, flex-start);
+  @include mixins.flex_container(column, flex-start, flex-start);
   margin-top: -2rem;
-  padding: 0 2rem 8rem 2rem;
-  background: linear-gradient(180deg, #b83737 0%, #000000 38%);
+  padding: 0 2rem 18rem 2rem;
+}
+
+.loader {
+  @include mixins.flex_container(row, center, center);
 }

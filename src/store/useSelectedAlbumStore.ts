@@ -1,3 +1,4 @@
+import { IAlbum } from "interfaces/album";
 import { IAlbumTrack } from "interfaces/albumTrack";
 import { create } from "zustand";
 
@@ -5,29 +6,23 @@ interface ISelectedAlbumStore {
   tracks: IAlbumTrack[] | null;
   showTracks: boolean;
   albumUrl: string;
-  albumId: number;
-  albumArtist: string;
-  albumName: string;
   hideAlbums: boolean;
-  albumImage: string;
   showPlayer: boolean;
   trackId: string;
   hasAlbums: boolean;
-  releaseDate: string;
+  album: IAlbum | null;
+  albumId: number;
   showTrackList: boolean;
   setTracks: (trackList: IAlbumTrack[]) => void;
   setShowTracks: (showTracks: boolean) => void;
   setAlbumUrl: (albumUrl: string) => void;
-  setAlbumId: (albumId: number) => void;
-  setAlbumArtist: (albumArtist: string) => void;
-  setAlbumName: (albumName: string) => void;
   setHideAlbums: (hideAlbums: boolean) => void;
-  setAlbumImage: (albumImage: string) => void;
   setShowPlayer: (showPlayer: boolean) => void;
   setTrackId: (trackId: string) => void;
   setHasAlbums: (hasAlbums: boolean) => void;
-  setReleaseDate: (releaseDate: string) => void;
   setShowTrackList: (showTrackList: boolean) => void;
+  setAlbum: (album: IAlbum) => void;
+  setAlbumId: (albumId: number) => void;
   clearStore: () => void;
 }
 
@@ -35,16 +30,14 @@ const initialState = {
   tracks: null,
   showTracks: false,
   albumUrl: "",
-  albumId: 0,
-  albumArtist: "",
-  albumName: "",
   hideAlbums: false,
-  albumImage: "",
   showPlayer: false,
   trackId: "",
   hasAlbums: false,
   releaseDate: "",
   showTrackList: false,
+  album: null,
+  albumId: 0,
 };
 
 export const useSelectedAlbumStore = create<ISelectedAlbumStore>()((set) => ({
@@ -64,30 +57,10 @@ export const useSelectedAlbumStore = create<ISelectedAlbumStore>()((set) => ({
       ...state,
       albumUrl,
     })),
-  setAlbumId: (albumId: number) =>
-    set((state) => ({
-      ...state,
-      albumId,
-    })),
-  setAlbumArtist: (albumArtist: string) =>
-    set((state) => ({
-      ...state,
-      albumArtist,
-    })),
-  setAlbumName: (albumName: string) =>
-    set((state) => ({
-      ...state,
-      albumName,
-    })),
   setHideAlbums: (hideAlbums: boolean) =>
     set((state) => ({
       ...state,
       hideAlbums,
-    })),
-  setAlbumImage: (albumImage: string) =>
-    set((state) => ({
-      ...state,
-      albumImage,
     })),
   setShowPlayer: (showPlayer: boolean) =>
     set((state) => ({
@@ -104,15 +77,20 @@ export const useSelectedAlbumStore = create<ISelectedAlbumStore>()((set) => ({
       ...state,
       hasAlbums,
     })),
-  setReleaseDate: (releaseDate: string) =>
-    set((state) => ({
-      ...state,
-      releaseDate,
-    })),
   setShowTrackList: (showTrackList: boolean) =>
     set((state) => ({
       ...state,
       showTrackList,
+    })),
+  setAlbum: (album: IAlbum) =>
+    set((state) => ({
+      ...state,
+      album,
+    })),
+  setAlbumId: (albumId: number) =>
+    set((state) => ({
+      ...state,
+      albumId,
     })),
   clearStore: () => set(() => ({ ...initialState })),
 }));

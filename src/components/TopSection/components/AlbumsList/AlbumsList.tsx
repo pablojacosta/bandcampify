@@ -1,26 +1,20 @@
-import { IAlbum } from "interfaces/album";
-import { IAlbumsList } from "interfaces/albumsList";
 import styles from "./AlbumsList.module.scss";
 import { EListType } from "@constants/enums";
 import List from "./components/List";
-import { addAlbumId } from "@utils/helpers/addAlbumId";
+import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 
-const AlbumsList = ({ albums }: IAlbumsList) => {
-  const songs = albums.filter((album: IAlbum) => album.tracks.length === 1);
-  const sanitizedSongs = songs.filter((obj, index) => {
-    return index === songs.findLastIndex((o) => obj.name === o.name);
-  });
-  const fullAlbums = albums.filter((album: IAlbum) => album.tracks.length > 1);
-
-  const hasAlbums = fullAlbums.length > 0;
-  const hasSongs = sanitizedSongs.length > 0;
+const AlbumsList = () => {
+  const { artistInfo } = useSelectedArtistStore();
+  const albums = artistInfo?.albums;
+  const fullAlbums = albums?.filter((album) => album.url.includes("album"));
+  const songs = albums?.filter((album) => album.url.includes("track"));
+  const hasAlbums = fullAlbums && fullAlbums.length > 0;
+  const hasSongs = songs && songs.length > 0;
 
   return (
     <div className={styles.albumsList}>
-      {hasAlbums && (
-        <List items={addAlbumId(fullAlbums)} type={EListType.ALBUMS} />
-      )}
-      {hasSongs && <List items={sanitizedSongs} type={EListType.SONGS} />}
+      {hasAlbums && <List items={fullAlbums} type={EListType.ALBUMS} />}
+      {hasSongs && <List items={songs} type={EListType.SONGS} />}
     </div>
   );
 };
