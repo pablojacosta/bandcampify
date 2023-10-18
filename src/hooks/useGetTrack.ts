@@ -12,7 +12,7 @@ const useGetTrack = () => {
 
     const getTrackOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "http://localhost:3001/track",
+      url: "/track",
       params: { trackUrl },
     };
 

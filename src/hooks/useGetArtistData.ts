@@ -20,7 +20,7 @@ const useGetArtistData = (filteredArtist: string) => {
 
     const getArtistDataOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "http://localhost:3001/artist",
+      url: "/artist",
       params: { artist: filteredArtist },
     };
 
