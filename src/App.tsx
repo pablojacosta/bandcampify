@@ -10,8 +10,10 @@ import { Routes, Route } from "react-router-dom";
 import TopSection from "@components/TopSection";
 import styles from "./App.module.scss";
 import Footer from "@components/shared/Footer";
+import useWakeRenderServerUp from "@hooks/useWakeRenderServerUp";
 
 const App = () => {
+  const { wakeServer } = useWakeRenderServerUp();
   const [filteredArtist, setFilteredArtist] = useState("");
   const { getArtistData } = useGetArtistData(filteredArtist);
   const { foundArtists } = useFoundArtistsStore();
@@ -55,6 +57,11 @@ const App = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [albums]);
+
+  useEffect(() => {
+    wakeServer();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.app}>
