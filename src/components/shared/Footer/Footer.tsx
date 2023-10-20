@@ -7,15 +7,13 @@ interface IFooter {
   removeBg?: boolean;
 }
 
-const Footer = ({ removeBg }: IFooter) => {
-  return (
-    <footer className={`${styles.footer} ${removeBg ? styles.removeBg : ""}`}>
-      <Container>
-        <Separator color="white" />
-        <SocialIcons />
-      </Container>
-    </footer>
-  );
-};
+const Footer = ({ removeBg }: IFooter) => (
+  <footer className={`${styles.footer} ${removeBg ? styles.removeBg : ""}`}>
+    <Container>
+      <Separator color="white" />
+      <SocialIcons />
+    </Container>
+  </footer>
+);
 
 export default Footer;
