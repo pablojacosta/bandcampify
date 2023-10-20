@@ -2,6 +2,7 @@ import { githubUrl, linkedinUrl } from "constants/socials";
 import githubIcon from "@images/github-icon.svg";
 import linkedinIcon from "@images/linkedin-icon.svg";
 import styles from "./SocialIcons.module.scss";
+import HeartIcon from "@components/elements/Icons/HeartIcon";
 
 const LINKEDIN_ICON_SIZE = "50";
 const GITHUB_ICON_SIZE = "42";
@@ -35,6 +36,9 @@ const SocialIcons = ({ className }: ISocialIcons) => {
           />
         </picture>
       </a>
+      <button className={styles.likes}>
+        <HeartIcon />
+      </button>
     </div>
   );
 };
