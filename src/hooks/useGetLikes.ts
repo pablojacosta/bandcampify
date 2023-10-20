@@ -8,11 +8,11 @@ const useGetLikes = () => {
 
   useEffect(() => {
     const query = ref(db, "likes");
+
     return onValue(query, (snapshot) => {
       const data = snapshot.val();
 
       if (snapshot.exists()) {
-        console.log("data", data);
         setLikes(data);
       }
     });
