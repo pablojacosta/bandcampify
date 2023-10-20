@@ -4,6 +4,7 @@ import linkedinIcon from "@images/linkedin-icon.svg";
 import styles from "./SocialIcons.module.scss";
 import HeartIcon from "@components/elements/Icons/HeartIcon";
 import useGetLikes from "@hooks/useGetLikes";
+import useSetLikes from "@hooks/useSetLikes";
 
 const LINKEDIN_ICON_SIZE = "50";
 const GITHUB_ICON_SIZE = "42";
@@ -14,8 +15,7 @@ interface ISocialIcons {
 
 const SocialIcons = ({ className }: ISocialIcons) => {
   const { likes } = useGetLikes();
-
-  const handleLikeClick = () => {};
+  const { addLike } = useSetLikes();
 
   return (
     <div className={`${styles.socialIcons} ${className}`}>
@@ -42,7 +42,7 @@ const SocialIcons = ({ className }: ISocialIcons) => {
         </picture>
       </a>
       <div className={styles.likes}>
-        <button onClick={handleLikeClick}>
+        <button onClick={addLike}>
           <HeartIcon />
         </button>
         <span>{likes}</span>
