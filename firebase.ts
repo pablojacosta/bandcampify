@@ -9,9 +9,10 @@ import {
   FB_PROJECT_ID,
   FB_STORAGE_BUCKET,
 } from "@constants/env";
-import firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 
-const config = {
+const firebaseConfig = {
   apiKey: FB_APIKEY,
   authDomain: FB_AUTH_DOMAIN,
   databaseURL: FB_DB_URL,
@@ -22,14 +23,5 @@ const config = {
   measurementId: FB_MEASUREMENT_ID,
 };
 
-let instance: any = null;
-
-export default function getFirebase() {
-  if (typeof window !== "undefined") {
-    if (instance) return instance;
-    instance = firebase.initializeApp(config);
-    return instance;
-  }
-
-  return null;
-}
+const app = initializeApp(firebaseConfig);
+export const db = getDatabase(app);
