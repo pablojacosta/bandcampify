@@ -6,6 +6,7 @@ import HeartIcon from "@components/elements/Icons/HeartIcon";
 import useGetLikes from "@hooks/useGetLikes";
 import useSetLikes from "@hooks/useSetLikes";
 import { useLikesStore } from "@store/useLikesStore";
+import CoffeButton from "../CoffeButton";
 
 const LINKEDIN_ICON_SIZE = "50";
 const GITHUB_ICON_SIZE = "42";
@@ -21,6 +22,7 @@ const SocialIcons = ({ className }: ISocialIcons) => {
 
   return (
     <div className={`${styles.socialIcons} ${className}`}>
+      <CoffeButton />
       <a href={githubUrl} target="_blank" rel="noopener noreferrer">
         <picture>
           <img
