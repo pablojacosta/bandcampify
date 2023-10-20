@@ -3,6 +3,7 @@ import githubIcon from "@images/github-icon.svg";
 import linkedinIcon from "@images/linkedin-icon.svg";
 import styles from "./SocialIcons.module.scss";
 import HeartIcon from "@components/elements/Icons/HeartIcon";
+import useGetLikes from "@hooks/useGetLikes";
 
 const LINKEDIN_ICON_SIZE = "50";
 const GITHUB_ICON_SIZE = "42";
@@ -12,6 +13,8 @@ interface ISocialIcons {
 }
 
 const SocialIcons = ({ className }: ISocialIcons) => {
+  const { likes } = useGetLikes();
+
   return (
     <div className={`${styles.socialIcons} ${className}`}>
       <a href={githubUrl} target="_blank" rel="noopener noreferrer">
@@ -36,9 +39,12 @@ const SocialIcons = ({ className }: ISocialIcons) => {
           />
         </picture>
       </a>
-      <button className={styles.likes}>
-        <HeartIcon />
-      </button>
+      <div className={styles.likes}>
+        <button>
+          <HeartIcon />
+        </button>
+        <span>{likes}</span>
+      </div>
     </div>
   );
 };

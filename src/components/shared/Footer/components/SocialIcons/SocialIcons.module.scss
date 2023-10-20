@@ -1,14 +1,12 @@
 @use "@styles/_responsives" as responsives;
+@use "@styles/_mixins" as mixins;
 
 .socialIcons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include mixins.flex_container(row, center, center);
   gap: 1rem;
 
   .githubIcon,
-  .linkedinIcon,
-  .likes {
+  .linkedinIcon {
     width: 2rem;
     height: auto;
 
@@ -20,12 +18,18 @@
   }
 
   .likes {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
+    @include mixins.flex_container(row, center, center);
+    gap: 0.2rem;
+
+    button {
+      max-width: 2rem;
+      background: none;
+      color: inherit;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+    }
   }
 }
