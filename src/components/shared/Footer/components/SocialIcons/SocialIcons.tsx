@@ -5,6 +5,7 @@ import styles from "./SocialIcons.module.scss";
 import HeartIcon from "@components/elements/Icons/HeartIcon";
 import useGetLikes from "@hooks/useGetLikes";
 import useSetLikes from "@hooks/useSetLikes";
+import { useLikesStore } from "@store/useLikesStore";
 
 const LINKEDIN_ICON_SIZE = "50";
 const GITHUB_ICON_SIZE = "42";
@@ -16,6 +17,7 @@ interface ISocialIcons {
 const SocialIcons = ({ className }: ISocialIcons) => {
   const { likes } = useGetLikes();
   const { addLike } = useSetLikes();
+  const { hasAlreadyLiked } = useLikesStore();
 
   return (
     <div className={`${styles.socialIcons} ${className}`}>
@@ -41,7 +43,11 @@ const SocialIcons = ({ className }: ISocialIcons) => {
           />
         </picture>
       </a>
-      <div className={styles.likes}>
+      <div
+        className={`${styles.likes} ${
+          hasAlreadyLiked ? styles.alreadyLiked : ""
+        }`}
+      >
         <button onClick={addLike}>
           <HeartIcon />
         </button>
