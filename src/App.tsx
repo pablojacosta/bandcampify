@@ -11,9 +11,11 @@ import TopSection from "@components/TopSection";
 import styles from "./App.module.scss";
 import Footer from "@components/shared/Footer";
 import useWakeRenderServerUp from "@hooks/useWakeRenderServerUp";
+import useGetLikes from "@hooks/useGetLikes";
 
 const App = () => {
   const { wakeServer } = useWakeRenderServerUp();
+  const { getLikes } = useGetLikes();
   const [filteredArtist, setFilteredArtist] = useState("");
   const { getArtistData } = useGetArtistData(filteredArtist);
   const { foundArtists } = useFoundArtistsStore();
@@ -62,6 +64,8 @@ const App = () => {
     wakeServer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  console.log(getLikes());
 
   return (
     <div className={styles.app}>
