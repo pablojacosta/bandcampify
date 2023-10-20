@@ -1,1 +1,1 @@
-export const LIKES_STORE = "LIKES_STORE";
+export const LIKES_STORE = "likes_store";

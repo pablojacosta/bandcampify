@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useLikesStore } from "@store/useLikesStore";
 import { db } from "../../firebase";
-import { onValue, ref, set } from "firebase/database";
+import { ref, update, increment } from "firebase/database";
 
 const useSetLikes = () => {
   const { hasAlreadyLiked, setHasAlreadyLiked } = useLikesStore();
@@ -10,16 +11,10 @@ const useSetLikes = () => {
       return;
     }
 
-    const query = ref(db, "likes");
-
-    return onValue(query, (snapshot) => {
-      const data = snapshot.val();
-
-      if (snapshot.exists()) {
-        set(query, data + 1);
-        setHasAlreadyLiked(true);
-      }
-    });
+    const dbRef = ref(db);
+    const updates = { likes: increment(1) };
+    update(dbRef, updates);
+    setHasAlreadyLiked(true);
   };
 
   return { addLike };
