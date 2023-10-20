@@ -15,6 +15,8 @@ interface ISocialIcons {
 const SocialIcons = ({ className }: ISocialIcons) => {
   const { likes } = useGetLikes();
 
+  const handleLikeClick = () => {};
+
   return (
     <div className={`${styles.socialIcons} ${className}`}>
       <a href={githubUrl} target="_blank" rel="noopener noreferrer">
@@ -40,7 +42,7 @@ const SocialIcons = ({ className }: ISocialIcons) => {
         </picture>
       </a>
       <div className={styles.likes}>
-        <button>
+        <button onClick={handleLikeClick}>
           <HeartIcon />
         </button>
         <span>{likes}</span>
