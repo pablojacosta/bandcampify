@@ -2,6 +2,10 @@ import { githubUrl, linkedinUrl } from "constants/socials";
 import githubIcon from "@images/github-icon.svg";
 import linkedinIcon from "@images/linkedin-icon.svg";
 import styles from "./SocialIcons.module.scss";
+import HeartIcon from "@components/elements/Icons/HeartIcon";
+import useGetLikes from "@hooks/useGetLikes";
+import useSetLikes from "@hooks/useSetLikes";
+import { useLikesStore } from "@store/useLikesStore";
 
 const LINKEDIN_ICON_SIZE = "50";
 const GITHUB_ICON_SIZE = "42";
@@ -11,6 +15,10 @@ interface ISocialIcons {
 }
 
 const SocialIcons = ({ className }: ISocialIcons) => {
+  const { likes } = useGetLikes();
+  const { addLike } = useSetLikes();
+  const { hasAlreadyLiked } = useLikesStore();
+
   return (
     <div className={`${styles.socialIcons} ${className}`}>
       <a href={githubUrl} target="_blank" rel="noopener noreferrer">
@@ -35,6 +43,16 @@ const SocialIcons = ({ className }: ISocialIcons) => {
           />
         </picture>
       </a>
+      <div
+        className={`${styles.likes} ${
+          hasAlreadyLiked ? styles.alreadyLiked : ""
+        }`}
+      >
+        <button onClick={addLike}>
+          <HeartIcon />
+        </button>
+        <span>{likes}</span>
+      </div>
     </div>
   );
 };
