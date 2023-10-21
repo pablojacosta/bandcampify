@@ -37,7 +37,6 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
   const hasAlbums = albums.length > 0;
   const hasTracks = tracks.length > 0;
 
-  console.log("foundResults", foundResults);
   return (
     <div className={styles.foundResults}>
       {!isError ? (
