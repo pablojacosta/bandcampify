@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Track.module.scss";
 import { BiPlay } from "react-icons/bi";
 import useMediaQuery from "@hooks/useMediaQuery";
@@ -12,7 +12,7 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const isMobileSmallBreakpoint = useMediaQuery(370);
   const { artistInfo, fetchArtist, artistName } = useSelectedArtistStore();
   const { isTrack } = useSelectedTrackStore();
-  const artistNameForTrack = !fetchArtist ? artistInfo?.name : artistName;
+  const [artistNameForTrack, setArtistNameForTrack] = useState("");
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -21,6 +21,14 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const handleMouseOut = () => {
     setIsHovering(false);
   };
+
+  useEffect(() => {
+    if (!fetchArtist || !artistName) {
+      return;
+    }
+
+    setArtistNameForTrack(artistName);
+  }, [artistName, fetchArtist]);
 
   return (
     <div
@@ -36,7 +44,9 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
       )}
       <div className={styles.names}>
         <p className={styles.songName}>{name}</p>
-        <p className={styles.artistName}>{artistNameForTrack}</p>
+        <p className={styles.artistName}>
+          {artistNameForTrack ?? artistInfo?.name}
+        </p>
       </div>
       {!isMobileSmallBreakpoint && !isTrack && (
         <div className={styles.duration}>

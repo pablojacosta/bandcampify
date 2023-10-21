@@ -5,7 +5,8 @@ import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 
 const useGetArtistData = () => {
   const { setShowLoader } = useLoaderStore();
-  const { setArtistName, setArtistImage } = useSelectedArtistStore();
+  const { setArtistName, setArtistImage, setFetchArtist } =
+    useSelectedArtistStore();
 
   const getArtistData = async (artistUrl: string) => {
     setShowLoader(true);
@@ -22,7 +23,10 @@ const useGetArtistData = () => {
         setArtistName(response.data.name);
         setArtistImage(response.data.imageUrl);
       })
-      .finally(() => setShowLoader(false))
+      .finally(() => {
+        setShowLoader(false);
+        setFetchArtist(false);
+      })
       .catch((error) => {
         console.log(error);
       });
