@@ -38,7 +38,6 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
   const hasTracks = tracks.length > 0;
 
   console.log("foundResults", foundResults);
-
   return (
     <div className={styles.foundResults}>
       {!isError ? (
@@ -65,7 +64,7 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
           {hasTracks && <ResultList items={tracks} type={EListType.SONGS} />}
         </>
       ) : (
-        <h2>Sorry. No results found. Please, try again.</h2>
+        <h2>{foundResults}</h2>
       )}
     </div>
   );

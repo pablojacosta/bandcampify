@@ -14,8 +14,8 @@ import useWakeRenderServerUp from "@hooks/useWakeRenderServerUp";
 
 const App = () => {
   const { wakeServer } = useWakeRenderServerUp();
-  const [filteredArtist, setFilteredArtist] = useState("");
-  const { getSearchData } = useGetSearchData(filteredArtist);
+  const [search, setSearch] = useState("");
+  const { getSearchData } = useGetSearchData(search);
   const { foundResults } = useFoundResultsStore();
   const { hideArtists, artistInfo } = useSelectedArtistStore();
   const {
@@ -35,8 +35,8 @@ const App = () => {
     !hideArtists && foundResults && foundResults.length > 0;
   const isReadyForTrackList = showTracks && tracks && albumUrl;
 
-  const handleArtistFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFilteredArtist(event.target.value);
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
   };
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -73,8 +73,8 @@ const App = () => {
             element={
               <TopSection
                 showTrackList={showTrackList}
-                handleArtistFilterChange={handleArtistFilterChange}
-                filteredArtist={filteredArtist}
+                handleSearchChange={handleSearchChange}
+                search={search}
                 onKeyDown={onKeyDown}
                 showFoundResults={showFoundResults}
                 showAlbumsList={showAlbumsList}

@@ -10,13 +10,13 @@ import FoundResults from "./components/FoundResults";
 
 const TopSection = ({
   showTrackList,
-  handleArtistFilterChange,
-  filteredArtist,
+  handleSearchChange,
+  search,
   onKeyDown,
   showFoundResults,
   showAlbumsList,
 }: ITopSection) => {
-  const { getSearchData } = useGetSearchData(filteredArtist);
+  const { getSearchData } = useGetSearchData(search);
   const { showLoader } = useLoaderStore();
   const { foundResults } = useFoundResultsStore();
 
@@ -24,8 +24,8 @@ const TopSection = ({
     <div className={styles.topSection}>
       {!showTrackList && (
         <SearchSection
-          handleArtistFilterChange={handleArtistFilterChange}
-          filteredArtist={filteredArtist}
+          handleSearchChange={handleSearchChange}
+          search={search}
           onKeyDown={onKeyDown}
           getSearchData={getSearchData}
         />

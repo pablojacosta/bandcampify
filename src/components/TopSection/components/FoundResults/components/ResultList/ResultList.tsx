@@ -4,7 +4,7 @@ import { EListType, EListedElementTypes } from "@constants/enums";
 import ListedElement from "@components/shared/ListedElement";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import { Link } from "react-router-dom";
-import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
+// import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import useGetAlbum from "@hooks/useGetAlbum";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import useGetTrack from "@hooks/useGetTrack";
@@ -16,7 +16,7 @@ const ResultList = ({ items, type }: IResultList) => {
       ? EListedElementTypes.ALBUM
       : EListedElementTypes.TRACK;
   const { setShowTracks, setAlbumUrl, setHideAlbums } = useSelectedAlbumStore();
-  const { artistInfo } = useSelectedArtistStore();
+  // const { artistInfo } = useSelectedArtistStore();
   const { getAlbum } = useGetAlbum();
   const { getTrack } = useGetTrack();
   const { setIsTrack } = useSelectedTrackStore();
@@ -51,7 +51,7 @@ const ResultList = ({ items, type }: IResultList) => {
                 }
                 image={item.imageUrl}
                 name={item.name}
-                artist={artistInfo?.name}
+                artist={item.artist}
                 type={listedElementType}
               />
             </Link>

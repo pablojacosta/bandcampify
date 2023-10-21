@@ -6,7 +6,7 @@ import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 
-const useGetSearchData = (filteredArtist: string) => {
+const useGetSearchData = (search: string) => {
   const [artistError, setArtistError] = useState(false);
   const { setFoundResults } = useFoundResultsStore();
   const { setShowLoader } = useLoaderStore();
@@ -20,8 +20,8 @@ const useGetSearchData = (filteredArtist: string) => {
 
     const getSearchDataOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "http://localhost:3001/artist",
-      params: { artist: filteredArtist },
+      url: "http://localhost:3001/search",
+      params: { artist: search },
     };
 
     await axios
