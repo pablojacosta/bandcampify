@@ -15,15 +15,17 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
       <h1>Artists</h1>
       {!isError ? (
         <ul>
-          {foundResults.map((artist) => (
-            <ListedElement
-              key={`${artist.name}_${artist.genre}`}
-              onClick={() => getAlbums(artist.url, artist.imageUrl)}
-              image={artist.imageUrl}
-              name={artist.name}
-              type={EListedElementTypes.ARTIST}
-            />
-          ))}
+          {foundResults
+            .filter((result) => result.type === "artist")
+            .map((artist) => (
+              <ListedElement
+                key={`${artist.name}_${artist.genre}`}
+                onClick={() => getAlbums(artist.url, artist.imageUrl)}
+                image={artist.imageUrl}
+                name={artist.name}
+                type={EListedElementTypes.ARTIST}
+              />
+            ))}
         </ul>
       ) : (
         <h2>{foundResults}</h2>

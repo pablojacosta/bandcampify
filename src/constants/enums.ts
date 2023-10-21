@@ -1,3 +1,9 @@
+export const enum ESearchResultTypes {
+  ALBUM = "album",
+  ARTIST = "artist",
+  TRACK = "track",
+}
+
 export const enum EListedElementTypes {
   ALBUM = "Album",
   ARTIST = "Artist",
