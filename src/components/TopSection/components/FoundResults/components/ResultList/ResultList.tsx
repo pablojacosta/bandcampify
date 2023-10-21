@@ -1,5 +1,5 @@
-import { IList } from "interfaces/list";
-import styles from "./List.module.scss";
+import { IResultList } from "interfaces/resultList";
+import styles from "./ResultList.module.scss";
 import { EListType, EListedElementTypes } from "@constants/enums";
 import ListedElement from "@components/shared/ListedElement";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
@@ -8,9 +8,9 @@ import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import useGetAlbum from "@hooks/useGetAlbum";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import useGetTrack from "@hooks/useGetTrack";
-import { IAlbumMinInfo } from "interfaces/albumMinInfo";
+import { TFoundItem } from "types/foundItem";
 
-const List = ({ items, type }: IList) => {
+const ResultList = ({ items, type }: IResultList) => {
   const listedElementType =
     type === EListType.ALBUMS
       ? EListedElementTypes.ALBUM
@@ -25,7 +25,7 @@ const List = ({ items, type }: IList) => {
     <div className={styles.list}>
       <h2>{type}</h2>
       <ul>
-        {items.map((item: IAlbumMinInfo) => {
+        {items.map((item: TFoundItem) => {
           const handleAlbumOnClick = () => {
             getAlbum(item.url);
             setShowTracks(true);
@@ -49,8 +49,8 @@ const List = ({ items, type }: IList) => {
                     ? () => handleAlbumOnClick()
                     : () => handleSongOnClick()
                 }
-                image={item.coverImage}
-                name={item.title}
+                image={item.imageUrl}
+                name={item.name}
                 artist={artistInfo?.name}
                 type={listedElementType}
               />
@@ -62,4 +62,4 @@ const List = ({ items, type }: IList) => {
   );
 };
 
-export default List;
+export default ResultList;

@@ -1,17 +1,6 @@
-@use "@styles/_mixins" as mixins;
 @use "@styles/_responsives" as responsives;
 
-.foundResults {
-  margin-top: 2rem;
-
-  ul {
-    @include mixins.flex_container(row, center, center);
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
-    gap: 1rem;
-  }
-
+.list {
   h2 {
     padding-left: 2rem;
 
@@ -21,6 +10,12 @@
 
     @include responsives.resolution__mobile__m {
       font-size: 1rem;
+    }
+  }
+
+  ul {
+    a {
+      text-decoration: none;
     }
   }
 }

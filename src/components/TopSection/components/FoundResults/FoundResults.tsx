@@ -2,20 +2,37 @@ import useGetArtistAlbums from "@hooks/useGetArtistAlbums";
 import styles from "./FoundResults.module.scss";
 import { IFoundResults } from "interfaces/foundResult";
 import ListedElement from "@components/shared/ListedElement";
-import { EListedElementTypes, ESearchResultTypes } from "@constants/enums";
+import {
+  EListType,
+  EListedElementTypes,
+  ESearchResultTypes,
+} from "@constants/enums";
+import { useEffect, useState } from "react";
+import { IResult } from "interfaces/result";
+import ResultList from "./components/ResultList";
 
 const FoundResults = ({ foundResults }: IFoundResults) => {
   const { getAlbums } = useGetArtistAlbums();
   const isError = typeof foundResults === "string";
-  const artists = foundResults.filter(
-    (result) => result.type === ESearchResultTypes.ARTIST
-  );
-  const albums = foundResults.filter(
-    (result) => result.type === ESearchResultTypes.ALBUM
-  );
-  const tracks = foundResults.filter(
-    (result) => result.type === ESearchResultTypes.TRACK
-  );
+  const [artists, setArtists] = useState<IResult[]>([]);
+  const [albums, setAlbums] = useState<IResult[]>([]);
+  const [tracks, setTracks] = useState<IResult[]>([]);
+
+  useEffect(() => {
+    if (isError) {
+      return;
+    }
+    setArtists(
+      foundResults.filter((result) => result.type === ESearchResultTypes.ARTIST)
+    );
+    setAlbums(
+      foundResults.filter((result) => result.type === ESearchResultTypes.ALBUM)
+    );
+    setTracks(
+      foundResults.filter((result) => result.type === ESearchResultTypes.TRACK)
+    );
+  }, [foundResults, isError]);
+
   const hasArtists = artists.length > 0;
   const hasAlbums = albums.length > 0;
   const hasTracks = tracks.length > 0;
@@ -28,7 +45,7 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
         <>
           {hasArtists && (
             <>
-              <h1>Artists</h1>
+              <h2>Artists</h2>
               <ul>
                 {foundResults
                   .filter((result) => result.type === ESearchResultTypes.ARTIST)
@@ -44,42 +61,8 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
               </ul>
             </>
           )}
-          {hasAlbums && (
-            <>
-              <h1>Albums</h1>
-              <ul>
-                {foundResults
-                  .filter((result) => result.type === ESearchResultTypes.ALBUM)
-                  .map((album) => (
-                    <ListedElement
-                      key={album.url}
-                      onClick={() => getAlbums(album.url, album.imageUrl)}
-                      image={album.imageUrl}
-                      name={album.name}
-                      type={EListedElementTypes.ALBUM}
-                    />
-                  ))}
-              </ul>
-            </>
-          )}
-          {hasTracks && (
-            <>
-              <h1>Songs</h1>
-              <ul>
-                {foundResults
-                  .filter((result) => result.type === ESearchResultTypes.TRACK)
-                  .map((song) => (
-                    <ListedElement
-                      key={song.url}
-                      onClick={() => getAlbums(song.url, song.imageUrl)}
-                      image={song.imageUrl}
-                      name={song.name}
-                      type={EListedElementTypes.ALBUM}
-                    />
-                  ))}
-              </ul>
-            </>
-          )}
+          {hasAlbums && <ResultList items={albums} type={EListType.ALBUMS} />}
+          {hasTracks && <ResultList items={tracks} type={EListType.SONGS} />}
         </>
       ) : (
         <h2>Sorry. No results found. Please, try again.</h2>
