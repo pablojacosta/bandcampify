@@ -11,8 +11,6 @@ const GoBackButton = () => {
   const { setIsTrack, setTrack } = useSelectedTrackStore();
   const { fetchArtist } = useSelectedArtistStore();
 
-  console.log("fetchArtist", fetchArtist);
-
   const handleGoBackClick = () => {
     if (!fetchArtist) {
       setHasAlbums(true);
