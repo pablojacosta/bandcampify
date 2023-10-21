@@ -13,7 +13,8 @@
   }
 
   h2 {
-    padding: 2rem;
+    padding: 1rem 2rem;
+    background-color: hsla(0, 0%, 100%, 0.02);
 
     @include responsives.resolution__tablet {
       font-size: 1.2rem;
