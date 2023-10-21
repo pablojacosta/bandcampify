@@ -2,7 +2,7 @@
 @use "@styles/_responsives" as responsives;
 
 .foundResults {
-  margin-top: 2rem;
+  margin: 2rem 0;
 
   ul {
     @include mixins.flex_container(row, center, center);
@@ -13,7 +13,7 @@
   }
 
   h2 {
-    padding-left: 2rem;
+    padding: 2rem;
 
     @include responsives.resolution__tablet {
       font-size: 1.2rem;
