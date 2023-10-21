@@ -10,15 +10,12 @@ import { useEffect, useState } from "react";
 import { IAlbumTrack } from "interfaces/albumTrack";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
-import useGetSearchData from "@hooks/useGetSearchData";
-import { useFoundResultsStore } from "@store/useFoundResultsStore";
-import { ESearchResultTypes } from "@constants/enums";
+import useGetArtistData from "@hooks/useGetArtistData";
 
 const TrackListTop = () => {
   const { setShowLoader } = useLoaderStore();
   const { album } = useSelectedAlbumStore();
-  const { artistImage, setArtistImage, setArtistName, artistName } =
-    useSelectedArtistStore();
+  const { artistImage, artistName } = useSelectedArtistStore();
   const isMobileBreakpoint = useMediaQuery(563);
   const [itemImage, setItemImage] = useState("");
   const [itemName, setItemName] = useState("");
@@ -29,8 +26,7 @@ const TrackListTop = () => {
   const { isTrack } = useSelectedTrackStore();
   const { track } = useSelectedTrackStore();
   const { fetchArtist } = useSelectedArtistStore();
-  const { getSearchData } = useGetSearchData();
-  const { foundResults } = useFoundResultsStore();
+  const { getArtistData } = useGetArtistData();
 
   useEffect(() => {
     if (!fetchArtist) {
@@ -38,31 +34,11 @@ const TrackListTop = () => {
     }
 
     if (album) {
-      getSearchData(album.artist.name);
+      getArtistData(album.artist.url);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    if (!fetchArtist || !foundResults) {
-      return;
-    }
-
-    setArtistImage(
-      foundResults.filter(
-        (result) => result.type === ESearchResultTypes.ARTIST
-      )[0].imageUrl
-    );
-
-    setArtistName(
-      foundResults?.filter(
-        (result) => result.type === ESearchResultTypes.ARTIST
-      )[0].name
-    );
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [foundResults]);
 
   useEffect(() => {
     if (album) {
