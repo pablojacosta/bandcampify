@@ -1,7 +1,7 @@
 import styles from "./TopSection.module.scss";
 import Loader from "@components/shared/Loader";
 import AlbumsList from "@components/TopSection/components/AlbumsList";
-import useGetArtistData from "@hooks/useGetArtistData";
+import useGetSearchData from "@hooks/useGetSearchData";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { ITopSection } from "interfaces/topSection";
 import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
@@ -16,7 +16,7 @@ const TopSection = ({
   showFoundArtists,
   showAlbumsList,
 }: ITopSection) => {
-  const { getArtistData } = useGetArtistData(filteredArtist);
+  const { getSearchData } = useGetSearchData(filteredArtist);
   const { showLoader } = useLoaderStore();
   const { foundArtists } = useFoundArtistsStore();
 
@@ -27,7 +27,7 @@ const TopSection = ({
           handleArtistFilterChange={handleArtistFilterChange}
           filteredArtist={filteredArtist}
           onKeyDown={onKeyDown}
-          getArtistData={getArtistData}
+          getSearchData={getSearchData}
         />
       )}
       {showLoader && <Loader />}

@@ -8,14 +8,14 @@ interface ISearchSection {
   handleArtistFilterChange: (event: ChangeEvent<HTMLInputElement>) => void;
   filteredArtist: string;
   onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
-  getArtistData: () => void;
+  getSearchData: () => void;
 }
 
 const SearchSection = ({
   handleArtistFilterChange,
   filteredArtist,
   onKeyDown,
-  getArtistData,
+  getSearchData,
 }: ISearchSection) => {
   return (
     <Container>
@@ -25,7 +25,7 @@ const SearchSection = ({
           filteredArtist={filteredArtist}
           onKeyDown={onKeyDown}
         />
-        <SearchArtistButton getArtistData={getArtistData} />
+        <SearchArtistButton getSearchData={getSearchData} />
       </div>
     </Container>
   );

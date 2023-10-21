@@ -1,9 +1,9 @@
 import { ISearchArtistButton } from "interfaces/searchArtistButton";
 import styles from "./SearchArtistButton.module.scss";
 
-const SearchArtistButton = ({ getArtistData }: ISearchArtistButton) => {
+const SearchArtistButton = ({ getSearchData }: ISearchArtistButton) => {
   return (
-    <button onClick={getArtistData} className={styles.searchArtistButton}>
+    <button onClick={getSearchData} className={styles.searchArtistButton}>
       Search
     </button>
   );

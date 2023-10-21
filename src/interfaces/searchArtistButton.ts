@@ -1,5 +1,5 @@
 import { MouseEvent } from "react";
 
 export interface ISearchArtistButton {
-  getArtistData: (event: MouseEvent<HTMLButtonElement>) => void;
+  getSearchData: (event: MouseEvent<HTMLButtonElement>) => void;
 }

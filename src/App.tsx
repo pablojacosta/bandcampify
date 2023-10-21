@@ -4,7 +4,7 @@ import Container from "@components/elements/Container";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import TrackList from "@components/TrackList";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
-import useGetArtistData from "@hooks/useGetArtistData";
+import useGetSearchData from "@hooks/useGetSearchData";
 import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
 import { Routes, Route } from "react-router-dom";
 import TopSection from "@components/TopSection";
@@ -15,7 +15,7 @@ import useWakeRenderServerUp from "@hooks/useWakeRenderServerUp";
 const App = () => {
   const { wakeServer } = useWakeRenderServerUp();
   const [filteredArtist, setFilteredArtist] = useState("");
-  const { getArtistData } = useGetArtistData(filteredArtist);
+  const { getSearchData } = useGetSearchData(filteredArtist);
   const { foundArtists } = useFoundArtistsStore();
   const { hideArtists, artistInfo } = useSelectedArtistStore();
   const {
@@ -41,7 +41,7 @@ const App = () => {
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
-      getArtistData();
+      getSearchData();
     }
   };
 

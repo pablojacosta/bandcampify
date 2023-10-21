@@ -6,26 +6,26 @@ import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 
-const useGetArtistData = (filteredArtist: string) => {
+const useGetSearchData = (filteredArtist: string) => {
   const [artistError, setArtistError] = useState(false);
   const { setFoundArtists } = useFoundArtistsStore();
   const { setShowLoader } = useLoaderStore();
   const { setHideArtists } = useSelectedArtistStore();
   const { setHideAlbums } = useSelectedAlbumStore();
 
-  const getArtistData = async () => {
+  const getSearchData = async () => {
     setShowLoader(true);
     setHideArtists(true);
     setHideAlbums(true);
 
-    const getArtistDataOptions: AxiosRequestConfig<any> = {
+    const getSearchDataOptions: AxiosRequestConfig<any> = {
       method: "GET",
       url: "http://localhost:3001/artist",
       params: { artist: filteredArtist },
     };
 
     await axios
-      .request(getArtistDataOptions)
+      .request(getSearchDataOptions)
       .then((response: AxiosResponse<any, any>) => {
         if (typeof response.data === "string") {
           setArtistError(true);
@@ -40,7 +40,7 @@ const useGetArtistData = (filteredArtist: string) => {
       });
   };
 
-  return { getArtistData };
+  return { getSearchData };
 };
 
-export default useGetArtistData;
+export default useGetSearchData;
