@@ -10,8 +10,9 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const [isHovering, setIsHovering] = useState(false);
   const isMobileBreakpoint = useMediaQuery(563);
   const isMobileSmallBreakpoint = useMediaQuery(370);
-  const { artistInfo } = useSelectedArtistStore();
+  const { artistInfo, fetchArtist, artistName } = useSelectedArtistStore();
   const { isTrack } = useSelectedTrackStore();
+  const artistNameForTrack = !fetchArtist ? artistInfo?.name : artistName;
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -35,7 +36,7 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
       )}
       <div className={styles.names}>
         <p className={styles.songName}>{name}</p>
-        <p className={styles.artistName}>{artistInfo?.name}</p>
+        <p className={styles.artistName}>{artistNameForTrack}</p>
       </div>
       {!isMobileSmallBreakpoint && !isTrack && (
         <div className={styles.duration}>
