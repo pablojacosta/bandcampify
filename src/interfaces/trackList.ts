@@ -7,4 +7,5 @@ export interface ITrackList {
   albumName: string;
   albumUrl: string;
   albumImage: string;
+  fetchArtist?: boolean;
 }

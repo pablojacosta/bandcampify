@@ -10,11 +10,14 @@ import { useEffect, useState } from "react";
 import { IAlbumTrack } from "interfaces/albumTrack";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
+import useGetSearchData from "@hooks/useGetSearchData";
+import { useFoundResultsStore } from "@store/useFoundResultsStore";
+import { ESearchResultTypes } from "@constants/enums";
 
 const TrackListTop = () => {
   const { setShowLoader } = useLoaderStore();
   const { album } = useSelectedAlbumStore();
-  const { artistImage } = useSelectedArtistStore();
+  const { artistImage, setArtistImage } = useSelectedArtistStore();
   const isMobileBreakpoint = useMediaQuery(563);
   const [itemImage, setItemImage] = useState("");
   const [itemName, setItemName] = useState("");
@@ -24,6 +27,28 @@ const TrackListTop = () => {
   const [itemTotalDuration, setItemTotalDuration] = useState("");
   const { isTrack } = useSelectedTrackStore();
   const { track } = useSelectedTrackStore();
+  const { fetchArtist } = useSelectedArtistStore();
+  const { getSearchData } = useGetSearchData(album!.artist.name);
+  const { foundResults } = useFoundResultsStore();
+
+  useEffect(() => {
+    if (!fetchArtist) {
+      return;
+    }
+
+    if (album) {
+      getSearchData().then(() => {
+        if (foundResults) {
+          setArtistImage(
+            foundResults?.filter(
+              (result) => result.type === ESearchResultTypes.ARTIST
+            )[0].imageUrl
+          );
+        }
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (album) {

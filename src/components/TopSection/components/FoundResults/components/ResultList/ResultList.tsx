@@ -8,6 +8,7 @@ import useGetAlbum from "@hooks/useGetAlbum";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import useGetTrack from "@hooks/useGetTrack";
 import { TFoundItem } from "types/foundItem";
+import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 
 const ResultList = ({ items, type }: IResultList) => {
   const listedElementType =
@@ -18,6 +19,7 @@ const ResultList = ({ items, type }: IResultList) => {
   const { getAlbum } = useGetAlbum();
   const { getTrack } = useGetTrack();
   const { setIsTrack } = useSelectedTrackStore();
+  const { setFetchArtist } = useSelectedArtistStore();
 
   return (
     <div className={styles.list}>
@@ -25,6 +27,7 @@ const ResultList = ({ items, type }: IResultList) => {
       <ul>
         {items.map((item: TFoundItem) => {
           const handleAlbumOnClick = () => {
+            setFetchArtist(true);
             getAlbum(item.url);
             setShowTracks(true);
             setAlbumUrl(item.url);
@@ -32,6 +35,7 @@ const ResultList = ({ items, type }: IResultList) => {
           };
 
           const handleSongOnClick = () => {
+            setFetchArtist(true);
             getTrack(item.url);
             setShowTracks(true);
             setHideAlbums(true);
