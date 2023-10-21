@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect } from "react";
 import "@styles/globals.scss";
 import Container from "@components/elements/Container";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
@@ -11,13 +11,14 @@ import TopSection from "@components/TopSection";
 import styles from "./App.module.scss";
 import Footer from "@components/shared/Footer";
 import useWakeRenderServerUp from "@hooks/useWakeRenderServerUp";
+import { useSearchStore } from "@store/useSearchStore";
 
 const App = () => {
   const { wakeServer } = useWakeRenderServerUp();
-  const [search, setSearch] = useState("");
-  const { getSearchData } = useGetSearchData(search);
+  const { getSearchData } = useGetSearchData();
   const { foundResults } = useFoundResultsStore();
   const { hideArtists, artistInfo } = useSelectedArtistStore();
+  const { search, setSearch } = useSearchStore();
   const {
     showTracks,
     tracks,
@@ -41,7 +42,7 @@ const App = () => {
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
-      getSearchData();
+      getSearchData(search);
     }
   };
 

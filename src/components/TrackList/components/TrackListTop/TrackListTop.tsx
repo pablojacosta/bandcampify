@@ -28,7 +28,7 @@ const TrackListTop = () => {
   const { isTrack } = useSelectedTrackStore();
   const { track } = useSelectedTrackStore();
   const { fetchArtist } = useSelectedArtistStore();
-  const { getSearchData } = useGetSearchData(album!.artist.name);
+  const { getSearchData } = useGetSearchData();
   const { foundResults } = useFoundResultsStore();
 
   useEffect(() => {
@@ -37,16 +37,18 @@ const TrackListTop = () => {
     }
 
     if (album) {
-      getSearchData().then(() => {
-        if (foundResults) {
-          setArtistImage(
-            foundResults?.filter(
-              (result) => result.type === ESearchResultTypes.ARTIST
-            )[0].imageUrl
-          );
-        }
-      });
+      console.log("album.artist.name", album.artist.name);
+      getSearchData(album.artist.name);
     }
+
+    if (foundResults) {
+      setArtistImage(
+        foundResults?.filter(
+          (result) => result.type === ESearchResultTypes.ARTIST
+        )[0].imageUrl
+      );
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

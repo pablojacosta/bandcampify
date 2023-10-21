@@ -1,9 +1,16 @@
-import { ISearchArtistButton } from "interfaces/searchArtistButton";
+import { useSearchStore } from "@store/useSearchStore";
 import styles from "./SearchArtistButton.module.scss";
+import useGetSearchData from "@hooks/useGetSearchData";
 
-const SearchArtistButton = ({ getSearchData }: ISearchArtistButton) => {
+const SearchArtistButton = () => {
+  const { search } = useSearchStore();
+  const { getSearchData } = useGetSearchData();
+
   return (
-    <button onClick={getSearchData} className={styles.searchArtistButton}>
+    <button
+      onClick={() => getSearchData(search)}
+      className={styles.searchArtistButton}
+    >
       Search
     </button>
   );
