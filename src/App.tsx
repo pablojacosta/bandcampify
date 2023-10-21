@@ -5,7 +5,7 @@ import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import TrackList from "@components/TrackList";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import useGetSearchData from "@hooks/useGetSearchData";
-import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
+import { useFoundResultsStore } from "@store/useFoundResultsStore";
 import { Routes, Route } from "react-router-dom";
 import TopSection from "@components/TopSection";
 import styles from "./App.module.scss";
@@ -16,7 +16,7 @@ const App = () => {
   const { wakeServer } = useWakeRenderServerUp();
   const [filteredArtist, setFilteredArtist] = useState("");
   const { getSearchData } = useGetSearchData(filteredArtist);
-  const { foundArtists } = useFoundArtistsStore();
+  const { foundArtists } = useFoundResultsStore();
   const { hideArtists, artistInfo } = useSelectedArtistStore();
   const {
     showTracks,
@@ -31,7 +31,7 @@ const App = () => {
   const albums = artistInfo?.albums;
 
   const showAlbumsList = hasAlbums && !hideAlbums;
-  const showFoundArtists =
+  const showFoundResults =
     !hideArtists && foundArtists && foundArtists.length > 0;
   const isReadyForTrackList = showTracks && tracks && albumUrl;
 
@@ -76,7 +76,7 @@ const App = () => {
                 handleArtistFilterChange={handleArtistFilterChange}
                 filteredArtist={filteredArtist}
                 onKeyDown={onKeyDown}
-                showFoundArtists={showFoundArtists}
+                showFoundResults={showFoundResults}
                 showAlbumsList={showAlbumsList}
               />
             }

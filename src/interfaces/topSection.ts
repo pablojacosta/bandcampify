@@ -5,6 +5,6 @@ export interface ITopSection {
   handleArtistFilterChange: (event: ChangeEvent<HTMLInputElement>) => void;
   filteredArtist: string;
   onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
-  showFoundArtists: boolean | null;
+  showFoundResults: boolean | null;
   showAlbumsList: boolean;
 }

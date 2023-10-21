@@ -1,10 +1,10 @@
 import useGetArtistAlbums from "@hooks/useGetArtistAlbums";
-import styles from "./FoundArtists.module.scss";
-import { IFoundArtists } from "interfaces/foundArtist";
+import styles from "./FoundResults.module.scss";
+import { IFoundResults } from "interfaces/foundArtist";
 import ListedElement from "@components/shared/ListedElement";
 import { EListedElementTypes } from "@constants/enums";
 
-const FoundArtists = ({ foundArtists }: IFoundArtists) => {
+const FoundResults = ({ foundArtists }: IFoundResults) => {
   const { getAlbums } = useGetArtistAlbums();
   const isError = typeof foundArtists === "string";
 
@@ -30,4 +30,4 @@ const FoundArtists = ({ foundArtists }: IFoundArtists) => {
   );
 };
 
-export default FoundArtists;
+export default FoundResults;

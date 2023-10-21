@@ -1,5 +1,5 @@
 import { IArtist } from "./artist";
 
-export interface IFoundArtists {
+export interface IFoundResults {
   foundArtists: IArtist[];
 }

@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { useState } from "react";
-import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
+import { useFoundResultsStore } from "@store/useFoundResultsStore";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 
 const useGetSearchData = (filteredArtist: string) => {
   const [artistError, setArtistError] = useState(false);
-  const { setFoundArtists } = useFoundArtistsStore();
+  const { setFoundResults } = useFoundResultsStore();
   const { setShowLoader } = useLoaderStore();
   const { setHideArtists } = useSelectedArtistStore();
   const { setHideAlbums } = useSelectedAlbumStore();
@@ -31,7 +31,7 @@ const useGetSearchData = (filteredArtist: string) => {
           setArtistError(true);
           console.log("Error: ", artistError);
         }
-        setFoundArtists(response.data);
+        setFoundResults(response.data);
         setHideArtists(false);
       })
       .finally(() => setShowLoader(false))
