@@ -3,15 +3,22 @@ import styles from "./GoBackButton.module.scss";
 import { Link } from "react-router-dom";
 import LeftArrow from "@components/elements/Icons/LeftArrow";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
+import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 
 const GoBackButton = () => {
   const { setShowPlayer, setHideAlbums, setHasAlbums, setShowTrackList } =
     useSelectedAlbumStore();
   const { setIsTrack, setTrack } = useSelectedTrackStore();
+  const { fetchArtist } = useSelectedArtistStore();
+
+  console.log("fetchArtist", fetchArtist);
 
   const handleGoBackClick = () => {
-    setHasAlbums(true);
-    setHideAlbums(false);
+    if (!fetchArtist) {
+      setHasAlbums(true);
+      setHideAlbums(false);
+    }
+
     setShowTrackList(false);
     setShowPlayer(false);
     setIsTrack(false);
