@@ -12,6 +12,7 @@ import styles from "./App.module.scss";
 import Footer from "@components/shared/Footer";
 import useWakeRenderServerUp from "@hooks/useWakeRenderServerUp";
 import { useSearchStore } from "@store/useSearchStore";
+import AlbumsList from "@components/TopSection/components/AlbumsList";
 
 const App = () => {
   const { wakeServer } = useWakeRenderServerUp();
@@ -82,6 +83,7 @@ const App = () => {
               />
             }
           />
+          <Route path="/albums" element={<AlbumsList />} />
           <Route path="/tracks" element={<TrackList />} />
         </Routes>
       </Container>

@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { IResult } from "interfaces/result";
 import ResultList from "./components/ResultList";
+import { Link } from "react-router-dom";
 
 const FoundResults = ({ foundResults }: IFoundResults) => {
   const { getAlbums } = useGetArtistAlbums();
@@ -48,13 +49,15 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
                 {foundResults
                   .filter((result) => result.type === ESearchResultTypes.ARTIST)
                   .map((artist) => (
-                    <ListedElement
-                      key={`${artist.name}_${artist.genre}`}
-                      onClick={() => getAlbums(artist.url, artist.imageUrl)}
-                      image={artist.imageUrl}
-                      name={artist.name}
-                      type={EListedElementTypes.ARTIST}
-                    />
+                    <Link to="/albums" key={artist.url}>
+                      <ListedElement
+                        key={`${artist.name}_${artist.genre}`}
+                        onClick={() => getAlbums(artist.url, artist.imageUrl)}
+                        image={artist.imageUrl}
+                        name={artist.name}
+                        type={EListedElementTypes.ARTIST}
+                      />
+                    </Link>
                   ))}
               </ul>
             </>

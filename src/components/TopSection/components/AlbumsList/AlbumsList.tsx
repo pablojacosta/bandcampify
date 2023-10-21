@@ -2,6 +2,7 @@ import styles from "./AlbumsList.module.scss";
 import { EListType } from "@constants/enums";
 import List from "./components/List";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
+import GoBackButton from "@components/shared/GoBackButton";
 
 const AlbumsList = () => {
   const { artistInfo } = useSelectedArtistStore();
@@ -13,6 +14,7 @@ const AlbumsList = () => {
 
   return (
     <div className={styles.albumsList}>
+      <GoBackButton isAlbums />
       {hasAlbums && <List items={fullAlbums} type={EListType.ALBUMS} />}
       {hasSongs && <List items={songs} type={EListType.SONGS} />}
     </div>

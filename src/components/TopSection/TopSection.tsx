@@ -21,7 +21,7 @@ const TopSection = ({
 
   return (
     <div className={styles.topSection}>
-      {!showTrackList && (
+      {!showTrackList && !showAlbumsList && (
         <SearchSection
           handleSearchChange={handleSearchChange}
           search={search}
