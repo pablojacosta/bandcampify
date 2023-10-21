@@ -23,12 +23,26 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   };
 
   useEffect(() => {
-    if (!fetchArtist || !artistName) {
+    if (!fetchArtist) {
       return;
     }
 
     setArtistNameForTrack(artistName);
-  }, [artistName, fetchArtist]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [artistName]);
+
+  useEffect(() => {
+    if (fetchArtist) {
+      return;
+    }
+
+    if (artistInfo) {
+      setArtistNameForTrack(artistInfo.name);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [artistInfo]);
 
   return (
     <div
@@ -44,9 +58,7 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
       )}
       <div className={styles.names}>
         <p className={styles.songName}>{name}</p>
-        <p className={styles.artistName}>
-          {artistNameForTrack ?? artistInfo?.name}
-        </p>
+        <p className={styles.artistName}>{artistNameForTrack}</p>
       </div>
       {!isMobileSmallBreakpoint && !isTrack && (
         <div className={styles.duration}>
