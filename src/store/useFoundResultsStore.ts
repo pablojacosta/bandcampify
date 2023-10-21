@@ -2,21 +2,21 @@ import { IArtist } from "interfaces/artist";
 import { create } from "zustand";
 
 interface IFoundResultsStore {
-  foundArtists: IArtist[] | null;
-  setFoundResults: (foundArtists: IArtist[]) => void;
+  foundResults: IArtist[] | null;
+  setFoundResults: (foundResults: IArtist[]) => void;
   clearStore: () => void;
 }
 
 const initialState = {
-  foundArtists: null,
+  foundResults: null,
 };
 
 export const useFoundResultsStore = create<IFoundResultsStore>()((set) => ({
   ...initialState,
-  setFoundResults: (foundArtists: IArtist[]) =>
+  setFoundResults: (foundResults: IArtist[]) =>
     set((state) => ({
       ...state,
-      foundArtists,
+      foundResults,
     })),
   clearStore: () => set(() => ({ ...initialState })),
 }));

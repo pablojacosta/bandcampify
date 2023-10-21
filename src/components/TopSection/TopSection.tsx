@@ -18,7 +18,7 @@ const TopSection = ({
 }: ITopSection) => {
   const { getSearchData } = useGetSearchData(filteredArtist);
   const { showLoader } = useLoaderStore();
-  const { foundArtists } = useFoundResultsStore();
+  const { foundResults } = useFoundResultsStore();
 
   return (
     <div className={styles.topSection}>
@@ -31,8 +31,8 @@ const TopSection = ({
         />
       )}
       {showLoader && <Loader />}
-      {showFoundResults && foundArtists && (
-        <FoundResults foundArtists={foundArtists} />
+      {showFoundResults && foundResults && (
+        <FoundResults foundResults={foundResults} />
       )}
       {showAlbumsList && <AlbumsList />}
     </div>

@@ -16,7 +16,7 @@ const App = () => {
   const { wakeServer } = useWakeRenderServerUp();
   const [filteredArtist, setFilteredArtist] = useState("");
   const { getSearchData } = useGetSearchData(filteredArtist);
-  const { foundArtists } = useFoundResultsStore();
+  const { foundResults } = useFoundResultsStore();
   const { hideArtists, artistInfo } = useSelectedArtistStore();
   const {
     showTracks,
@@ -32,7 +32,7 @@ const App = () => {
 
   const showAlbumsList = hasAlbums && !hideAlbums;
   const showFoundResults =
-    !hideArtists && foundArtists && foundArtists.length > 0;
+    !hideArtists && foundResults && foundResults.length > 0;
   const isReadyForTrackList = showTracks && tracks && albumUrl;
 
   const handleArtistFilterChange = (event: ChangeEvent<HTMLInputElement>) => {

@@ -1,19 +1,21 @@
 import useGetArtistAlbums from "@hooks/useGetArtistAlbums";
 import styles from "./FoundResults.module.scss";
-import { IFoundResults } from "interfaces/foundArtist";
+import { IFoundResults } from "interfaces/foundResult";
 import ListedElement from "@components/shared/ListedElement";
 import { EListedElementTypes } from "@constants/enums";
 
-const FoundResults = ({ foundArtists }: IFoundResults) => {
+const FoundResults = ({ foundResults }: IFoundResults) => {
   const { getAlbums } = useGetArtistAlbums();
-  const isError = typeof foundArtists === "string";
+  const isError = typeof foundResults === "string";
+
+  console.log("foundResults", foundResults);
 
   return (
-    <div className={styles.foundArtists}>
+    <div className={styles.foundResults}>
       <h1>Artists</h1>
       {!isError ? (
         <ul>
-          {foundArtists.map((artist) => (
+          {foundResults.map((artist) => (
             <ListedElement
               key={`${artist.name}_${artist.genre}`}
               onClick={() => getAlbums(artist.url, artist.imageUrl)}
@@ -24,7 +26,7 @@ const FoundResults = ({ foundArtists }: IFoundResults) => {
           ))}
         </ul>
       ) : (
-        <h2>{foundArtists}</h2>
+        <h2>{foundResults}</h2>
       )}
     </div>
   );
