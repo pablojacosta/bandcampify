@@ -1,0 +1,19 @@
+.coffeeButton {
+  a {
+    img {
+      &:hover {
+        filter: drop-shadow(0 0 0.5rem #aeb8d6);
+        transform: scale(1.1);
+        transform-origin: center;
+      }
+    }
+  }
+
+  &.small {
+    img {
+      border-radius: 0.5rem;
+      width: 2.2rem;
+      height: auto;
+    }
+  }
+}
