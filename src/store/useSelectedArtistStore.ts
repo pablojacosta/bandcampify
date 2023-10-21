@@ -9,12 +9,14 @@ interface ISelectedArtistStore {
   artistImage: string;
   artistInfo: IArtistInfo | null;
   fetchArtist: boolean;
+  artistName: string;
   setArtistUrl: (artistUrl: string) => void;
   setAlbums: (albums: IAlbum[]) => void;
   setHideArtists: (hideArtists: boolean) => void;
   setArtistImage: (artistImage: string) => void;
   setArtistInfo: (artistInfo: IArtistInfo) => void;
   setFetchArtist: (fetchArtist: boolean) => void;
+  setArtistName: (artistName: string) => void;
   clearStore: () => void;
 }
 
@@ -25,6 +27,7 @@ const initialState = {
   artistImage: "",
   artistInfo: null,
   fetchArtist: false,
+  artistName: "",
 };
 
 export const useSelectedArtistStore = create<ISelectedArtistStore>()((set) => ({
@@ -58,6 +61,11 @@ export const useSelectedArtistStore = create<ISelectedArtistStore>()((set) => ({
     set((state) => ({
       ...state,
       fetchArtist,
+    })),
+  setArtistName: (artistName: string) =>
+    set((state) => ({
+      ...state,
+      artistName,
     })),
   clearStore: () => set(() => ({ ...initialState })),
 }));

@@ -24,8 +24,6 @@ const useGetSearchData = () => {
       params: { artist: search },
     };
 
-    console.log("search in hook", search);
-
     await axios
       .request(getSearchDataOptions)
       .then((response: AxiosResponse<any, any>) => {

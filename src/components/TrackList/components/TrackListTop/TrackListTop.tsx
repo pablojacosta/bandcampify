@@ -17,7 +17,8 @@ import { ESearchResultTypes } from "@constants/enums";
 const TrackListTop = () => {
   const { setShowLoader } = useLoaderStore();
   const { album } = useSelectedAlbumStore();
-  const { artistImage, setArtistImage } = useSelectedArtistStore();
+  const { artistImage, setArtistImage, setArtistName, artistName } =
+    useSelectedArtistStore();
   const isMobileBreakpoint = useMediaQuery(563);
   const [itemImage, setItemImage] = useState("");
   const [itemName, setItemName] = useState("");
@@ -37,33 +38,45 @@ const TrackListTop = () => {
     }
 
     if (album) {
-      console.log("album.artist.name", album.artist.name);
       getSearchData(album.artist.name);
-    }
-
-    if (foundResults) {
-      setArtistImage(
-        foundResults?.filter(
-          (result) => result.type === ESearchResultTypes.ARTIST
-        )[0].imageUrl
-      );
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
+    if (!fetchArtist || !foundResults) {
+      return;
+    }
+
+    setArtistImage(
+      foundResults.filter(
+        (result) => result.type === ESearchResultTypes.ARTIST
+      )[0].imageUrl
+    );
+
+    setArtistName(
+      foundResults?.filter(
+        (result) => result.type === ESearchResultTypes.ARTIST
+      )[0].name
+    );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [foundResults]);
+
+  useEffect(() => {
     if (album) {
       const { imageUrl, name, artist, releaseDate, tracks } = album;
+      const artistNameForTracklist = fetchArtist ? artistName : artist.name;
 
       setItemImage(imageUrl);
       setItemName(name);
-      setItemArtist(artist.name);
+      setItemArtist(artistNameForTracklist);
       setItemReleaseDate(releaseDate);
       setItemTracks(tracks);
       setItemTotalDuration(formatDuration(getAlbumTotalDuration(tracks)));
     }
-  }, [album, setShowLoader]);
+  }, [album, setShowLoader, artistName, fetchArtist]);
 
   useEffect(() => {
     if (track) {
