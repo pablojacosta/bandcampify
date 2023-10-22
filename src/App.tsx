@@ -66,8 +66,6 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log("showAlbumsList", showAlbumsList);
-
   return (
     <div className={styles.app}>
       <h1 className={styles.header}>Bandcampify</h1>

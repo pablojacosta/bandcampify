@@ -9,6 +9,7 @@ import useGetAlbum from "@hooks/useGetAlbum";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import useGetTrack from "@hooks/useGetTrack";
 import { IAlbumMinInfo } from "interfaces/albumMinInfo";
+import { TRACKS } from "@constants/routes";
 
 const List = ({ items, type }: IList) => {
   const listedElementType =
@@ -41,7 +42,7 @@ const List = ({ items, type }: IList) => {
           };
 
           return (
-            <Link to=TRACKS key={`${item.url}`}>
+            <Link to={TRACKS} key={`${item.url}`}>
               <ListedElement
                 key={`${item.url}`}
                 onClick={
