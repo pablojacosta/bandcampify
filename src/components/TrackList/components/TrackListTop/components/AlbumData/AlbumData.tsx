@@ -50,7 +50,7 @@ const AlbumData = () => {
 
   return (
     <>
-      {!showHorizontalLoader ? (
+      {!showHorizontalLoader || !fetchArtist ? (
         <h4 className={styles.albumData}>
           {!isMobileBreakpoint && !isTrack ? (
             <>

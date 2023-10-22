@@ -64,7 +64,7 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
       )}
       <div className={styles.names}>
         <p className={styles.songName}>{name}</p>
-        {!showHorizontalLoader ? (
+        {!showHorizontalLoader || !fetchArtist ? (
           <p className={styles.artistName}>{artistNameForTrack}</p>
         ) : (
           <HorizontalLoader />
