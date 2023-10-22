@@ -10,7 +10,7 @@ const GoBackButton = ({ isAlbums = false }: IGoBackButton) => {
   const { setShowPlayer, setHideAlbums, setHasAlbums, setShowTrackList } =
     useSelectedAlbumStore();
   const { setIsTrack, setTrack } = useSelectedTrackStore();
-  const { fetchArtist } = useSelectedArtistStore();
+  const { fetchArtist, setHideArtists } = useSelectedArtistStore();
 
   const handleGoBackClick = () => {
     if (!fetchArtist) {
@@ -21,7 +21,9 @@ const GoBackButton = ({ isAlbums = false }: IGoBackButton) => {
     if (isAlbums) {
       setHideAlbums(true);
       setHasAlbums(false);
+      setHideArtists(false);
     }
+
     setShowTrackList(false);
     setShowPlayer(false);
     setIsTrack(false);

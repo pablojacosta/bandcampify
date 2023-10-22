@@ -1,6 +1,5 @@
 import styles from "./TopSection.module.scss";
 import Loader from "@components/shared/Loader";
-import AlbumsList from "@components/TopSection/components/AlbumsList";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { ITopSection } from "interfaces/topSection";
 import { useFoundResultsStore } from "@store/useFoundResultsStore";
@@ -32,7 +31,6 @@ const TopSection = ({
       {showFoundResults && foundResults && (
         <FoundResults foundResults={foundResults} />
       )}
-      {showAlbumsList && <AlbumsList />}
     </div>
   );
 };
