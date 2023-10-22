@@ -5,7 +5,7 @@ const useWakeRenderServerUp = () => {
   const wakeServer = async () => {
     const wakeServerOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "http://localhost:3001/",
+      url: "https://bandcampify.onrender.com/",
     };
 
     await axios
