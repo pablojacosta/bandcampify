@@ -1,0 +1,34 @@
+@use "@styles/_mixins" as mixins;
+@use "@styles/_responsives" as responsives;
+
+.albumData {
+  @include mixins.flex_container(row, flex-start, center);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  background: transparent;
+  font-weight: 400;
+  min-width: 0;
+
+  .artistName {
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .duration {
+    color: var(--color-gray);
+  }
+
+  .dot {
+    font-size: 0.5rem;
+  }
+
+  .artistImage {
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+}
