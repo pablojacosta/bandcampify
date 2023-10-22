@@ -49,8 +49,8 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
               <ul>
                 {foundResults
                   .filter((result) => result.type === ESearchResultTypes.ARTIST)
-                  .map((artist) => (
-                    <Link to={ALBUMS} key={artist.url}>
+                  .map((artist, index) => (
+                    <Link to={ALBUMS} key={`${artist.url}_${index}`}>
                       <ListedElement
                         key={`${artist.name}_${artist.genre}`}
                         onClick={() => getAlbums(artist.url, artist.imageUrl)}
