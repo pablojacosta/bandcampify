@@ -12,6 +12,11 @@ import { IResult } from "interfaces/result";
 import ResultList from "./components/ResultList";
 import { Link } from "react-router-dom";
 import { ALBUMS } from "@constants/routes";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import NextArrow from "@components/shared/NextArrow";
+import PrevArrow from "@components/shared/PrevArrow";
 
 const FoundResults = ({ foundResults }: IFoundResults) => {
   const { getAlbums } = useGetArtistAlbums();
@@ -19,6 +24,43 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
   const [artists, setArtists] = useState<IResult[]>([]);
   const [albums, setAlbums] = useState<IResult[]>([]);
   const [tracks, setTracks] = useState<IResult[]>([]);
+
+  const sliderSettings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 8,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   useEffect(() => {
     if (isError) {
@@ -46,21 +88,29 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
           {hasArtists && (
             <>
               <h2>Artists</h2>
-              <ul>
-                {foundResults
-                  .filter((result) => result.type === ESearchResultTypes.ARTIST)
-                  .map((artist, index) => (
-                    <Link to={ALBUMS} key={`${artist.url}_${index}`}>
-                      <ListedElement
-                        key={`${artist.name}_${artist.genre}`}
-                        onClick={() => getAlbums(artist.url, artist.imageUrl)}
-                        image={artist.imageUrl}
-                        name={artist.name}
-                        type={EListedElementTypes.ARTIST}
-                      />
-                    </Link>
-                  ))}
-              </ul>
+              {foundResults.length && (
+                <div className={styles.slider}>
+                  <Slider {...sliderSettings}>
+                    {foundResults
+                      .filter(
+                        (result) => result.type === ESearchResultTypes.ARTIST
+                      )
+                      .map((artist, index) => (
+                        <Link to={ALBUMS} key={`${artist.url}_${index}`}>
+                          <ListedElement
+                            key={`${artist.name}_${artist.genre}`}
+                            onClick={() =>
+                              getAlbums(artist.url, artist.imageUrl)
+                            }
+                            image={artist.imageUrl}
+                            name={artist.name}
+                            type={EListedElementTypes.ARTIST}
+                          />
+                        </Link>
+                      ))}
+                  </Slider>
+                </div>
+              )}
             </>
           )}
           {hasAlbums && <ResultList items={albums} type={EListType.ALBUMS} />}
