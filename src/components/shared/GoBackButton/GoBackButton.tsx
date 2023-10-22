@@ -11,6 +11,7 @@ const GoBackButton = ({ isAlbums = false }: IGoBackButton) => {
     useSelectedAlbumStore();
   const { setIsTrack, setTrack } = useSelectedTrackStore();
   const { fetchArtist, setHideArtists } = useSelectedArtistStore();
+  const href = !fetchArtist && !isAlbums ? "/albums" : "/";
 
   const handleGoBackClick = () => {
     if (!fetchArtist) {
@@ -32,7 +33,7 @@ const GoBackButton = ({ isAlbums = false }: IGoBackButton) => {
 
   return (
     <div className={styles.goBackButton}>
-      <Link to="/">
+      <Link to={href}>
         <button onClick={handleGoBackClick}>
           <LeftArrow />
         </button>
