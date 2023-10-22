@@ -5,6 +5,7 @@ import useMediaQuery from "@hooks/useMediaQuery";
 import { ITrack } from "interfaces/track";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
+import HorizontalLoader from "@components/shared/HorizontalLoader";
 
 const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -13,6 +14,7 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const { artistInfo, fetchArtist, artistName } = useSelectedArtistStore();
   const { isTrack } = useSelectedTrackStore();
   const [artistNameForTrack, setArtistNameForTrack] = useState("");
+  const [showHorizontalLoader, setShowHorizontalLoader] = useState(true);
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -44,6 +46,10 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [artistInfo]);
 
+  useEffect(() => {
+    setTimeout(() => setShowHorizontalLoader(false), 3000);
+  }, []);
+
   return (
     <div
       className={styles.track}
@@ -58,7 +64,11 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
       )}
       <div className={styles.names}>
         <p className={styles.songName}>{name}</p>
-        <p className={styles.artistName}>{artistNameForTrack}</p>
+        {!showHorizontalLoader ? (
+          <p className={styles.artistName}>{artistNameForTrack}</p>
+        ) : (
+          <HorizontalLoader />
+        )}
       </div>
       {!isMobileSmallBreakpoint && !isTrack && (
         <div className={styles.duration}>
