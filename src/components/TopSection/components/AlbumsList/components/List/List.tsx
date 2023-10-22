@@ -41,7 +41,7 @@ const List = ({ items, type }: IList) => {
           };
 
           return (
-            <Link to="/tracks" key={`${item.url}`}>
+            <Link to=TRACKS key={`${item.url}`}>
               <ListedElement
                 key={`${item.url}`}
                 onClick={

@@ -13,6 +13,7 @@ import Footer from "@components/shared/Footer";
 import useWakeRenderServerUp from "@hooks/useWakeRenderServerUp";
 import { useSearchStore } from "@store/useSearchStore";
 import AlbumsList from "@components/TopSection/components/AlbumsList";
+import { ALBUMS, HOME, TRACKS } from "@constants/routes";
 
 const App = () => {
   const { wakeServer } = useWakeRenderServerUp();
@@ -73,7 +74,7 @@ const App = () => {
       <Container>
         <Routes>
           <Route
-            path="/"
+            path={HOME}
             element={
               <TopSection
                 showTrackList={showTrackList}
@@ -85,8 +86,8 @@ const App = () => {
               />
             }
           />
-          <Route path="/albums" element={<AlbumsList />} />
-          <Route path="/tracks" element={<TrackList />} />
+          <Route path={ALBUMS} element={<AlbumsList />} />
+          <Route path={TRACKS} element={<TrackList />} />
         </Routes>
       </Container>
       <div className={styles.footerSpace} />

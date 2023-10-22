@@ -9,6 +9,7 @@ import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import useGetTrack from "@hooks/useGetTrack";
 import { TFoundItem } from "types/foundItem";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
+import { TRACKS } from "@constants/routes";
 
 const ResultList = ({ items, type }: IResultList) => {
   const listedElementType =
@@ -43,7 +44,7 @@ const ResultList = ({ items, type }: IResultList) => {
           };
 
           return (
-            <Link to="/tracks" key={`${item.url}`}>
+            <Link to={TRACKS} key={`${item.url}`}>
               <ListedElement
                 key={`${item.url}`}
                 onClick={

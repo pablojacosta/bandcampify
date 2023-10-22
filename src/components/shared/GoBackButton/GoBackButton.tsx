@@ -5,13 +5,14 @@ import LeftArrow from "@components/elements/Icons/LeftArrow";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { IGoBackButton } from "interfaces/goBackButton";
+import { ALBUMS, HOME } from "@constants/routes";
 
 const GoBackButton = ({ isAlbums = false }: IGoBackButton) => {
   const { setShowPlayer, setHideAlbums, setHasAlbums, setShowTrackList } =
     useSelectedAlbumStore();
   const { setIsTrack, setTrack } = useSelectedTrackStore();
   const { fetchArtist, setHideArtists } = useSelectedArtistStore();
-  const href = !fetchArtist && !isAlbums ? "/albums" : "/";
+  const href = !fetchArtist && !isAlbums ? ALBUMS : HOME;
 
   const handleGoBackClick = () => {
     if (!fetchArtist) {
