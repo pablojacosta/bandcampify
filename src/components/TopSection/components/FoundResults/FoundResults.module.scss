@@ -3,6 +3,7 @@
 
 .foundResults {
   margin: 2rem 0;
+  width: 100%;
 
   ul {
     @include mixins.flex_container(row, center, center);
