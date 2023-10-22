@@ -3,15 +3,15 @@ import styles from "./ArtistInput.module.scss";
 import SearchIcon from "@components/elements/Icons/SearchIcon";
 
 const ArtistInput = ({
-  handleArtistFilterChange,
-  filteredArtist,
+  handleSearchChange,
+  search,
   onKeyDown,
 }: IArtistInput) => {
   return (
     <div className={styles.artistInput}>
       <input
-        onChange={handleArtistFilterChange}
-        value={filteredArtist}
+        onChange={handleSearchChange}
+        value={search}
         placeholder="Search Artist/Band"
         onKeyDown={onKeyDown}
         spellCheck="false"

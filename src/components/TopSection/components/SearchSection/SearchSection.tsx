@@ -5,27 +5,25 @@ import ArtistInput from "./components/ArtistInput";
 import SearchArtistButton from "./components/SearchArtistButton";
 
 interface ISearchSection {
-  handleArtistFilterChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  filteredArtist: string;
+  handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  search: string;
   onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
-  getArtistData: () => void;
 }
 
 const SearchSection = ({
-  handleArtistFilterChange,
-  filteredArtist,
+  handleSearchChange,
+  search,
   onKeyDown,
-  getArtistData,
 }: ISearchSection) => {
   return (
     <Container>
       <div className={styles.searchSection}>
         <ArtistInput
-          handleArtistFilterChange={handleArtistFilterChange}
-          filteredArtist={filteredArtist}
+          handleSearchChange={handleSearchChange}
+          search={search}
           onKeyDown={onKeyDown}
         />
-        <SearchArtistButton getArtistData={getArtistData} />
+        <SearchArtistButton />
       </div>
     </Container>
   );

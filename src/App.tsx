@@ -1,23 +1,26 @@
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect } from "react";
 import "@styles/globals.scss";
 import Container from "@components/elements/Container";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import TrackList from "@components/TrackList";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
-import useGetArtistData from "@hooks/useGetArtistData";
-import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
+import useGetSearchData from "@hooks/useGetSearchData";
+import { useFoundResultsStore } from "@store/useFoundResultsStore";
 import { Routes, Route } from "react-router-dom";
 import TopSection from "@components/TopSection";
 import styles from "./App.module.scss";
 import Footer from "@components/shared/Footer";
 import useWakeRenderServerUp from "@hooks/useWakeRenderServerUp";
+import { useSearchStore } from "@store/useSearchStore";
+import AlbumsList from "@components/TopSection/components/AlbumsList";
+import { ALBUMS, HOME, TRACKS } from "@constants/routes";
 
 const App = () => {
   const { wakeServer } = useWakeRenderServerUp();
-  const [filteredArtist, setFilteredArtist] = useState("");
-  const { getArtistData } = useGetArtistData(filteredArtist);
-  const { foundArtists } = useFoundArtistsStore();
+  const { getSearchData } = useGetSearchData();
+  const { foundResults } = useFoundResultsStore();
   const { hideArtists, artistInfo } = useSelectedArtistStore();
+  const { search, setSearch } = useSearchStore();
   const {
     showTracks,
     tracks,
@@ -31,17 +34,17 @@ const App = () => {
   const albums = artistInfo?.albums;
 
   const showAlbumsList = hasAlbums && !hideAlbums;
-  const showFoundArtists =
-    !hideArtists && foundArtists && foundArtists.length > 0;
+  const showFoundResults =
+    !hideArtists && foundResults && foundResults.length > 0;
   const isReadyForTrackList = showTracks && tracks && albumUrl;
 
-  const handleArtistFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFilteredArtist(event.target.value);
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
   };
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
-      getArtistData();
+      getSearchData(search);
     }
   };
 
@@ -69,19 +72,20 @@ const App = () => {
       <Container>
         <Routes>
           <Route
-            path="/"
+            path={HOME}
             element={
               <TopSection
                 showTrackList={showTrackList}
-                handleArtistFilterChange={handleArtistFilterChange}
-                filteredArtist={filteredArtist}
+                handleSearchChange={handleSearchChange}
+                search={search}
                 onKeyDown={onKeyDown}
-                showFoundArtists={showFoundArtists}
+                showFoundResults={showFoundResults}
                 showAlbumsList={showAlbumsList}
               />
             }
           />
-          <Route path="/tracks" element={<TrackList />} />
+          <Route path={ALBUMS} element={<AlbumsList />} />
+          <Route path={TRACKS} element={<TrackList />} />
         </Routes>
       </Container>
       <div className={styles.footerSpace} />

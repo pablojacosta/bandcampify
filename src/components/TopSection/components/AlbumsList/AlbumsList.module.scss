@@ -15,4 +15,13 @@
     flex-wrap: wrap;
     gap: 1rem;
   }
+
+  button {
+    margin-left: 2rem;
+    margin-top: -2rem;
+  }
+
+  .loader {
+    @include mixins.flex_container(column, center, center);
+  }
 }

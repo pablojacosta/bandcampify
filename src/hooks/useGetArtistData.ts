@@ -1,40 +1,30 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { useState } from "react";
-import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
-import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 
-const useGetArtistData = (filteredArtist: string) => {
-  const [artistError, setArtistError] = useState(false);
-  const { setFoundArtists } = useFoundArtistsStore();
+const useGetArtistData = () => {
   const { setShowLoader } = useLoaderStore();
-  const { setHideArtists } = useSelectedArtistStore();
-  const { setHideAlbums } = useSelectedAlbumStore();
+  const { setArtistName, setArtistImage } = useSelectedArtistStore();
 
-  const getArtistData = async () => {
+  const getArtistData = async (artistUrl: string) => {
     setShowLoader(true);
-    setHideArtists(true);
-    setHideAlbums(true);
 
     const getArtistDataOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "https://bandcampify.onrender.com/artist",
-      params: { artist: filteredArtist },
+      url: "http://localhost:3001/artist",
+      params: { artistUrl },
     };
 
     await axios
       .request(getArtistDataOptions)
       .then((response: AxiosResponse<any, any>) => {
-        if (typeof response.data === "string") {
-          setArtistError(true);
-          console.log("Error: ", artistError);
-        }
-        setFoundArtists(response.data);
-        setHideArtists(false);
+        setArtistName(response.data.name);
+        setArtistImage(response.data.imageUrl);
       })
-      .finally(() => setShowLoader(false))
+      .finally(() => {
+        setShowLoader(false);
+      })
       .catch((error) => {
         console.log(error);
       });

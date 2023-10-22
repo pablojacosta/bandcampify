@@ -1,9 +1,9 @@
 @use "@styles/_mixins" as mixins;
 @use "@styles/_responsives" as responsives;
 
-.foundArtists {
-  @include mixins.flex_container(column, center, center);
-  margin-top: 2rem;
+.foundResults {
+  margin: 2rem 0;
+  width: 100%;
 
   ul {
     @include mixins.flex_container(row, center, center);
@@ -11,12 +11,22 @@
     list-style: none;
     padding: 0;
     gap: 1rem;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   h2 {
+    padding: 1rem 2rem;
+    background-color: hsla(0, 0%, 100%, 0.02);
+
     @include responsives.resolution__tablet {
+      font-size: 1.2rem;
+    }
+
+    @include responsives.resolution__mobile__m {
       font-size: 1rem;
-      text-align: center;
     }
   }
 }

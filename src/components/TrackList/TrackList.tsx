@@ -1,7 +1,7 @@
 import styles from "./TrackList.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import TrackPlayer from "@components/shared/TrackPlayer";
-import GoBackButton from "./components/GoBackButton";
+import GoBackButton from "../shared/GoBackButton";
 import TrackListTop from "./components/TrackListTop";
 import TrackListHeader from "./components/TrackListHeader";
 import ListedTracks from "./components/ListedTracks";

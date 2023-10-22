@@ -2,9 +2,9 @@ import { ChangeEvent, KeyboardEvent } from "react";
 
 export interface ITopSection {
   showTrackList: boolean;
-  handleArtistFilterChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  filteredArtist: string;
+  handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  search: string;
   onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
-  showFoundArtists: boolean | null;
+  showFoundResults: boolean | null;
   showAlbumsList: boolean;
 }

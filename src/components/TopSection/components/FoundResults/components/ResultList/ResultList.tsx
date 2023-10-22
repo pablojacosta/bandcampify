@@ -1,44 +1,50 @@
-import { IList } from "interfaces/list";
-import styles from "./List.module.scss";
+import { IResultList } from "interfaces/resultList";
+import styles from "./ResultList.module.scss";
 import { EListType, EListedElementTypes } from "@constants/enums";
 import ListedElement from "@components/shared/ListedElement";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import { Link } from "react-router-dom";
-import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import useGetAlbum from "@hooks/useGetAlbum";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import useGetTrack from "@hooks/useGetTrack";
-import { IAlbumMinInfo } from "interfaces/albumMinInfo";
+import { TFoundItem } from "types/foundItem";
+import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { TRACKS } from "@constants/routes";
 
-const List = ({ items, type }: IList) => {
+const ResultList = ({ items, type }: IResultList) => {
   const listedElementType =
     type === EListType.ALBUMS
       ? EListedElementTypes.ALBUM
       : EListedElementTypes.TRACK;
-  const { setShowTracks, setAlbumUrl, setHideAlbums } = useSelectedAlbumStore();
-  const { artistInfo } = useSelectedArtistStore();
+  const { setShowTracks, setAlbumUrl, setHideAlbums, setIsAlbum } =
+    useSelectedAlbumStore();
   const { getAlbum } = useGetAlbum();
   const { getTrack } = useGetTrack();
   const { setIsTrack } = useSelectedTrackStore();
+  const { setFetchArtist } = useSelectedArtistStore();
 
   return (
     <div className={styles.list}>
       <h2>{type}</h2>
       <ul>
-        {items.map((item: IAlbumMinInfo) => {
+        {items.map((item: TFoundItem) => {
           const handleAlbumOnClick = () => {
+            setFetchArtist(true);
             getAlbum(item.url);
             setShowTracks(true);
             setAlbumUrl(item.url);
             setHideAlbums(true);
+            setIsTrack(false);
+            setIsAlbum(true);
           };
 
           const handleSongOnClick = () => {
+            setFetchArtist(true);
             getTrack(item.url);
             setShowTracks(true);
             setHideAlbums(true);
             setIsTrack(true);
+            setIsAlbum(false);
           };
 
           return (
@@ -50,9 +56,9 @@ const List = ({ items, type }: IList) => {
                     ? () => handleAlbumOnClick()
                     : () => handleSongOnClick()
                 }
-                image={item.coverImage}
-                name={item.title}
-                artist={artistInfo?.name}
+                image={item.imageUrl}
+                name={item.name}
+                artist={item.artist}
                 type={listedElementType}
               />
             </Link>
@@ -63,4 +69,4 @@ const List = ({ items, type }: IList) => {
   );
 };
 
-export default List;
+export default ResultList;

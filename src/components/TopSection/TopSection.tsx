@@ -1,40 +1,36 @@
 import styles from "./TopSection.module.scss";
 import Loader from "@components/shared/Loader";
-import AlbumsList from "@components/TopSection/components/AlbumsList";
-import useGetArtistData from "@hooks/useGetArtistData";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { ITopSection } from "interfaces/topSection";
-import { useFoundArtistsStore } from "@store/useFoundArtistsStore";
+import { useFoundResultsStore } from "@store/useFoundResultsStore";
 import SearchSection from "./components/SearchSection";
-import FoundArtists from "./components/FoundArtists";
+import FoundResults from "./components/FoundResults";
+import { useSearchStore } from "@store/useSearchStore";
 
 const TopSection = ({
   showTrackList,
-  handleArtistFilterChange,
-  filteredArtist,
+  handleSearchChange,
   onKeyDown,
-  showFoundArtists,
+  showFoundResults,
   showAlbumsList,
 }: ITopSection) => {
-  const { getArtistData } = useGetArtistData(filteredArtist);
   const { showLoader } = useLoaderStore();
-  const { foundArtists } = useFoundArtistsStore();
+  const { foundResults } = useFoundResultsStore();
+  const { search } = useSearchStore();
 
   return (
     <div className={styles.topSection}>
-      {!showTrackList && (
+      {!showTrackList && !showAlbumsList && (
         <SearchSection
-          handleArtistFilterChange={handleArtistFilterChange}
-          filteredArtist={filteredArtist}
+          handleSearchChange={handleSearchChange}
+          search={search}
           onKeyDown={onKeyDown}
-          getArtistData={getArtistData}
         />
       )}
       {showLoader && <Loader />}
-      {showFoundArtists && foundArtists && (
-        <FoundArtists foundArtists={foundArtists} />
+      {showFoundResults && foundResults && (
+        <FoundResults foundResults={foundResults} />
       )}
-      {showAlbumsList && <AlbumsList />}
     </div>
   );
 };
