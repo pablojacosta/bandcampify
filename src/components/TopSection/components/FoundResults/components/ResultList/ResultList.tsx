@@ -16,7 +16,8 @@ const ResultList = ({ items, type }: IResultList) => {
     type === EListType.ALBUMS
       ? EListedElementTypes.ALBUM
       : EListedElementTypes.TRACK;
-  const { setShowTracks, setAlbumUrl, setHideAlbums } = useSelectedAlbumStore();
+  const { setShowTracks, setAlbumUrl, setHideAlbums, setIsAlbum } =
+    useSelectedAlbumStore();
   const { getAlbum } = useGetAlbum();
   const { getTrack } = useGetTrack();
   const { setIsTrack } = useSelectedTrackStore();
@@ -33,6 +34,8 @@ const ResultList = ({ items, type }: IResultList) => {
             setShowTracks(true);
             setAlbumUrl(item.url);
             setHideAlbums(true);
+            setIsTrack(false);
+            setIsAlbum(true);
           };
 
           const handleSongOnClick = () => {
@@ -41,6 +44,7 @@ const ResultList = ({ items, type }: IResultList) => {
             setShowTracks(true);
             setHideAlbums(true);
             setIsTrack(true);
+            setIsAlbum(false);
           };
 
           return (

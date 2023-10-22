@@ -38,11 +38,12 @@ const AlbumData = () => {
   useEffect(() => {
     if (track) {
       const { artist, releaseDate } = track;
+      const artistNameForTracklist = fetchArtist ? artistName : artist.name;
 
-      setItemArtist(artist.name);
+      setItemArtist(artistNameForTracklist);
       setItemReleaseDate(releaseDate);
     }
-  }, [track]);
+  }, [track, fetchArtist, artistName]);
 
   useEffect(() => {
     setTimeout(() => setShowHorizontalLoader(false), 3000);

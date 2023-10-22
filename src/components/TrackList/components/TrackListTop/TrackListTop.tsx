@@ -9,7 +9,7 @@ import AlbumData from "./components/AlbumData";
 
 const TrackListTop = () => {
   const { setShowLoader } = useLoaderStore();
-  const { album } = useSelectedAlbumStore();
+  const { album, isAlbum } = useSelectedAlbumStore();
   const [itemImage, setItemImage] = useState("");
   const [itemName, setItemName] = useState("");
   const { isTrack } = useSelectedTrackStore();
@@ -22,8 +22,12 @@ const TrackListTop = () => {
       return;
     }
 
-    if (album) {
+    if (isAlbum && album) {
       getArtistData(album.artist.url);
+    }
+
+    if (isTrack && track) {
+      getArtistData(track.artist.url);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
