@@ -9,6 +9,7 @@ import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import { IAlbumTrack } from "interfaces/albumTrack";
 import { formatDuration } from "@utils/helpers/formatDuration";
 import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
+import HorizontalLoader from "@components/shared/HorizontalLoader";
 
 const AlbumData = () => {
   const isMobileBreakpoint = useMediaQuery(563);
@@ -20,6 +21,7 @@ const AlbumData = () => {
   const [itemTracks, setItemTracks] = useState<IAlbumTrack[] | null>(null);
   const [itemTotalDuration, setItemTotalDuration] = useState("");
   const { track } = useSelectedTrackStore();
+  const [showHorizontalLoader, setShowHorizontalLoader] = useState(true);
 
   useEffect(() => {
     if (album) {
@@ -42,31 +44,41 @@ const AlbumData = () => {
     }
   }, [track]);
 
+  useEffect(() => {
+    setTimeout(() => setShowHorizontalLoader(false), 3000);
+  }, []);
+
   return (
-    <h4 className={styles.albumData}>
-      {!isMobileBreakpoint && !isTrack ? (
-        <>
-          <picture className={styles.artistImage}>
-            <img src={artistImage} alt="artist image" />
-          </picture>
-          <span className={styles.artistName}>{itemArtist}</span>
-          <span className={styles.dot}>•</span>
-          {formatReleaseDate(itemReleaseDate)}
-          <span className={styles.dot}>•</span> {itemTracks?.length ?? 1}{" "}
-          {itemTracks?.length ? "songs" : "song"},
-          <span className={styles.duration}>
-            {formatAlbumTotalDuration(itemTotalDuration)}
-          </span>
-        </>
+    <>
+      {!showHorizontalLoader ? (
+        <h4 className={styles.albumData}>
+          {!isMobileBreakpoint && !isTrack ? (
+            <>
+              <picture className={styles.artistImage}>
+                <img src={artistImage} alt="artist image" />
+              </picture>
+              <span className={styles.artistName}>{itemArtist}</span>
+              <span className={styles.dot}>•</span>
+              {formatReleaseDate(itemReleaseDate)}
+              <span className={styles.dot}>•</span> {itemTracks?.length ?? 1}{" "}
+              {itemTracks?.length ? "songs" : "song"},
+              <span className={styles.duration}>
+                {formatAlbumTotalDuration(itemTotalDuration)}
+              </span>
+            </>
+          ) : (
+            <>
+              <picture className={styles.artistImage}>
+                <img src={artistImage} alt="artist image" />
+              </picture>
+              <span className={styles.artistName}>{itemArtist}</span>
+            </>
+          )}
+        </h4>
       ) : (
-        <>
-          <picture className={styles.artistImage}>
-            <img src={artistImage} alt="artist image" />
-          </picture>
-          <span className={styles.artistName}>{itemArtist}</span>
-        </>
+        <HorizontalLoader />
       )}
-    </h4>
+    </>
   );
 };
 
