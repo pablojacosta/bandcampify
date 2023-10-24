@@ -21,6 +21,16 @@
     display: none;
   }
 
+  &:hover {
+    background-color: rgba(0, 0, 0, 1);
+    outline: 0.0625rem solid #373737;
+
+    svg {
+      transform: scale(1.5);
+      padding: 0.85rem 0.2rem 0.2rem 0.85rem;
+    }
+  }
+
   svg {
     padding: 1rem 0.2rem 0.2rem 1rem;
   }
