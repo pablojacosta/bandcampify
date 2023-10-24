@@ -19,7 +19,7 @@ const ListedElement = ({
   const tag = !isTrack ? type : artist;
 
   return (
-    <div className={`${styles.listedElement} ${isTrack ? styles.isTrack : ""}`}>
+    <div className={styles.listedElement}>
       <li onClick={onClick}>
         <div className={styles.content}>
           <picture>
