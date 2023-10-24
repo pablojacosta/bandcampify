@@ -13,13 +13,9 @@
   width: 3rem;
   transform: translate(0%, 100%);
   top: 22%;
-  left: 2%;
+  left: -0.8%;
   z-index: 100;
   cursor: pointer;
-
-  &::before {
-    display: none;
-  }
 
   &:hover {
     background-color: rgba(0, 0, 0, 1);
@@ -33,5 +29,25 @@
 
   svg {
     padding: 1rem 0.2rem 0.2rem 1rem;
+  }
+
+  @include responsives.resolution__tablet {
+    top: 10%;
+  }
+
+  @include responsives.resolution__mobile__m {
+    left: -18%;
+  }
+
+  @include responsives.resolution__mobile {
+    left: -15%;
+  }
+
+  @include responsives.resolution__mobile__s {
+    left: -10%;
+  }
+
+  @include responsives.resolution__mobile__xxs {
+    left: 0%;
   }
 }
