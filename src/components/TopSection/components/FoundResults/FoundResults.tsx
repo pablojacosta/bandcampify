@@ -50,7 +50,7 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
           {hasArtists && (
             <>
               <h2>Artists</h2>
-              {foundResults.length && (
+              {foundResults.length && artists.length > 7 && (
                 <div className={styles.slider}>
                   <Slider {...sliderSettings}>
                     {foundResults
@@ -72,6 +72,25 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
                       ))}
                   </Slider>
                 </div>
+              )}
+              {foundResults.length && artists.length < 7 && (
+                <ul>
+                  {foundResults
+                    .filter(
+                      (result) => result.type === ESearchResultTypes.ARTIST
+                    )
+                    .map((artist, index) => (
+                      <Link to={ALBUMS} key={`${artist.url}_${index}`}>
+                        <ListedElement
+                          key={`${artist.name}_${artist.genre}`}
+                          onClick={() => getAlbums(artist.url, artist.imageUrl)}
+                          image={artist.imageUrl}
+                          name={artist.name}
+                          type={EListedElementTypes.ARTIST}
+                        />
+                      </Link>
+                    ))}
+                </ul>
               )}
             </>
           )}

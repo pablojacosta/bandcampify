@@ -30,8 +30,51 @@ const ResultList = ({ items, type }: IResultList) => {
   return (
     <div className={styles.list}>
       <h2>{type}</h2>
-      <div className={styles.slider}>
-        <Slider {...sliderSettings}>
+      {items.length > 7 && (
+        <div className={styles.slider}>
+          <Slider {...sliderSettings}>
+            {items.map((item: TFoundItem) => {
+              const handleAlbumOnClick = () => {
+                setFetchArtist(true);
+                getAlbum(item.url);
+                setShowTracks(true);
+                setAlbumUrl(item.url);
+                setHideAlbums(true);
+                setIsTrack(false);
+                setIsAlbum(true);
+              };
+
+              const handleSongOnClick = () => {
+                setFetchArtist(true);
+                getTrack(item.url);
+                setShowTracks(true);
+                setHideAlbums(true);
+                setIsTrack(true);
+                setIsAlbum(false);
+              };
+
+              return (
+                <Link to={TRACKS} key={`${item.url}`}>
+                  <ListedElement
+                    key={`${item.url}`}
+                    onClick={
+                      listedElementType === EListedElementTypes.ALBUM
+                        ? () => handleAlbumOnClick()
+                        : () => handleSongOnClick()
+                    }
+                    image={item.imageUrl}
+                    name={item.name}
+                    artist={item.artist}
+                    type={listedElementType}
+                  />
+                </Link>
+              );
+            })}
+          </Slider>
+        </div>
+      )}
+      {items.length < 7 && (
+        <ul>
           {items.map((item: TFoundItem) => {
             const handleAlbumOnClick = () => {
               setFetchArtist(true);
@@ -69,8 +112,8 @@ const ResultList = ({ items, type }: IResultList) => {
               </Link>
             );
           })}
-        </Slider>
-      </div>
+        </ul>
+      )}
     </div>
   );
 };
