@@ -7,11 +7,13 @@ export const sliderSettings = (length: number) => {
     infinite: length >= 7 ? true : false,
     speed: 500,
     slidesToShow: 7,
+    slidesToScroll: 1,
     initialSlide: 5,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     centerPadding: "100px",
     centerMode: true,
+    swipeToSlide: true,
     responsive: [
       {
         breakpoint: 1800,
