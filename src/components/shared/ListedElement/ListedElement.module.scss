@@ -4,6 +4,10 @@
 .listedElement {
   max-width: 11.844rem;
 
+  @include responsives.resolution__mobile__xxs {
+    padding-left: calc((100vw - 12.9rem) / 2);
+  }
+
   li {
     @include mixins.flex_container(column, flex-start, flex-start);
     cursor: pointer;
