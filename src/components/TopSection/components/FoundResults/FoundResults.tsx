@@ -16,6 +16,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { sliderSettings } from "@utils/helpers/slider/sliderSettings";
+import ArtistResults from "./components/ArtistResults";
 
 const FoundResults = ({ foundResults }: IFoundResults) => {
   const { getAlbums } = useGetArtistAlbums();
@@ -50,28 +51,26 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
           {hasArtists && (
             <>
               <h2>Artists</h2>
-              {foundResults.length && (
+              {artists.length > 7 ? (
                 <div className={styles.slider}>
                   <Slider {...sliderSettings(artists.length)}>
-                    {foundResults
-                      .filter(
-                        (result) => result.type === ESearchResultTypes.ARTIST
-                      )
-                      .map((artist, index) => (
-                        <Link to={ALBUMS} key={`${artist.url}_${index}`}>
-                          <ListedElement
-                            key={`${artist.name}_${artist.genre}`}
-                            onClick={() =>
-                              getAlbums(artist.url, artist.imageUrl)
-                            }
-                            image={artist.imageUrl}
-                            name={artist.name}
-                            type={EListedElementTypes.ARTIST}
-                          />
-                        </Link>
-                      ))}
+                    {artists.map((artist, index) => (
+                      <Link to={ALBUMS} key={`${artist.url}_${index}`}>
+                        <ListedElement
+                          key={`${artist.name}_${artist.genre}`}
+                          onClick={() => getAlbums(artist.url, artist.imageUrl)}
+                          image={artist.imageUrl}
+                          name={artist.name}
+                          type={EListedElementTypes.ARTIST}
+                        />
+                      </Link>
+                    ))}
                   </Slider>
                 </div>
+              ) : (
+                <ul>
+                  <ArtistResults artists={artists} />
+                </ul>
               )}
             </>
           )}
