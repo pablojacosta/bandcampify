@@ -2,10 +2,14 @@
 @use "@styles/_responsives" as responsives;
 
 .goBackButton {
-  padding: 1rem 0;
+  height: 2rem;
+  margin-bottom: 2rem;
 
   a {
-    text-decoration: none;
+    display: block;
+    height: 100%;
+    width: 2rem;
+    position: relative;
 
     button {
       @include mixins.flex_container(row, center, center);
@@ -14,6 +18,9 @@
       border-radius: 50%;
       gap: 0.5rem;
       background-color: rgba(0, 0, 0, 0.7);
+      position: absolute;
+      top: 100%;
+      left: -8%;
 
       svg {
         margin-left: -0.1rem;
