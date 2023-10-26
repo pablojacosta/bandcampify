@@ -17,6 +17,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { sliderSettings } from "@utils/helpers/slider/sliderSettings";
 import ArtistResults from "./components/ArtistResults";
+import useShowSlider from "@hooks/useShowSlider";
 
 const FoundResults = ({ foundResults }: IFoundResults) => {
   const { getAlbums } = useGetArtistAlbums();
@@ -43,6 +44,7 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
   const hasArtists = artists.length > 0;
   const hasAlbums = albums.length > 0;
   const hasTracks = tracks.length > 0;
+  const { showSlider } = useShowSlider(artists.length);
 
   return (
     <div className={styles.foundResults}>
@@ -51,7 +53,7 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
           {hasArtists && (
             <>
               <h2>Artists</h2>
-              {artists.length > 7 ? (
+              {artists.length > 7 || showSlider ? (
                 <div className={styles.slider}>
                   <Slider {...sliderSettings(artists.length)}>
                     {artists.map((artist, index) => (
