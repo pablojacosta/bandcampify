@@ -19,6 +19,10 @@
       height: 11.29rem;
     }
 
+    @include responsives.resolution__mobile__xxs {
+      margin: 0 auto;
+    }
+
     &:hover {
       background-color: hsla(0, 0%, 100%, 0.05);
       transition-timing-function: ease-out;
@@ -69,6 +73,7 @@
 
         .tag {
           font-size: 0.875rem;
+          width: 9rem;
           margin-top: 0;
           text-overflow: ellipsis;
           overflow: hidden;
@@ -77,6 +82,7 @@
           @include responsives.resolution__tablet {
             font-size: 0.7rem;
             margin-top: -1rem;
+            width: 6rem;
           }
         }
 
