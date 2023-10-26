@@ -70,6 +70,7 @@ const ResultList = ({ items, type }: IResultList) => {
                     artist={item.artist}
                     type={listedElementType}
                     album={item.album ?? undefined}
+                    isFoundResults
                   />
                 </Link>
               );
