@@ -80,7 +80,7 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
           {hasTracks && <ResultList items={tracks} type={EListType.SONGS} />}
         </>
       ) : (
-        <h2>{foundResults}</h2>
+        <h3>{foundResults}</h3>
       )}
     </div>
   );
