@@ -15,12 +15,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { sliderSettings } from "@utils/helpers/slider/sliderSettings";
 import Items from "./components/Items";
-import { useEffect, useRef, useState } from "react";
-
-const ITEM_WIDTH = 13;
+import useShowSlider from "@hooks/useShowSlider";
 
 const ResultList = ({ items, type }: IResultList) => {
-  const windowWidth = useRef(window.innerWidth);
   const listedElementType =
     type === EListType.ALBUMS
       ? EListedElementTypes.ALBUM
@@ -31,15 +28,7 @@ const ResultList = ({ items, type }: IResultList) => {
   const { getTrack } = useGetTrack();
   const { setIsTrack } = useSelectedTrackStore();
   const { setFetchArtist } = useSelectedArtistStore();
-  const itemsWidth = (items.length * ITEM_WIDTH + 1) * 16;
-  const [showSlider, setShowSlider] = useState(false);
-
-  useEffect(() => {
-    console.log("windowWidth", windowWidth);
-    if (itemsWidth >= windowWidth.current) {
-      setShowSlider(true);
-    }
-  }, [itemsWidth, windowWidth]);
+  const { showSlider } = useShowSlider(items.length);
 
   return (
     <div className={styles.list}>
