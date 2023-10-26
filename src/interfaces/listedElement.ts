@@ -8,4 +8,6 @@ export interface IListedElement {
   type: EListedElementTypes;
   artist?: string;
   album?: string;
+  isFoundResults?: boolean;
+  isList?: boolean;
 }

@@ -57,7 +57,7 @@ const ResultList = ({ items, type }: IResultList) => {
               };
 
               return (
-                <Link to={TRACKS} key={`${item.url}`}>
+                <Link to={TRACKS} key={`${item.url}`} className={styles.link}>
                   <ListedElement
                     key={`${item.url}`}
                     onClick={
@@ -70,6 +70,7 @@ const ResultList = ({ items, type }: IResultList) => {
                     artist={item.artist}
                     type={listedElementType}
                     album={item.album ?? undefined}
+                    isFoundResults
                   />
                 </Link>
               );
