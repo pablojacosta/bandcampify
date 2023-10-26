@@ -32,6 +32,11 @@
       margin: 0 auto;
       position: relative;
 
+      @include responsives.resolution__tablet {
+        padding-left: 1rem;
+      }
+      padding-left: 1rem;
+
       &:hover {
         .text {
           .playButton {
