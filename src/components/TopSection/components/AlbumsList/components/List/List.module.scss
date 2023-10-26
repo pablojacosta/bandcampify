@@ -38,5 +38,9 @@
     @include responsives.resolution__mobile__xxs {
       margin: 3rem 2rem;
     }
+
+    .link {
+      max-width: 11.844rem;
+    }
   }
 }
