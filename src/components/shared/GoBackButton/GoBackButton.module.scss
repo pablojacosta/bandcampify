@@ -17,7 +17,11 @@
 
     svg {
       margin-left: -0.1rem;
-      margin-top: 0.1rem;
+      margin-top: 0.35rem;
+
+      @include responsives.resolution__mobile__m {
+        margin-top: 0.2rem;
+      }
     }
   }
 }
