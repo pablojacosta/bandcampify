@@ -63,6 +63,7 @@ const List = ({ items, type }: IList) => {
                     name={item.title}
                     artist={artistInfo?.name}
                     type={listedElementType}
+                    isList
                   />
                 </Link>
               );

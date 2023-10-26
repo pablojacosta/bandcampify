@@ -68,6 +68,7 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
                           image={artist.imageUrl}
                           name={artist.name}
                           type={EListedElementTypes.ARTIST}
+                          isFoundResults
                         />
                       </Link>
                     ))}
