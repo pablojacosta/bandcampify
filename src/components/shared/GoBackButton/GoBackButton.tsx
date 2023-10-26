@@ -34,11 +34,11 @@ const GoBackButton = ({ isAlbums = false }: IGoBackButton) => {
 
   return (
     <div className={styles.goBackButton}>
-      <Link to={href}>
-        <button onClick={handleGoBackClick}>
+      <button onClick={handleGoBackClick}>
+        <Link to={href}>
           <LeftArrow />
-        </button>
-      </Link>
+        </Link>
+      </button>
     </div>
   );
 };
