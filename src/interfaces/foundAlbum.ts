@@ -8,4 +8,5 @@ export interface IFoundAlbum {
   tags: string[];
   type: string;
   url: string;
+  album?: string;
 }

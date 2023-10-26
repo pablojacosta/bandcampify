@@ -1,0 +1,53 @@
+@use "@styles/_mixins" as mixins;
+@use "@styles/_responsives" as responsives;
+
+.prevArrow {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 1.5rem 1.5rem;
+  border-radius: 3rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: block;
+  height: 3rem;
+  width: 3rem;
+  transform: translate(0%, 100%);
+  top: 22%;
+  left: -0.8%;
+  z-index: 100;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 1);
+    outline: 0.0625rem solid #373737;
+
+    svg {
+      transform: scale(1.5);
+      padding: 0.85rem 0.2rem 0.2rem 0.85rem;
+    }
+  }
+
+  svg {
+    padding: 1rem 0.2rem 0.2rem 1rem;
+  }
+
+  @include responsives.resolution__tablet {
+    top: 10%;
+  }
+
+  @include responsives.resolution__mobile__m {
+    left: -18%;
+  }
+
+  @include responsives.resolution__mobile {
+    left: -15%;
+  }
+
+  @include responsives.resolution__mobile__s {
+    left: -10%;
+  }
+
+  @include responsives.resolution__mobile__xxs {
+    left: 0%;
+  }
+}

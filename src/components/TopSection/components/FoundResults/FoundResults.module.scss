@@ -11,6 +11,7 @@
     list-style: none;
     padding: 0;
     gap: 1rem;
+    margin: 3rem 0;
 
     a {
       text-decoration: none;
@@ -28,5 +29,29 @@
     @include responsives.resolution__mobile__m {
       font-size: 1rem;
     }
+  }
+
+  .slider {
+    margin: 3rem 2rem;
+
+    @include responsives.resolution__mobile__m {
+      margin: 3rem 1.55rem 3rem 17vw;
+    }
+
+    @include responsives.resolution__mobile {
+      margin: 3rem 1.55rem 3rem 14vw;
+    }
+
+    @include responsives.resolution__mobile__s {
+      margin: 3rem 1.55rem 3rem 12vw;
+    }
+
+    @include responsives.resolution__mobile__xxs {
+      margin: 3rem 2rem;
+    }
+  }
+
+  h3 {
+    text-align: center;
   }
 }
