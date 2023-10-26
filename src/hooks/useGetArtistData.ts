@@ -12,7 +12,7 @@ const useGetArtistData = () => {
 
     const getArtistDataOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "http://localhost:3001/artist",
+      url: "https://bandcampify.onrender.com/artist",
       params: { artistUrl },
     };
 
