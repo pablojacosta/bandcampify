@@ -12,7 +12,7 @@ const ArtistInput = ({
       <input
         onChange={handleSearchChange}
         value={search}
-        placeholder="Search Artist/Band"
+        placeholder="Search in Bandcamp"
         onKeyDown={onKeyDown}
         spellCheck="false"
       />
