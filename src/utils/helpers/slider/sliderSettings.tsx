@@ -4,11 +4,11 @@ import PrevArrow from "@components/shared/PrevArrow";
 export const sliderSettings = (length: number) => {
   return {
     dots: false,
-    infinite: length >= 7 ? true : false,
+    infinite: true,
     speed: 500,
     slidesToShow: 7,
     slidesToScroll: 1,
-    initialSlide: 5,
+    initialSlide: 2,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     centerPadding: "100px",
@@ -18,35 +18,35 @@ export const sliderSettings = (length: number) => {
       {
         breakpoint: 1800,
         settings: {
-          slidesToShow: 7,
+          slidesToShow: length >= 7 ? 7 : length,
           centerPadding: "50px",
         },
       },
       {
         breakpoint: 1600,
         settings: {
-          slidesToShow: 6,
+          slidesToShow: length >= 6 ? 6 : length,
           centerPadding: "65px",
         },
       },
       {
         breakpoint: 1480,
         settings: {
-          slidesToShow: 5,
+          slidesToShow: length >= 5 ? 5 : length,
           centerPadding: "80px",
         },
       },
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: length >= 4 ? 4 : length,
           centerPadding: "90px",
         },
       },
       {
         breakpoint: 1100,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: length >= 3 ? 3 : length,
           centerPadding: "100px",
           centerMode: true,
         },
@@ -54,28 +54,28 @@ export const sliderSettings = (length: number) => {
       {
         breakpoint: 880,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: length >= 2 ? 2 : length,
           centerPadding: "140px",
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: length >= 3 ? 3 : length,
           centerPadding: "70px",
         },
       },
       {
         breakpoint: 640,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: length >= 2 ? 2 : length,
           centerPadding: "90px",
         },
       },
       {
         breakpoint: 563,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: length >= 2 ? 2 : length,
           centerMode: false,
         },
       },
