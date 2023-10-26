@@ -4,27 +4,20 @@
 .goBackButton {
   height: 2rem;
   margin-bottom: 2rem;
+  position: relative;
 
-  a {
-    display: block;
-    height: 100%;
+  button {
     width: 2rem;
-    position: relative;
+    height: 2rem;
+    border-radius: 50%;
+    gap: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 97%;
 
-    button {
-      @include mixins.flex_container(row, center, center);
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      gap: 0.5rem;
-      background-color: rgba(0, 0, 0, 0.7);
-      position: absolute;
-      top: 100%;
-      left: -8%;
-
-      svg {
-        margin-left: -0.1rem;
-      }
+    svg {
+      margin-left: -0.1rem;
+      margin-top: 0.1rem;
     }
   }
 }
