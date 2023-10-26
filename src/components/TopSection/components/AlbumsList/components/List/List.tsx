@@ -51,7 +51,7 @@ const List = ({ items, type }: IList) => {
               };
 
               return (
-                <Link to={TRACKS} key={`${item.url}`}>
+                <Link to={TRACKS} key={`${item.url}`} className={styles.link}>
                   <ListedElement
                     key={`${item.url}`}
                     onClick={

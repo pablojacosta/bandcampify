@@ -2,6 +2,8 @@
 @use "@styles/_responsives" as responsives;
 
 .listedElement {
+  max-width: 11.844rem;
+
   li {
     @include mixins.flex_container(column, flex-start, flex-start);
     cursor: pointer;

@@ -57,7 +57,11 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
                 <div className={styles.slider}>
                   <Slider {...sliderSettings(artists.length)}>
                     {artists.map((artist, index) => (
-                      <Link to={ALBUMS} key={`${artist.url}_${index}`}>
+                      <Link
+                        to={ALBUMS}
+                        key={`${artist.url}_${index}`}
+                        className={styles.link}
+                      >
                         <ListedElement
                           key={`${artist.name}_${artist.genre}`}
                           onClick={() => getAlbums(artist.url, artist.imageUrl)}
