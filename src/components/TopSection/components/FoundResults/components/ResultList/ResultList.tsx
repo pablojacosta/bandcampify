@@ -14,6 +14,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { sliderSettings } from "@utils/helpers/slider/sliderSettings";
+import Items from "./components/Items";
 
 const ResultList = ({ items, type }: IResultList) => {
   const listedElementType =
@@ -30,7 +31,7 @@ const ResultList = ({ items, type }: IResultList) => {
   return (
     <div className={styles.list}>
       <h2>{type}</h2>
-      {items.length && (
+      {items.length > 7 ? (
         <div className={styles.slider}>
           <Slider {...sliderSettings(items.length)}>
             {items.map((item: TFoundItem) => {
@@ -72,6 +73,10 @@ const ResultList = ({ items, type }: IResultList) => {
             })}
           </Slider>
         </div>
+      ) : (
+        <ul>
+          <Items items={items} type={type} />
+        </ul>
       )}
     </div>
   );

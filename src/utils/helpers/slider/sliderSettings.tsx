@@ -8,7 +8,7 @@ export const sliderSettings = (length: number) => {
     speed: 500,
     slidesToShow: length >= 7 ? 7 : length,
     slidesToScroll: 1,
-    initialSlide: 2,
+    initialSlide: length >= 7 ? 5 : 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     centerPadding: "100px",
