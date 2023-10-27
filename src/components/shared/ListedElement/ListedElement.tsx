@@ -12,6 +12,7 @@ const ListedElement = ({
   album,
   isFoundResults,
   isList,
+  noSlider,
 }: IListedElement) => {
   const isTrack = type === EListedElementTypes.TRACK;
   const iconStyle = {
@@ -28,7 +29,7 @@ const ListedElement = ({
       } ${isList ? styles.isList : ""}`}
     >
       <li onClick={onClick}>
-        <div className={styles.content}>
+        <div className={`${styles.content} ${noSlider ? styles.noSlider : ""}`}>
           <picture>
             <img src={image} alt="Listed Element Image" />
           </picture>
