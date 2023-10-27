@@ -119,8 +119,11 @@
           @include mixins.flex_container(column, space-between, flex-start);
           height: 6.836rem;
 
+          @include responsives.resolution__laptop__ms {
+            height: 5.7rem;
+          }
+
           .name {
-            // height: 1.875rem;
             width: 9rem;
             color: var(--color-white);
             display: -webkit-box;
@@ -132,9 +135,9 @@
             font-size: 0.825rem;
 
             @include responsives.resolution__laptop__ms {
-              height: 1.5rem;
               width: 6rem;
               font-size: 0.75rem;
+              line-height: normal;
             }
           }
 
