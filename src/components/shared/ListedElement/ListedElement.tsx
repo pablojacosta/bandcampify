@@ -33,8 +33,10 @@ const ListedElement = ({
             <img src={image} alt="Listed Element Image" />
           </picture>
           <div className={styles.text}>
-            <p className={styles.name}>{name}</p>
-            <p className={styles.tag}>{tag}</p>
+            <div className={styles.top}>
+              <p className={styles.name}>{name}</p>
+              <p className={styles.tag}>{tag}</p>
+            </div>
             <div className={styles.playButton}>
               <BiPlay style={iconStyle} />
             </div>
