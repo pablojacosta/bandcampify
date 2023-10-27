@@ -18,6 +18,7 @@ const ArtistResults = ({ artists }: IArtistResults) => {
             image={artist.imageUrl}
             name={artist.name}
             type={EListedElementTypes.ARTIST}
+            noSlider
           />
         </Link>
       ))}
