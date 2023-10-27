@@ -10,4 +10,5 @@ export interface IListedElement {
   album?: string;
   isFoundResults?: boolean;
   isList?: boolean;
+  noSlider?: boolean;
 }
