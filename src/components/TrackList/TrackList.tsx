@@ -1,6 +1,4 @@
 import styles from "./TrackList.module.scss";
-import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
-import TrackPlayer from "@components/shared/TrackPlayer";
 import GoBackButton from "../shared/GoBackButton";
 import TrackListTop from "./components/TrackListTop";
 import TrackListHeader from "./components/TrackListHeader";
@@ -13,7 +11,7 @@ import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 
 const TrackList = () => {
   const { showLoader } = useLoaderStore();
-  const { showPlayer } = useSelectedAlbumStore();
+
   const isMobileBreakpoint = useMediaQuery(563);
   const [isLoading, setIsLoading] = useState(true);
   const { isTrack } = useSelectedTrackStore();
@@ -38,7 +36,6 @@ const TrackList = () => {
           <TrackListTop />
           {!isMobileBreakpoint && !isTrack && <TrackListHeader />}
           <ListedTracks />
-          {showPlayer && <TrackPlayer />}
         </div>
       )}
     </>

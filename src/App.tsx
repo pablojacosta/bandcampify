@@ -14,6 +14,7 @@ import useWakeRenderServerUp from "@hooks/useWakeRenderServerUp";
 import { useSearchStore } from "@store/useSearchStore";
 import AlbumsList from "@components/TopSection/components/AlbumsList";
 import { ALBUMS, HOME, TRACKS } from "@constants/routes";
+import TrackPlayer from "@components/shared/TrackPlayer";
 
 const App = () => {
   const { wakeServer } = useWakeRenderServerUp();
@@ -32,6 +33,7 @@ const App = () => {
     showTrackList,
   } = useSelectedAlbumStore();
   const albums = artistInfo?.albums;
+  const { showPlayer } = useSelectedAlbumStore();
 
   const showAlbumsList = hasAlbums && !hideAlbums;
   const showFoundResults =
@@ -88,6 +90,7 @@ const App = () => {
           <Route path={TRACKS} element={<TrackList />} />
         </Routes>
       </Container>
+      {showPlayer && <TrackPlayer />}
       <div className={styles.footerSpace} />
       <Footer />
     </div>
