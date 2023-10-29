@@ -4,6 +4,13 @@
   width: 100%;
   margin-top: 2rem;
 
+  &.showPlayer {
+    .playerSpace {
+      height: 6rem;
+      width: 20rem;
+    }
+  }
+
   h2 {
     text-align: left;
   }

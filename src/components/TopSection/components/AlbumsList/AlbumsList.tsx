@@ -6,10 +6,12 @@ import GoBackButton from "@components/shared/GoBackButton";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useEffect } from "react";
 import Loader from "@components/shared/Loader";
+import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 
 const AlbumsList = () => {
   const { artistInfo } = useSelectedArtistStore();
   const { showLoader, setShowLoader } = useLoaderStore();
+  const { showPlayer } = useSelectedAlbumStore();
   const albums = artistInfo?.albums;
   const fullAlbums = albums?.filter((album) => album.url.includes("album"));
   const songs = albums?.filter((album) => album.url.includes("track"));
@@ -24,12 +26,17 @@ const AlbumsList = () => {
 
   return (
     <>
-      <div className={styles.albumsList}>
+      <div
+        className={`${styles.albumsList} ${
+          showPlayer ? styles.playerSpace : ""
+        }`}
+      >
         {!showLoader ? (
           <>
             <GoBackButton isAlbums />
             {hasAlbums && <List items={fullAlbums} type={EListType.ALBUMS} />}
             {hasSongs && <List items={songs} type={EListType.SONGS} />}
+            {showPlayer && <div className={styles.playerSpace} />}
           </>
         ) : (
           <div className={styles.loader}>

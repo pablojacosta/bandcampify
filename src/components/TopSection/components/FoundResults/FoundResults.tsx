@@ -18,9 +18,11 @@ import "slick-carousel/slick/slick-theme.css";
 import { sliderSettings } from "@utils/helpers/slider/sliderSettings";
 import ArtistResults from "./components/ArtistResults";
 import useShowSlider from "@hooks/useShowSlider";
+import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 
 const FoundResults = ({ foundResults }: IFoundResults) => {
   const { getAlbums } = useGetArtistAlbums();
+  const { showPlayer } = useSelectedAlbumStore();
   const isError = typeof foundResults === "string";
   const [artists, setArtists] = useState<IResult[]>([]);
   const [albums, setAlbums] = useState<IResult[]>([]);
@@ -47,7 +49,11 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
   const { showSlider } = useShowSlider(artists.length);
 
   return (
-    <div className={styles.foundResults}>
+    <div
+      className={`${styles.foundResults} ${
+        showPlayer ? styles.showPlayer : ""
+      }`}
+    >
       {!isError ? (
         <>
           {hasArtists && (
@@ -81,12 +87,14 @@ const FoundResults = ({ foundResults }: IFoundResults) => {
               )}
             </>
           )}
+
           {hasAlbums && <ResultList items={albums} type={EListType.ALBUMS} />}
           {hasTracks && <ResultList items={tracks} type={EListType.SONGS} />}
         </>
       ) : (
         <h3>{foundResults}</h3>
       )}
+      {showPlayer && <div className={styles.playerSpace} />}
     </div>
   );
 };
