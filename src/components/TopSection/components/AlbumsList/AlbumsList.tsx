@@ -28,7 +28,7 @@ const AlbumsList = () => {
     <>
       <div
         className={`${styles.albumsList} ${
-          showPlayer ? styles.playerSpace : ""
+          showPlayer ? styles.showPlayer : ""
         }`}
       >
         {!showLoader ? (
