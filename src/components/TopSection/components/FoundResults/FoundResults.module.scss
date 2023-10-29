@@ -55,13 +55,20 @@
     @include responsives.resolution__mobile__xxs {
       margin: 3rem 2rem;
     }
+
+    :global .slick-slider {
+      .slick-active {
+        max-width: 11.844rem;
+        margin-left: 2.2rem;
+
+        a {
+          max-width: 11.844rem;
+        }
+      }
+    }
   }
 
   h3 {
     text-align: center;
-  }
-
-  .link {
-    max-width: 11.844rem;
   }
 }
