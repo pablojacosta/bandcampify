@@ -15,6 +15,7 @@ const ListedElement = ({
   noSlider,
 }: IListedElement) => {
   const isTrack = type === EListedElementTypes.TRACK;
+  const isArtist = type === EListedElementTypes.ARTIST;
   const iconStyle = {
     color: !isTrack ? "black" : "white",
     fontSize: "2rem",
@@ -38,9 +39,11 @@ const ListedElement = ({
               <p className={styles.name}>{name}</p>
               <p className={styles.tag}>{tag}</p>
             </div>
-            <div className={styles.playButton}>
-              <BiPlay style={iconStyle} />
-            </div>
+            {!isArtist && (
+              <div className={styles.playButton}>
+                <BiPlay style={iconStyle} />
+              </div>
+            )}
           </div>
         </div>
       </li>
