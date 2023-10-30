@@ -3,7 +3,6 @@
 
 .listedElement {
   width: 11.844rem;
-  // margin-left: 2.2rem;
 
   @include responsives.resolution__laptop__ms {
     width: 8rem;
