@@ -6,7 +6,7 @@ export const sliderSettings = (length: number) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: length >= 7 ? 7 : length,
+    slidesToShow: length >= 8 ? 8 : length,
     slidesToScroll: 2,
     initialSlide: length >= 7 ? 5 : 1,
     nextArrow: <NextArrow />,
@@ -14,51 +14,27 @@ export const sliderSettings = (length: number) => {
     swipeToSlide: true,
     responsive: [
       {
-        breakpoint: 1800,
+        breakpoint: 1670,
         settings: {
-          slidesToShow: length >= 6 ? 6 : length,
+          slidesToShow: length >= 7 ? 7 : length,
         },
       },
       {
-        breakpoint: 1480,
-        settings: {
-          slidesToShow: length >= 5 ? 5 : length,
-        },
-      },
-      {
-        breakpoint: 1140,
-        settings: {
-          slidesToShow: length >= 6 ? 6 : length,
-        },
-      },
-      {
-        breakpoint: 880,
-        settings: {
-          slidesToShow: length >= 5 ? 5 : length,
-        },
-      },
-      {
-        breakpoint: 768,
+        breakpoint: 650,
         settings: {
           slidesToShow: length >= 4 ? 4 : length,
         },
       },
       {
-        breakpoint: 640,
+        breakpoint: 563,
         settings: {
           slidesToShow: length >= 3 ? 3 : length,
         },
       },
       {
-        breakpoint: 563,
-        settings: {
-          slidesToShow: length >= 2 ? 2 : length,
-        },
-      },
-      {
         breakpoint: 370,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
