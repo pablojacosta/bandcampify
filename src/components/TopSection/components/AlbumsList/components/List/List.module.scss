@@ -23,29 +23,18 @@
   .slider {
     margin: 3rem 0;
 
-    @include responsives.resolution__mobile__m {
-      margin: 3rem 1.55rem 3rem 17vw;
-    }
-
-    @include responsives.resolution__mobile {
-      margin: 3rem 1.55rem 3rem 14vw;
-    }
-
-    @include responsives.resolution__mobile__s {
-      margin: 3rem 1.55rem 3rem 12vw;
-    }
-
-    @include responsives.resolution__mobile__xxs {
-      margin: 3rem 2rem;
-    }
-
     :global .slick-slider {
-      .slick-active {
-        max-width: 11.844rem;
-        margin: 0 1.5rem;
+      .slick-track {
+        display: flex;
+        justify-content: space-around;
+        gap: 3rem;
 
-        a {
+        .slick-active {
           max-width: 11.844rem;
+
+          a {
+            max-width: 11.844rem;
+          }
         }
       }
     }
