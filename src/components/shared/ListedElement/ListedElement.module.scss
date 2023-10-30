@@ -6,59 +6,6 @@
 
   @include responsives.resolution__laptop__ms {
     width: 8rem;
-    // margin-left: 1.3rem;
-  }
-
-  // @include responsives.resolution__laptop__s {
-  //   margin-left: 0.75rem;
-  // }
-
-  // @include responsives.resolution__laptop__xs {
-  //   margin-left: 0.3rem;
-  // }
-
-  // @include responsives.resolution__laptop__xxs {
-  //   margin-left: 0;
-  // }
-
-  // @include responsives.resolution__tablet {
-  //   margin-left: 1.25rem;
-  // }
-
-  // @include responsives.resolution__tablet__m {
-  //   margin-left: 1rem;
-  // }
-
-  // @include responsives.resolution__tablet__xs {
-  //   margin-left: 0.6rem;
-  // }
-
-  // @include responsives.resolution__tablet__xxs {
-  //   margin-left: 1.7rem;
-  // }
-
-  // @include responsives.resolution__mobile__m {
-  //   margin-left: 0.25rem;
-  // }
-
-  // @include responsives.resolution__mobile {
-  //   margin-left: 0;
-  // }
-
-  // @include responsives.resolution__mobile__s {
-  //   margin-left: 0.2rem;
-  // }
-
-  &.isList {
-    @include responsives.resolution__mobile__xxs {
-      margin-left: calc((100vw - 12rem) / 2);
-    }
-  }
-
-  &.isFoundResults {
-    @include responsives.resolution__mobile__xxs {
-      margin-left: calc((100vw - 13rem) / 2);
-    }
   }
 
   li {
