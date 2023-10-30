@@ -5,12 +5,19 @@
   margin: 2rem 0;
   width: 100%;
 
+  &.showPlayer {
+    .playerSpace {
+      height: 6rem;
+    }
+  }
+
   ul {
     @include mixins.flex_container(row, center, center);
     flex-wrap: wrap;
     list-style: none;
     padding: 0;
     gap: 1rem;
+    margin: 3rem 0;
 
     a {
       text-decoration: none;
@@ -28,5 +35,29 @@
     @include responsives.resolution__mobile__m {
       font-size: 1rem;
     }
+  }
+
+  .slider {
+    margin: 3rem 0;
+
+    :global .slick-slider {
+      .slick-track {
+        display: flex;
+        justify-content: space-around;
+        gap: 3rem;
+
+        .slick-active {
+          max-width: 11.844rem;
+
+          a {
+            max-width: 11.844rem;
+          }
+        }
+      }
+    }
+  }
+
+  h3 {
+    text-align: center;
   }
 }

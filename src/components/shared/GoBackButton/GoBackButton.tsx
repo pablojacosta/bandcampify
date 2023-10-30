@@ -8,7 +8,7 @@ import { IGoBackButton } from "interfaces/goBackButton";
 import { ALBUMS, HOME } from "@constants/routes";
 
 const GoBackButton = ({ isAlbums = false }: IGoBackButton) => {
-  const { setShowPlayer, setHideAlbums, setHasAlbums, setShowTrackList } =
+  const { setHideAlbums, setHasAlbums, setShowTrackList } =
     useSelectedAlbumStore();
   const { setIsTrack, setTrack } = useSelectedTrackStore();
   const { fetchArtist, setHideArtists } = useSelectedArtistStore();
@@ -27,18 +27,17 @@ const GoBackButton = ({ isAlbums = false }: IGoBackButton) => {
     }
 
     setShowTrackList(false);
-    setShowPlayer(false);
     setIsTrack(false);
     setTrack(null);
   };
 
   return (
     <div className={styles.goBackButton}>
-      <Link to={href}>
-        <button onClick={handleGoBackClick}>
+      <button onClick={handleGoBackClick}>
+        <Link to={href}>
           <LeftArrow />
-        </button>
-      </Link>
+        </Link>
+      </button>
     </div>
   );
 };

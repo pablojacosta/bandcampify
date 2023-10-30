@@ -7,4 +7,8 @@ export interface IListedElement {
   name: string;
   type: EListedElementTypes;
   artist?: string;
+  album?: string;
+  isFoundResults?: boolean;
+  isList?: boolean;
+  noSlider?: boolean;
 }

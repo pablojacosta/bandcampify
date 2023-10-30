@@ -4,6 +4,12 @@
   width: 100%;
   margin-top: 2rem;
 
+  &.showPlayer {
+    .playerSpace {
+      height: 10rem;
+    }
+  }
+
   h2 {
     text-align: left;
   }
@@ -14,6 +20,7 @@
     @include mixins.flex_container(row, center, center);
     flex-wrap: wrap;
     gap: 1rem;
+    margin-top: 3rem;
   }
 
   button {

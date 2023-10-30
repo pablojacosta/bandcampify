@@ -10,6 +10,12 @@ import useGetTrack from "@hooks/useGetTrack";
 import { TFoundItem } from "types/foundItem";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { TRACKS } from "@constants/routes";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { sliderSettings } from "@utils/helpers/slider/sliderSettings";
+import Items from "./components/Items";
+import useShowSlider from "@hooks/useShowSlider";
 
 const ResultList = ({ items, type }: IResultList) => {
   const listedElementType =
@@ -22,49 +28,60 @@ const ResultList = ({ items, type }: IResultList) => {
   const { getTrack } = useGetTrack();
   const { setIsTrack } = useSelectedTrackStore();
   const { setFetchArtist } = useSelectedArtistStore();
+  const { showSlider } = useShowSlider(items.length);
 
   return (
     <div className={styles.list}>
       <h2>{type}</h2>
-      <ul>
-        {items.map((item: TFoundItem) => {
-          const handleAlbumOnClick = () => {
-            setFetchArtist(true);
-            getAlbum(item.url);
-            setShowTracks(true);
-            setAlbumUrl(item.url);
-            setHideAlbums(true);
-            setIsTrack(false);
-            setIsAlbum(true);
-          };
+      {items.length > 7 || showSlider ? (
+        <div className={styles.slider}>
+          <Slider {...sliderSettings(items.length)}>
+            {items.map((item: TFoundItem) => {
+              const handleAlbumOnClick = () => {
+                setFetchArtist(true);
+                getAlbum(item.url);
+                setShowTracks(true);
+                setAlbumUrl(item.url);
+                setHideAlbums(true);
+                setIsTrack(false);
+                setIsAlbum(true);
+              };
 
-          const handleSongOnClick = () => {
-            setFetchArtist(true);
-            getTrack(item.url);
-            setShowTracks(true);
-            setHideAlbums(true);
-            setIsTrack(true);
-            setIsAlbum(false);
-          };
+              const handleSongOnClick = () => {
+                setFetchArtist(true);
+                getTrack(item.url);
+                setShowTracks(true);
+                setHideAlbums(true);
+                setIsTrack(true);
+                setIsAlbum(false);
+              };
 
-          return (
-            <Link to={TRACKS} key={`${item.url}`}>
-              <ListedElement
-                key={`${item.url}`}
-                onClick={
-                  listedElementType === EListedElementTypes.ALBUM
-                    ? () => handleAlbumOnClick()
-                    : () => handleSongOnClick()
-                }
-                image={item.imageUrl}
-                name={item.name}
-                artist={item.artist}
-                type={listedElementType}
-              />
-            </Link>
-          );
-        })}
-      </ul>
+              return (
+                <Link to={TRACKS} key={`${item.url}`} className={styles.link}>
+                  <ListedElement
+                    key={`${item.url}`}
+                    onClick={
+                      listedElementType === EListedElementTypes.ALBUM
+                        ? () => handleAlbumOnClick()
+                        : () => handleSongOnClick()
+                    }
+                    image={item.imageUrl}
+                    name={item.name}
+                    artist={item.artist}
+                    type={listedElementType}
+                    album={item.album ?? undefined}
+                    isFoundResults
+                  />
+                </Link>
+              );
+            })}
+          </Slider>
+        </div>
+      ) : (
+        <ul>
+          <Items items={items} type={type} />
+        </ul>
+      )}
     </div>
   );
 };

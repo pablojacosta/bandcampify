@@ -59,7 +59,13 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
     >
       {!isMobileBreakpoint && (
         <div className={styles.trackNumber}>
-          {!isHovering ? <>{index + 1}</> : <BiPlay className={styles.play} />}
+          {!isHovering ? (
+            <>{index + 1}</>
+          ) : (
+            <span>
+              <BiPlay className={styles.play} />
+            </span>
+          )}
         </div>
       )}
       <div className={styles.names}>
