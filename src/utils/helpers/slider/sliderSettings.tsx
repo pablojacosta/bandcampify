@@ -6,7 +6,7 @@ export const sliderSettings = (length: number) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: length >= 7 ? 7 : length,
+    slidesToShow: length >= 8 ? 8 : length,
     slidesToScroll: 2,
     initialSlide: length >= 7 ? 5 : 1,
     nextArrow: <NextArrow />,

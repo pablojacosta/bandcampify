@@ -21,7 +21,7 @@
   }
 
   .slider {
-    margin: 3rem 2rem;
+    margin: 3rem 0;
 
     @include responsives.resolution__mobile__m {
       margin: 3rem 1.55rem 3rem 17vw;
@@ -39,8 +39,15 @@
       margin: 3rem 2rem;
     }
 
-    .link {
-      max-width: 11.844rem;
+    :global .slick-slider {
+      .slick-active {
+        max-width: 11.844rem;
+        margin: 0 1.5rem;
+
+        a {
+          max-width: 11.844rem;
+        }
+      }
     }
   }
 }
