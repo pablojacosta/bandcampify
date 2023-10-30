@@ -14,45 +14,21 @@ export const sliderSettings = (length: number) => {
     swipeToSlide: true,
     responsive: [
       {
-        breakpoint: 1800,
+        breakpoint: 1670,
         settings: {
-          slidesToShow: length >= 6 ? 6 : length,
+          slidesToShow: length >= 7 ? 7 : length,
         },
       },
       {
-        breakpoint: 1480,
-        settings: {
-          slidesToShow: length >= 5 ? 5 : length,
-        },
-      },
-      {
-        breakpoint: 1140,
-        settings: {
-          slidesToShow: length >= 6 ? 6 : length,
-        },
-      },
-      {
-        breakpoint: 880,
-        settings: {
-          slidesToShow: length >= 5 ? 5 : length,
-        },
-      },
-      {
-        breakpoint: 768,
+        breakpoint: 650,
         settings: {
           slidesToShow: length >= 4 ? 4 : length,
         },
       },
       {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: length >= 3 ? 3 : length,
-        },
-      },
-      {
         breakpoint: 563,
         settings: {
-          slidesToShow: length >= 2 ? 2 : length,
+          slidesToShow: length >= 3 ? 3 : length,
         },
       },
       {
