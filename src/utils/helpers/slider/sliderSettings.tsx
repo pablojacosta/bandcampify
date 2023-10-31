@@ -8,7 +8,7 @@ export const sliderSettings = (length: number) => {
     speed: 500,
     slidesToShow: length >= 8 ? 8 : length,
     slidesToScroll: 2,
-    initialSlide: length >= 7 ? 5 : 1,
+    initialSlide: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     swipeToSlide: true,
