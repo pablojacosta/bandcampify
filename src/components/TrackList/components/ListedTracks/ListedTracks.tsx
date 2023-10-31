@@ -3,10 +3,16 @@ import styles from "./ListedTracks.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import Track from "../Track";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
+import { IAlbumTrack } from "interfaces/albumTrack";
+import { IAlbum } from "interfaces/album";
 
 const ListedTracks = () => {
   const { setShowPlayer, album } = useSelectedAlbumStore();
   const { isTrack, track, setStreamUrl } = useSelectedTrackStore();
+
+  const getTracksStreamUrls = (album: IAlbum) => {
+    return album.tracks.map((track: IAlbumTrack) => track.streamUrl);
+  };
 
   const handleOnPlayClickAlbum = (streamUrl: string) => {
     setShowPlayer(true);
@@ -17,6 +23,10 @@ const ListedTracks = () => {
     setStreamUrl(streamUrl);
     setShowPlayer(true);
   };
+
+  if (album) {
+    getTracksStreamUrls(album);
+  }
 
   return (
     <div className={styles.listedTracks}>
