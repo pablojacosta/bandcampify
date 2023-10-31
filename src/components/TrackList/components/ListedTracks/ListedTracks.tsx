@@ -5,9 +5,10 @@ import Track from "../Track";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import { IAlbumTrack } from "interfaces/albumTrack";
 import { IAlbum } from "interfaces/album";
+import { useEffect } from "react";
 
 const ListedTracks = () => {
-  const { setShowPlayer, album } = useSelectedAlbumStore();
+  const { setShowPlayer, album, setAlbumStreamUrls } = useSelectedAlbumStore();
   const { isTrack, track, setStreamUrl } = useSelectedTrackStore();
 
   const getTracksStreamUrls = (album: IAlbum) => {
@@ -24,9 +25,12 @@ const ListedTracks = () => {
     setShowPlayer(true);
   };
 
-  if (album) {
-    getTracksStreamUrls(album);
-  }
+  useEffect(() => {
+    if (album) {
+      setAlbumStreamUrls(getTracksStreamUrls(album));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [album]);
 
   return (
     <div className={styles.listedTracks}>
