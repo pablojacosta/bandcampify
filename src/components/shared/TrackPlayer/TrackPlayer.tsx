@@ -1,30 +1,14 @@
-import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
+import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import styles from "./TrackPlayer.module.scss";
-import useMediaQuery from "@hooks/useMediaQuery";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/src/styles.scss";
 
 const TrackPlayer = () => {
-  const { trackId, albumId } = useSelectedAlbumStore();
-  const isMobileBreakpoint = useMediaQuery(563);
-  const isSmallBreakpoint = useMediaQuery(416);
-  const isExtraSmallBreakpoint = useMediaQuery(330);
-
-  const src =
-    albumId !== 0
-      ? `https://bandcamp.com/EmbeddedPlayer/album=${albumId}/track=${trackId}/size=large/bgcol=333333/tracklist=false/linkcol=1ed760/artwork=small/transparent=true/`
-      : `https://bandcamp.com/EmbeddedPlayer/track=${trackId}/size=large/bgcol=333333/tracklist=false/linkcol=1ed760/artwork=small/transparent=true/`;
-
-  const style =
-    !isMobileBreakpoint && !isSmallBreakpoint && !isExtraSmallBreakpoint
-      ? { border: 0, width: 500, height: 150 }
-      : isMobileBreakpoint && !isSmallBreakpoint && !isExtraSmallBreakpoint
-      ? { border: 0, width: 400, height: 150 }
-      : isMobileBreakpoint && isSmallBreakpoint && !isExtraSmallBreakpoint
-      ? { border: 0, width: 300, height: 150 }
-      : { border: 0, width: 250, height: 150 };
+  const { streamUrl } = useSelectedTrackStore();
 
   return (
     <div className={styles.trackPlayer}>
-      <iframe style={style} src={src} seamless />
+      <AudioPlayer autoPlay src={streamUrl} className={styles.player} />
       <div className={styles.footerSpace} />
     </div>
   );
