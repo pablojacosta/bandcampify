@@ -4,11 +4,24 @@ import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import Track from "../Track";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import useTrackPlayer from "@hooks/useTrackPlayer";
+import { useEffect } from "react";
+import { useAutoPlayStore } from "@store/useAutoPlayStore";
 
 const ListedTracks = () => {
   const { album } = useSelectedAlbumStore();
   const { isTrack, track } = useSelectedTrackStore();
   const { handleOnPlayClickAlbum, handleOnPlayClickTrack } = useTrackPlayer();
+  const { isAutoPlay, setIsAutoPlay } = useAutoPlayStore();
+
+  useEffect(() => {
+    if (!isAutoPlay) {
+      return;
+    }
+
+    handleOnPlayClickAlbum(0);
+    setIsAutoPlay(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.listedTracks}>

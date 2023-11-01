@@ -2,8 +2,8 @@ import { IListedElement } from "interfaces/listedElement";
 import styles from "./ListedElement.module.scss";
 import { BiPlay } from "react-icons/bi";
 import { EListedElementTypes } from "@constants/enums";
-import useTrackPlayer from "@hooks/useTrackPlayer";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
+import { useAutoPlayStore } from "@store/useAutoPlayStore";
 
 const ListedElement = ({
   onClick,
@@ -26,8 +26,8 @@ const ListedElement = ({
     paddingLeft: "0.15rem",
   };
   const tag = !isTrack ? type : artist ? artist : album?.substring(3);
-  const { handleOnPlayClickAlbum, handleOnPlayClickTrack } = useTrackPlayer();
   const { track } = useSelectedTrackStore();
+  const { setIsAutoPlay } = useAutoPlayStore();
 
   return (
     <div
@@ -51,12 +51,12 @@ const ListedElement = ({
                 onClick={
                   isTrack && track
                     ? () => {
-                        handleSongOnClick;
-                        handleOnPlayClickTrack(track.streamUrl);
+                        setIsAutoPlay(true);
+                        handleSongOnClick();
                       }
                     : () => {
-                        handleAlbumOnClick;
-                        handleOnPlayClickAlbum(0);
+                        setIsAutoPlay(true);
+                        handleAlbumOnClick();
                       }
                 }
               >
