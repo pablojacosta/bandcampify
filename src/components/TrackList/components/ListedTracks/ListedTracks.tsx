@@ -3,34 +3,40 @@ import styles from "./ListedTracks.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import Track from "../Track";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
-import { IAlbumTrack } from "interfaces/albumTrack";
-import { IAlbum } from "interfaces/album";
-import { useEffect } from "react";
+import { IPlaylistSrc } from "interfaces/playlistSrc";
 
 const ListedTracks = () => {
-  const { setShowPlayer, album, setAlbumStreamUrls } = useSelectedAlbumStore();
+  const {
+    setShowPlayer,
+    album,
+    setTrackIndex,
+    setIsAlbum,
+    albumStreamUrls,
+    setPlaylist,
+  } = useSelectedAlbumStore();
   const { isTrack, track, setStreamUrl } = useSelectedTrackStore();
 
-  const getTracksStreamUrls = (album: IAlbum) => {
-    return album.tracks.map((track: IAlbumTrack) => track.streamUrl);
+  const getPlaylist = () => {
+    const playlist: IPlaylistSrc[] = [];
+
+    for (let i = 0; i < albumStreamUrls.length; i++) {
+      playlist.push({ src: albumStreamUrls[i] });
+    }
+
+    return playlist;
   };
 
-  const handleOnPlayClickAlbum = (streamUrl: string) => {
+  const handleOnPlayClickAlbum = (index: number) => {
+    setPlaylist(getPlaylist());
+    setTrackIndex(index);
     setShowPlayer(true);
-    setStreamUrl(streamUrl);
+    setIsAlbum(true);
   };
 
   const handleOnPlayClickTrack = (streamUrl: string) => {
     setStreamUrl(streamUrl);
     setShowPlayer(true);
   };
-
-  useEffect(() => {
-    if (album) {
-      setAlbumStreamUrls(getTracksStreamUrls(album));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [album]);
 
   return (
     <div className={styles.listedTracks}>
@@ -41,9 +47,7 @@ const ListedTracks = () => {
               key={`${album.raw.basic.albumRelease[0].additionalProperty[0].value}_${track.name}`}
             >
               <Track
-                handleOnPlayClick={() =>
-                  handleOnPlayClickAlbum(track.streamUrl)
-                }
+                handleOnPlayClick={() => handleOnPlayClickAlbum(index)}
                 name={track.name}
                 index={index}
                 duration={formatDuration(track.duration)}

@@ -2,10 +2,16 @@
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { IAlbum } from "interfaces/album";
+import { IAlbumTrack } from "interfaces/albumTrack";
 
 const useGetAlbum = () => {
-  const { setAlbum } = useSelectedAlbumStore();
+  const { setAlbum, setAlbumStreamUrls } = useSelectedAlbumStore();
   const { setShowLoader } = useLoaderStore();
+
+  const getTracksStreamUrls = (album: IAlbum) => {
+    return album.tracks.map((track: IAlbumTrack) => track.streamUrl);
+  };
 
   const getAlbum = async (albumUrl: string) => {
     setShowLoader(true);
@@ -20,6 +26,7 @@ const useGetAlbum = () => {
       .request(getAlbumsOptions)
       .then((response: AxiosResponse<any, any>) => {
         setAlbum(response.data);
+        setAlbumStreamUrls(getTracksStreamUrls(response.data));
       })
       .finally(() => setShowLoader(false))
       .catch((error) => {
