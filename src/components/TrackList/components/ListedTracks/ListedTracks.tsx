@@ -1,27 +1,41 @@
 import { formatDuration } from "@utils/helpers/formatDuration";
 import styles from "./ListedTracks.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
-import { getTrackId } from "@utils/helpers/getTrackId";
 import Track from "../Track";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
-import { IAlbum } from "interfaces/album";
+import { IPlaylistSrc } from "interfaces/playlistSrc";
 
 const ListedTracks = () => {
-  const { setShowPlayer, setTrackId, album, setAlbumId } =
-    useSelectedAlbumStore();
-  const { isTrack } = useSelectedTrackStore();
-  const { track } = useSelectedTrackStore();
+  const {
+    setShowPlayer,
+    album,
+    setTrackIndex,
+    setIsAlbum,
+    albumStreamUrls,
+    setPlaylist,
+  } = useSelectedAlbumStore();
+  const { isTrack, track, setStreamUrl } = useSelectedTrackStore();
 
-  const handleOnPlayClickAlbum = (trackId: string, album: IAlbum) => {
-    setTrackId(trackId);
-    setShowPlayer(true);
-    setAlbumId(album.raw.basic.albumRelease[0].additionalProperty[0].value);
+  const getPlaylist = () => {
+    const playlist: IPlaylistSrc[] = [];
+
+    for (let i = 0; i < albumStreamUrls.length; i++) {
+      playlist.push({ src: albumStreamUrls[i] });
+    }
+
+    return playlist;
   };
 
-  const handleOnPlayClickTrack = (trackId: string) => {
-    setTrackId(trackId);
+  const handleOnPlayClickAlbum = (index: number) => {
+    setPlaylist(getPlaylist());
+    setTrackIndex(index);
     setShowPlayer(true);
-    setAlbumId(0);
+    setIsAlbum(true);
+  };
+
+  const handleOnPlayClickTrack = (streamUrl: string) => {
+    setStreamUrl(streamUrl);
+    setShowPlayer(true);
   };
 
   return (
@@ -33,9 +47,7 @@ const ListedTracks = () => {
               key={`${album.raw.basic.albumRelease[0].additionalProperty[0].value}_${track.name}`}
             >
               <Track
-                handleOnPlayClick={() =>
-                  handleOnPlayClickAlbum(getTrackId(track.streamUrl), album)
-                }
+                handleOnPlayClick={() => handleOnPlayClickAlbum(index)}
                 name={track.name}
                 index={index}
                 duration={formatDuration(track.duration)}
@@ -50,7 +62,7 @@ const ListedTracks = () => {
               <li>
                 <Track
                   handleOnPlayClick={() =>
-                    handleOnPlayClickTrack(getTrackId(track.streamUrl))
+                    handleOnPlayClickTrack(track.streamUrl)
                   }
                   name={track.name}
                   index={0}
