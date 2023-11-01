@@ -13,6 +13,8 @@ const ListedElement = ({
   isFoundResults,
   isList,
   noSlider,
+  handleAlbumOnClick,
+  handleSongOnClick,
 }: IListedElement) => {
   const isTrack = type === EListedElementTypes.TRACK;
   const isArtist = type === EListedElementTypes.ARTIST;
@@ -40,7 +42,10 @@ const ListedElement = ({
               <p className={styles.tag}>{tag}</p>
             </div>
             {!isArtist && (
-              <div className={styles.playButton}>
+              <div
+                className={styles.playButton}
+                onClick={isTrack ? handleSongOnClick : handleAlbumOnClick}
+              >
                 <BiPlay style={iconStyle} />
               </div>
             )}

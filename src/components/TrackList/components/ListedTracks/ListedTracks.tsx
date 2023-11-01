@@ -3,40 +3,12 @@ import styles from "./ListedTracks.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import Track from "../Track";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
-import { IPlaylistSrc } from "interfaces/playlistSrc";
+import useTrackPlayer from "@hooks/useTrackPlayer";
 
 const ListedTracks = () => {
-  const {
-    setShowPlayer,
-    album,
-    setTrackIndex,
-    setIsAlbum,
-    albumStreamUrls,
-    setPlaylist,
-  } = useSelectedAlbumStore();
-  const { isTrack, track, setStreamUrl } = useSelectedTrackStore();
-
-  const getPlaylist = () => {
-    const playlist: IPlaylistSrc[] = [];
-
-    for (let i = 0; i < albumStreamUrls.length; i++) {
-      playlist.push({ src: albumStreamUrls[i] });
-    }
-
-    return playlist;
-  };
-
-  const handleOnPlayClickAlbum = (index: number) => {
-    setPlaylist(getPlaylist());
-    setTrackIndex(index);
-    setShowPlayer(true);
-    setIsAlbum(true);
-  };
-
-  const handleOnPlayClickTrack = (streamUrl: string) => {
-    setStreamUrl(streamUrl);
-    setShowPlayer(true);
-  };
+  const { album } = useSelectedAlbumStore();
+  const { isTrack, track } = useSelectedTrackStore();
+  const { handleOnPlayClickAlbum, handleOnPlayClickTrack } = useTrackPlayer();
 
   return (
     <div className={styles.listedTracks}>

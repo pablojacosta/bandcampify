@@ -11,4 +11,6 @@ export interface IListedElement {
   isFoundResults?: boolean;
   isList?: boolean;
   noSlider?: boolean;
+  handleAlbumOnClick: () => void;
+  handleSongOnClick: () => void;
 }
