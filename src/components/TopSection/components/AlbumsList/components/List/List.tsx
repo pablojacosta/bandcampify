@@ -64,8 +64,8 @@ const List = ({ items, type }: IList) => {
                     artist={artistInfo?.name}
                     type={listedElementType}
                     isList
-                    handleAlbumOnClick={handleAlbumOnClick}
-                    handleSongOnClick={handleSongOnClick}
+                    handleAlbumOnClick={() => handleAlbumOnClick()}
+                    handleSongOnClick={() => handleSongOnClick()}
                   />
                 </Link>
               );
