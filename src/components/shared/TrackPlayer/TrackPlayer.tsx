@@ -3,11 +3,13 @@ import styles from "./TrackPlayer.module.scss";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/src/styles.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
+import { useAutoPlayStore } from "@store/useAutoPlayStore";
 
 const TrackPlayer = () => {
   const { streamUrl } = useSelectedTrackStore();
   const { trackIndex, isAlbum, playList, setTrackIndex } =
     useSelectedAlbumStore();
+  const { setIsPlaying } = useAutoPlayStore();
 
   const handleClickPrevious = () => {
     setTrackIndex(trackIndex > 0 ? trackIndex - 1 : 0);
@@ -33,6 +35,8 @@ const TrackPlayer = () => {
         onClickPrevious={handleClickPrevious}
         onClickNext={handleClickNext}
         showJumpControls={false}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
       />
       <div className={styles.footerSpace} />
     </div>

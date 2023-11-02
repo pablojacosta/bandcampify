@@ -8,6 +8,7 @@ import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import HorizontalLoader from "@components/shared/HorizontalLoader";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import SoundIcon from "@components/elements/Icons/SoundIcon/SoundIcon";
+import { useAutoPlayStore } from "@store/useAutoPlayStore";
 
 const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -18,8 +19,9 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const [artistNameForTrack, setArtistNameForTrack] = useState("");
   const [showHorizontalLoader, setShowHorizontalLoader] = useState(true);
   const { trackIndex } = useSelectedAlbumStore();
-  const showIndex = !isHovering && trackIndex !== index;
-  const showSoundIcon = trackIndex === index;
+  const { isPlaying } = useAutoPlayStore();
+  const showIndex = !isHovering && trackIndex !== index && !isPlaying;
+  const showSoundIcon = trackIndex === index && isPlaying;
 
   const handleMouseOver = () => {
     setIsHovering(true);
