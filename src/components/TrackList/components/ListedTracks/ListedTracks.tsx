@@ -18,8 +18,16 @@ const ListedTracks = () => {
       return;
     }
 
-    handleOnPlayClickAlbum(0);
-    setIsAutoPlay(false);
+    if (album) {
+      handleOnPlayClickAlbum(0);
+      setIsAutoPlay(false);
+    }
+
+    if (track) {
+      handleOnPlayClickTrack(track.streamUrl);
+      setIsAutoPlay(false);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
