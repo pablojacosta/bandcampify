@@ -17,6 +17,14 @@
     a {
       text-decoration: none;
     }
+
+    img {
+      margin-bottom: -0.5rem;
+
+      @include responsives.resolution__laptop__ms {
+        margin-bottom: 0.2rem;
+      }
+    }
   }
 
   .slider {
