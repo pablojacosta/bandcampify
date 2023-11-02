@@ -19,9 +19,17 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const [artistNameForTrack, setArtistNameForTrack] = useState("");
   const [showHorizontalLoader, setShowHorizontalLoader] = useState(true);
   const { trackIndex } = useSelectedAlbumStore();
-  const { isPlaying } = useAutoPlayStore();
-  const showIndex = !isHovering && trackIndex !== index && !isPlaying;
+  const { isPlaying, playedTrackIndex } = useAutoPlayStore();
+  const showIndex =
+    (!isHovering && !isPlaying) ||
+    (isPlaying && trackIndex !== index && !isHovering);
   const showSoundIcon = trackIndex === index && isPlaying;
+  const trackIsPlaying = index === playedTrackIndex;
+
+  console.log("isPlaying", isPlaying);
+  console.log("trackIndex", trackIndex);
+  console.log("index", index);
+  console.log("isHovering", isHovering);
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -59,7 +67,7 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
 
   return (
     <div
-      className={styles.track}
+      className={`${styles.track} ${trackIsPlaying ? styles.isPlaying : ""}`}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
       onClick={() => handleOnPlayClick()}

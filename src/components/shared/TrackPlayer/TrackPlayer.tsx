@@ -35,8 +35,8 @@ const TrackPlayer = () => {
         onClickPrevious={handleClickPrevious}
         onClickNext={handleClickNext}
         showJumpControls={false}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
+        onPlay={() => setIsPlaying(true, trackIndex)}
+        onPause={() => setIsPlaying(false, trackIndex)}
       />
       <div className={styles.footerSpace} />
     </div>
