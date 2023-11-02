@@ -10,7 +10,13 @@ import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import SoundIcon from "@components/elements/Icons/SoundIcon/SoundIcon";
 import { useAutoPlayStore } from "@store/useAutoPlayStore";
 
-const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
+const Track = ({
+  handleOnPlayClick,
+  name,
+  index,
+  duration,
+  streamUrl,
+}: ITrack) => {
   const [isHovering, setIsHovering] = useState(false);
   const isMobileBreakpoint = useMediaQuery(563);
   const isMobileSmallBreakpoint = useMediaQuery(370);
@@ -19,12 +25,14 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const [artistNameForTrack, setArtistNameForTrack] = useState("");
   const [showHorizontalLoader, setShowHorizontalLoader] = useState(true);
   const { trackIndex } = useSelectedAlbumStore();
-  const { isPlaying, playedTrackIndex } = useAutoPlayStore();
+  const { isPlaying, playedTrackIndex, playedTrackSrc } = useAutoPlayStore();
   const showIndex =
     (!isHovering && !isPlaying) ||
-    (isPlaying && trackIndex !== index && !isHovering);
-  const showSoundIcon = trackIndex === index && isPlaying;
-  const trackIsPlaying = index === playedTrackIndex;
+    (isPlaying && !isHovering && playedTrackSrc !== streamUrl);
+  const showSoundIcon =
+    trackIndex === index && isPlaying && playedTrackSrc === streamUrl;
+  const trackIsPlaying =
+    index === playedTrackIndex && playedTrackSrc === streamUrl;
 
   const handleMouseOver = () => {
     setIsHovering(true);

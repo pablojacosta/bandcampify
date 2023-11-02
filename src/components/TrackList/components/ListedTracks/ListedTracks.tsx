@@ -44,6 +44,7 @@ const ListedTracks = () => {
                 name={track.name}
                 index={index}
                 duration={formatDuration(track.duration)}
+                streamUrl={track.streamUrl}
               />
             </li>
           ))}
@@ -60,6 +61,7 @@ const ListedTracks = () => {
                   name={track.name}
                   index={0}
                   duration={""}
+                  streamUrl={track.streamUrl}
                 />
               </li>
             </ul>

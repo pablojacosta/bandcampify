@@ -10,6 +10,7 @@ const TrackPlayer = () => {
   const { trackIndex, isAlbum, playList, setTrackIndex } =
     useSelectedAlbumStore();
   const { setIsPlaying } = useAutoPlayStore();
+  const src = isAlbum ? playList[trackIndex].src : streamUrl;
 
   const handleClickPrevious = () => {
     setTrackIndex(trackIndex > 0 ? trackIndex - 1 : 0);
@@ -27,7 +28,7 @@ const TrackPlayer = () => {
     <div className={styles.trackPlayer}>
       <AudioPlayer
         autoPlay
-        src={isAlbum ? playList[trackIndex].src : streamUrl}
+        src={src}
         className={styles.player}
         showSkipControls
         onEnded={handleClickNext}
@@ -35,8 +36,8 @@ const TrackPlayer = () => {
         onClickPrevious={handleClickPrevious}
         onClickNext={handleClickNext}
         showJumpControls={false}
-        onPlay={() => setIsPlaying(true, trackIndex)}
-        onPause={() => setIsPlaying(false, trackIndex)}
+        onPlay={() => setIsPlaying(true, trackIndex, src)}
+        onPause={() => setIsPlaying(false, trackIndex, src)}
       />
       <div className={styles.footerSpace} />
     </div>
