@@ -6,6 +6,8 @@ import { ITrack } from "interfaces/track";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import HorizontalLoader from "@components/shared/HorizontalLoader";
+import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
+import SoundIcon from "@components/elements/Icons/SoundIcon/SoundIcon";
 
 const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -15,6 +17,9 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const { isTrack } = useSelectedTrackStore();
   const [artistNameForTrack, setArtistNameForTrack] = useState("");
   const [showHorizontalLoader, setShowHorizontalLoader] = useState(true);
+  const { trackIndex } = useSelectedAlbumStore();
+  const showIndex = !isHovering && trackIndex !== index;
+  const showSoundIcon = trackIndex === index;
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -59,8 +64,10 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
     >
       {!isMobileBreakpoint && (
         <div className={styles.trackNumber}>
-          {!isHovering ? (
+          {showIndex ? (
             <>{index + 1}</>
+          ) : showSoundIcon ? (
+            <SoundIcon />
           ) : (
             <span>
               <BiPlay className={styles.play} />

@@ -6,6 +6,7 @@ const SoundIcon = () => {
       viewBox="0 0 10 8"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      color="#1ed760"
     >
       <g
         id="Audio"
