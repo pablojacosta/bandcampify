@@ -6,8 +6,17 @@ import { ITrack } from "interfaces/track";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import HorizontalLoader from "@components/shared/HorizontalLoader";
+import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
+import SoundIcon from "@components/elements/Icons/SoundIcon/SoundIcon";
+import { useAutoPlayStore } from "@store/useAutoPlayStore";
 
-const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
+const Track = ({
+  handleOnPlayClick,
+  name,
+  index,
+  duration,
+  streamUrl,
+}: ITrack) => {
   const [isHovering, setIsHovering] = useState(false);
   const isMobileBreakpoint = useMediaQuery(563);
   const isMobileSmallBreakpoint = useMediaQuery(370);
@@ -15,6 +24,15 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const { isTrack } = useSelectedTrackStore();
   const [artistNameForTrack, setArtistNameForTrack] = useState("");
   const [showHorizontalLoader, setShowHorizontalLoader] = useState(true);
+  const { trackIndex } = useSelectedAlbumStore();
+  const { isPlaying, playedTrackIndex, playedTrackSrc } = useAutoPlayStore();
+  const showIndex =
+    (!isHovering && !isPlaying) ||
+    (isPlaying && !isHovering && playedTrackSrc !== streamUrl);
+  const showSoundIcon =
+    trackIndex === index && isPlaying && playedTrackSrc === streamUrl;
+  const trackIsPlaying =
+    index === playedTrackIndex && playedTrackSrc === streamUrl;
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -52,15 +70,17 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
 
   return (
     <div
-      className={styles.track}
+      className={`${styles.track} ${trackIsPlaying ? styles.isPlaying : ""}`}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
       onClick={() => handleOnPlayClick()}
     >
       {!isMobileBreakpoint && (
         <div className={styles.trackNumber}>
-          {!isHovering ? (
+          {showIndex ? (
             <>{index + 1}</>
+          ) : showSoundIcon ? (
+            <SoundIcon />
           ) : (
             <span>
               <BiPlay className={styles.play} />

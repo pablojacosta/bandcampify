@@ -1,28 +1,35 @@
 import { formatDuration } from "@utils/helpers/formatDuration";
 import styles from "./ListedTracks.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
-import { getTrackId } from "@utils/helpers/getTrackId";
 import Track from "../Track";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
-import { IAlbum } from "interfaces/album";
+import useTrackPlayer from "@hooks/useTrackPlayer";
+import { useEffect } from "react";
+import { useAutoPlayStore } from "@store/useAutoPlayStore";
 
 const ListedTracks = () => {
-  const { setShowPlayer, setTrackId, album, setAlbumId } =
-    useSelectedAlbumStore();
-  const { isTrack } = useSelectedTrackStore();
-  const { track } = useSelectedTrackStore();
+  const { album } = useSelectedAlbumStore();
+  const { isTrack, track } = useSelectedTrackStore();
+  const { handleOnPlayClickAlbum, handleOnPlayClickTrack } = useTrackPlayer();
+  const { isAutoPlay, setIsAutoPlay } = useAutoPlayStore();
 
-  const handleOnPlayClickAlbum = (trackId: string, album: IAlbum) => {
-    setTrackId(trackId);
-    setShowPlayer(true);
-    setAlbumId(album.raw.basic.albumRelease[0].additionalProperty[0].value);
-  };
+  useEffect(() => {
+    if (!isAutoPlay) {
+      return;
+    }
 
-  const handleOnPlayClickTrack = (trackId: string) => {
-    setTrackId(trackId);
-    setShowPlayer(true);
-    setAlbumId(0);
-  };
+    if (album) {
+      handleOnPlayClickAlbum(0);
+      setIsAutoPlay(false);
+    }
+
+    if (track) {
+      handleOnPlayClickTrack(track.streamUrl);
+      setIsAutoPlay(false);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.listedTracks}>
@@ -33,12 +40,11 @@ const ListedTracks = () => {
               key={`${album.raw.basic.albumRelease[0].additionalProperty[0].value}_${track.name}`}
             >
               <Track
-                handleOnPlayClick={() =>
-                  handleOnPlayClickAlbum(getTrackId(track.streamUrl), album)
-                }
+                handleOnPlayClick={() => handleOnPlayClickAlbum(index)}
                 name={track.name}
                 index={index}
                 duration={formatDuration(track.duration)}
+                streamUrl={track.streamUrl}
               />
             </li>
           ))}
@@ -50,11 +56,12 @@ const ListedTracks = () => {
               <li>
                 <Track
                   handleOnPlayClick={() =>
-                    handleOnPlayClickTrack(getTrackId(track.streamUrl))
+                    handleOnPlayClickTrack(track.streamUrl)
                   }
                   name={track.name}
                   index={0}
                   duration={""}
+                  streamUrl={track.streamUrl}
                 />
               </li>
             </ul>

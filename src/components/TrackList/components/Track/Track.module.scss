@@ -59,4 +59,14 @@
       font-size: 0.8rem;
     }
   }
+
+  &.isPlaying {
+    .trackNumber {
+      color: var(--color-green);
+    }
+
+    .songName {
+      color: var(--color-green);
+    }
+  }
 }

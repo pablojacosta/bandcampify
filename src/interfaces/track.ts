@@ -3,4 +3,5 @@ export interface ITrack {
   name: string;
   index: number;
   duration: string;
+  streamUrl: string;
 }
