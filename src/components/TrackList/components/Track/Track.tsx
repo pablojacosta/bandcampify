@@ -26,11 +26,6 @@ const Track = ({ handleOnPlayClick, name, index, duration }: ITrack) => {
   const showSoundIcon = trackIndex === index && isPlaying;
   const trackIsPlaying = index === playedTrackIndex;
 
-  console.log("isPlaying", isPlaying);
-  console.log("trackIndex", trackIndex);
-  console.log("index", index);
-  console.log("isHovering", isHovering);
-
   const handleMouseOver = () => {
     setIsHovering(true);
   };
