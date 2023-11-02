@@ -15,8 +15,6 @@ const ListedElement = ({
   isFoundResults,
   isList,
   noSlider,
-  handleAlbumOnClick,
-  handleSongOnClick,
 }: IListedElement) => {
   const isTrack = type === EListedElementTypes.TRACK;
   const isArtist = type === EListedElementTypes.ARTIST;
@@ -52,11 +50,9 @@ const ListedElement = ({
                   isTrack && track
                     ? () => {
                         setIsAutoPlay(true);
-                        handleSongOnClick();
                       }
                     : () => {
                         setIsAutoPlay(true);
-                        handleAlbumOnClick();
                       }
                 }
               >
