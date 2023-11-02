@@ -3,40 +3,33 @@ import styles from "./ListedTracks.module.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import Track from "../Track";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
-import { IPlaylistSrc } from "interfaces/playlistSrc";
+import useTrackPlayer from "@hooks/useTrackPlayer";
+import { useEffect } from "react";
+import { useAutoPlayStore } from "@store/useAutoPlayStore";
 
 const ListedTracks = () => {
-  const {
-    setShowPlayer,
-    album,
-    setTrackIndex,
-    setIsAlbum,
-    albumStreamUrls,
-    setPlaylist,
-  } = useSelectedAlbumStore();
-  const { isTrack, track, setStreamUrl } = useSelectedTrackStore();
+  const { album } = useSelectedAlbumStore();
+  const { isTrack, track } = useSelectedTrackStore();
+  const { handleOnPlayClickAlbum, handleOnPlayClickTrack } = useTrackPlayer();
+  const { isAutoPlay, setIsAutoPlay } = useAutoPlayStore();
 
-  const getPlaylist = () => {
-    const playlist: IPlaylistSrc[] = [];
-
-    for (let i = 0; i < albumStreamUrls.length; i++) {
-      playlist.push({ src: albumStreamUrls[i] });
+  useEffect(() => {
+    if (!isAutoPlay) {
+      return;
     }
 
-    return playlist;
-  };
+    if (album) {
+      handleOnPlayClickAlbum(0);
+      setIsAutoPlay(false);
+    }
 
-  const handleOnPlayClickAlbum = (index: number) => {
-    setPlaylist(getPlaylist());
-    setTrackIndex(index);
-    setShowPlayer(true);
-    setIsAlbum(true);
-  };
+    if (track) {
+      handleOnPlayClickTrack(track.streamUrl);
+      setIsAutoPlay(false);
+    }
 
-  const handleOnPlayClickTrack = (streamUrl: string) => {
-    setStreamUrl(streamUrl);
-    setShowPlayer(true);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.listedTracks}>
@@ -51,6 +44,7 @@ const ListedTracks = () => {
                 name={track.name}
                 index={index}
                 duration={formatDuration(track.duration)}
+                streamUrl={track.streamUrl}
               />
             </li>
           ))}
@@ -67,6 +61,7 @@ const ListedTracks = () => {
                   name={track.name}
                   index={0}
                   duration={""}
+                  streamUrl={track.streamUrl}
                 />
               </li>
             </ul>
