@@ -5,12 +5,14 @@ interface IAutoPlayStore {
   isPlaying: boolean;
   playedTrackIndex: number;
   playedTrackSrc: string;
+  pauseTrack: boolean;
   setIsAutoPlay: (isAutoPlay: boolean) => void;
   setIsPlaying: (
     isPlaying: boolean,
     playedTrackIndex: number,
     playedTrackSrc: string
   ) => void;
+  setPauseTrack: (pauseTrack: boolean) => void;
   clearStore: () => void;
 }
 
@@ -19,6 +21,7 @@ const initialState = {
   isPlaying: false,
   playedTrackIndex: 0,
   playedTrackSrc: "",
+  pauseTrack: false,
 };
 
 export const useAutoPlayStore = create<IAutoPlayStore>()((set) => ({
@@ -38,6 +41,11 @@ export const useAutoPlayStore = create<IAutoPlayStore>()((set) => ({
       isPlaying,
       playedTrackIndex,
       playedTrackSrc,
+    })),
+  setPauseTrack: (pauseTrack: boolean) =>
+    set((state) => ({
+      ...state,
+      pauseTrack,
     })),
   clearStore: () => set(() => ({ ...initialState })),
 }));
