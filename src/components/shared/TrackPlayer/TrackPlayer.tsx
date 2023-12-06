@@ -26,8 +26,6 @@ const TrackPlayer = () => {
     setTrackIndex(trackIndex + 1);
   };
 
-  console.log("pauseTrack", pauseTrack);
-
   useEffect(() => {
     if (!pauseTrack) {
       return;
