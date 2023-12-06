@@ -25,7 +25,13 @@ const Track = ({
   const [artistNameForTrack, setArtistNameForTrack] = useState("");
   const [showHorizontalLoader, setShowHorizontalLoader] = useState(true);
   const { trackIndex } = useSelectedAlbumStore();
-  const { isPlaying, playedTrackIndex, playedTrackSrc } = useAutoPlayStore();
+  const {
+    isPlaying,
+    playedTrackIndex,
+    playedTrackSrc,
+    setPauseTrack,
+    pauseTrack,
+  } = useAutoPlayStore();
   const showIndex =
     (!isHovering && !isPlaying) ||
     (isPlaying && !isHovering && playedTrackSrc !== streamUrl);
@@ -73,7 +79,16 @@ const Track = ({
       className={`${styles.track} ${trackIsPlaying ? styles.isPlaying : ""}`}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
-      onClick={() => handleOnPlayClick()}
+      onClick={
+        !trackIsPlaying && pauseTrack === false
+          ? () => handleOnPlayClick()
+          : !trackIsPlaying && pauseTrack === true
+          ? () => {
+              setPauseTrack(false);
+              handleOnPlayClick();
+            }
+          : () => setPauseTrack(true)
+      }
     >
       {!isMobileBreakpoint && (
         <div className={styles.trackNumber}>
