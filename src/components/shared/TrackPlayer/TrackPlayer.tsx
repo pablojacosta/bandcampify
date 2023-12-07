@@ -7,7 +7,7 @@ import { useAutoPlayStore } from "@store/useAutoPlayStore";
 import { useEffect, useRef } from "react";
 
 const TrackPlayer = () => {
-  const { streamUrl } = useSelectedTrackStore();
+  const { streamUrl, track } = useSelectedTrackStore();
   const { trackIndex, isAlbum, playList, setTrackIndex } =
     useSelectedAlbumStore();
   const { setIsPlaying, pauseTrack } = useAutoPlayStore();
@@ -34,8 +34,13 @@ const TrackPlayer = () => {
     player.current?.audio.current?.pause();
   }, [pauseTrack]);
 
+  console.log("track", track);
+
   return (
     <div className={styles.trackPlayer}>
+      <div className={styles.details}>
+        {track?.artist.name} - {track?.name}
+      </div>
       <AudioPlayer
         autoPlay
         src={src}
