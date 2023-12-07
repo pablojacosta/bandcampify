@@ -28,6 +28,7 @@ const TrackPlayer = () => {
 
   useEffect(() => {
     if (!pauseTrack) {
+      player.current?.audio.current?.play();
       return;
     }
 

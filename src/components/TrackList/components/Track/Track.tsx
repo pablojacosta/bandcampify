@@ -37,8 +37,8 @@ const Track = ({
     (isPlaying && !isHovering && playedTrackSrc !== streamUrl);
   const showSoundIcon =
     trackIndex === index && isPlaying && playedTrackSrc === streamUrl;
-  const trackIsPlaying =
-    index === playedTrackIndex && playedTrackSrc === streamUrl;
+  const isSameIndex = index === playedTrackIndex;
+  const trackIsPlaying = isSameIndex && playedTrackSrc === streamUrl;
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -47,6 +47,18 @@ const Track = ({
   const handleMouseOut = () => {
     setIsHovering(false);
   };
+
+  const handleOnClick =
+    !isPlaying && pauseTrack === false
+      ? () => handleOnPlayClick()
+      : isPlaying && isSameIndex && !pauseTrack
+      ? () => setPauseTrack(true)
+      : isPlaying && !isSameIndex && !pauseTrack
+      ? () => handleOnPlayClick()
+      : () => {
+          setPauseTrack(false);
+          handleOnPlayClick();
+        };
 
   useEffect(() => {
     if (!fetchArtist) {
@@ -79,16 +91,7 @@ const Track = ({
       className={`${styles.track} ${trackIsPlaying ? styles.isPlaying : ""}`}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
-      onClick={
-        !trackIsPlaying && pauseTrack === false
-          ? () => handleOnPlayClick()
-          : !trackIsPlaying && pauseTrack === true
-          ? () => {
-              setPauseTrack(false);
-              handleOnPlayClick();
-            }
-          : () => setPauseTrack(true)
-      }
+      onClick={handleOnClick}
     >
       {!isMobileBreakpoint && (
         <div className={styles.trackNumber}>
