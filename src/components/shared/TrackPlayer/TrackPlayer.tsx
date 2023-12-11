@@ -10,9 +10,13 @@ const TrackPlayer = () => {
   const { streamUrl, track } = useSelectedTrackStore();
   const { trackIndex, isAlbum, playList, setTrackIndex, album } =
     useSelectedAlbumStore();
-  const { setIsPlaying, pauseTrack } = useAutoPlayStore();
+  const { setIsPlaying, pauseTrack, playedArtistName, playedTrackName } =
+    useAutoPlayStore();
   const src = isAlbum ? playList[trackIndex].src : streamUrl;
   const player = useRef<AudioPlayer | null>(null);
+  const artistName = isAlbum && album ? album.artist.name : track!.artist.name;
+  const trackName =
+    isAlbum && album ? album?.tracks[trackIndex].name : track!.name;
 
   const handleClickPrevious = () => {
     setTrackIndex(trackIndex > 0 ? trackIndex - 1 : 0);
@@ -38,8 +42,7 @@ const TrackPlayer = () => {
   return (
     <div className={styles.trackPlayer}>
       <div className={styles.details}>
-        {isAlbum ? album?.artist.name : track?.artist.name} -{" "}
-        {isAlbum ? album?.tracks[trackIndex].name : track?.name}
+        {playedArtistName} - {playedTrackName}
       </div>
       <AudioPlayer
         autoPlay
@@ -51,8 +54,12 @@ const TrackPlayer = () => {
         onClickPrevious={handleClickPrevious}
         onClickNext={handleClickNext}
         showJumpControls={false}
-        onPlay={() => setIsPlaying(true, trackIndex, src)}
-        onPause={() => setIsPlaying(false, trackIndex, src)}
+        onPlay={() =>
+          setIsPlaying(true, trackIndex, src, artistName, trackName)
+        }
+        onPause={() =>
+          setIsPlaying(false, trackIndex, src, artistName, trackName)
+        }
         ref={player}
       />
       <div className={styles.footerSpace} />
