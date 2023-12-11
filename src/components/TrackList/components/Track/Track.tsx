@@ -53,7 +53,7 @@ const Track = ({
       ? () => handleOnPlayClick()
       : isPlaying && isSameIndex && !pauseTrack
       ? () => setPauseTrack(true)
-      : isPlaying && !isSameIndex && !pauseTrack
+      : isPlaying && !isTrack && !isSameIndex && !pauseTrack
       ? () => handleOnPlayClick()
       : () => {
           setPauseTrack(false);
