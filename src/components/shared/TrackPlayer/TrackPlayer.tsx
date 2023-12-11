@@ -14,9 +14,18 @@ const TrackPlayer = () => {
     useAutoPlayStore();
   const src = isAlbum ? playList[trackIndex].src : streamUrl;
   const player = useRef<AudioPlayer | null>(null);
-  const artistName = isAlbum && album ? album.artist.name : track!.artist.name;
-  const trackName =
-    isAlbum && album ? album?.tracks[trackIndex].name : track!.name;
+  const albumIsPlaying = isAlbum && album;
+  const trackIsPlaying = !isAlbum && track;
+  const artistName = albumIsPlaying
+    ? album.artist.name
+    : trackIsPlaying
+    ? track.artist.name
+    : "";
+  const trackName = albumIsPlaying
+    ? album?.tracks[trackIndex].name
+    : trackIsPlaying
+    ? track.name
+    : "";
 
   const handleClickPrevious = () => {
     setTrackIndex(trackIndex > 0 ? trackIndex - 1 : 0);
