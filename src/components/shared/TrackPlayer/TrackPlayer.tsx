@@ -4,7 +4,7 @@ import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/src/styles.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import { useAutoPlayStore } from "@store/useAutoPlayStore";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const TrackPlayer = () => {
   const { streamUrl, track } = useSelectedTrackStore();
@@ -16,16 +16,8 @@ const TrackPlayer = () => {
   const player = useRef<AudioPlayer | null>(null);
   const albumIsPlaying = isAlbum && album;
   const trackIsPlaying = !isAlbum && track;
-  const artistName = albumIsPlaying
-    ? album.artist.name
-    : trackIsPlaying
-    ? track.artist.name
-    : "";
-  const trackName = albumIsPlaying
-    ? album?.tracks[trackIndex].name
-    : trackIsPlaying
-    ? track.name
-    : "";
+  const [artistName, setArtistName] = useState("");
+  const [trackName, setTrackName] = useState("");
 
   const handleClickPrevious = () => {
     setTrackIndex(trackIndex > 0 ? trackIndex - 1 : 0);
@@ -47,6 +39,25 @@ const TrackPlayer = () => {
 
     player.current?.audio.current?.pause();
   }, [pauseTrack]);
+
+  useEffect(() => {
+    setArtistName(
+      albumIsPlaying
+        ? album.artist.name
+        : trackIsPlaying
+        ? track.artist.name
+        : ""
+    );
+
+    setTrackName(
+      albumIsPlaying
+        ? album?.tracks[trackIndex].name
+        : trackIsPlaying
+        ? track.name
+        : ""
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [src]);
 
   return (
     <div className={styles.trackPlayer}>
