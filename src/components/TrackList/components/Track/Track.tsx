@@ -24,7 +24,7 @@ const Track = ({
   const { isTrack } = useSelectedTrackStore();
   const [artistNameForTrack, setArtistNameForTrack] = useState("");
   const [showHorizontalLoader, setShowHorizontalLoader] = useState(true);
-  const { trackIndex } = useSelectedAlbumStore();
+  const { trackIndex, isAlbum } = useSelectedAlbumStore();
   const {
     isPlaying,
     playedTrackIndex,
@@ -36,9 +36,12 @@ const Track = ({
     (!isHovering && !isPlaying) ||
     (isPlaying && !isHovering && playedTrackSrc !== streamUrl);
   const showSoundIcon =
-    trackIndex === index && isPlaying && playedTrackSrc === streamUrl;
+    ((isAlbum && trackIndex === index) || isTrack) &&
+    isPlaying &&
+    playedTrackSrc === streamUrl;
   const isSameIndex = index === playedTrackIndex;
-  const trackIsPlaying = isSameIndex && playedTrackSrc === streamUrl;
+  const trackIsPlaying =
+    ((isAlbum && isSameIndex) || isTrack) && playedTrackSrc === streamUrl;
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -51,9 +54,13 @@ const Track = ({
   const handleOnClick =
     !isPlaying && pauseTrack === false
       ? () => handleOnPlayClick()
-      : isPlaying && isSameIndex && !pauseTrack
+      : isPlaying && isAlbum && isSameIndex && !pauseTrack
+      ? () => setPauseTrack(true)
+      : isPlaying && isTrack && !pauseTrack
       ? () => setPauseTrack(true)
       : isPlaying && !isTrack && !isSameIndex && !pauseTrack
+      ? () => handleOnPlayClick()
+      : isPlaying && isTrack && isSameIndex && !pauseTrack
       ? () => handleOnPlayClick()
       : () => {
           setPauseTrack(false);
