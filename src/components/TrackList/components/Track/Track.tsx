@@ -35,13 +35,11 @@ const Track = ({
   const showIndex =
     (!isHovering && !isPlaying) ||
     (isPlaying && !isHovering && playedTrackSrc !== streamUrl);
+  const isSameSrc = playedTrackSrc === streamUrl;
   const showSoundIcon =
-    ((isAlbum && trackIndex === index) || isTrack) &&
-    isPlaying &&
-    playedTrackSrc === streamUrl;
+    ((isAlbum && trackIndex === index) || isTrack) && isPlaying && isSameSrc;
   const isSameIndex = index === playedTrackIndex;
-  const trackIsPlaying =
-    ((isAlbum && isSameIndex) || isTrack) && playedTrackSrc === streamUrl;
+  const trackIsPlaying = ((isAlbum && isSameIndex) || isTrack) && isSameSrc;
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -56,7 +54,7 @@ const Track = ({
       ? () => handleOnPlayClick()
       : isPlaying && isAlbum && isSameIndex && !pauseTrack
       ? () => setPauseTrack(true)
-      : isPlaying && isTrack && !pauseTrack
+      : isPlaying && isTrack && !pauseTrack && isSameSrc
       ? () => setPauseTrack(true)
       : isPlaying && isAlbum && isSameIndex && pauseTrack
       ? () => handleOnPlayClick()
