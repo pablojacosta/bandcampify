@@ -58,9 +58,9 @@ const Track = ({
       ? () => setPauseTrack(true)
       : isPlaying && isTrack && !pauseTrack
       ? () => setPauseTrack(true)
-      : isPlaying && !isTrack && !isSameIndex && !pauseTrack
+      : isPlaying && isAlbum && isSameIndex && pauseTrack
       ? () => handleOnPlayClick()
-      : isPlaying && isTrack && isSameIndex && !pauseTrack
+      : isPlaying && isTrack && pauseTrack
       ? () => handleOnPlayClick()
       : () => {
           setPauseTrack(false);
