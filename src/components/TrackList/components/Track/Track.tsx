@@ -24,7 +24,7 @@ const Track = ({
   const { isTrack } = useSelectedTrackStore();
   const [artistNameForTrack, setArtistNameForTrack] = useState("");
   const [showHorizontalLoader, setShowHorizontalLoader] = useState(true);
-  const { trackIndex } = useSelectedAlbumStore();
+  const { trackIndex, isAlbum } = useSelectedAlbumStore();
   const {
     isPlaying,
     playedTrackIndex,
@@ -35,10 +35,11 @@ const Track = ({
   const showIndex =
     (!isHovering && !isPlaying) ||
     (isPlaying && !isHovering && playedTrackSrc !== streamUrl);
+  const isSameSrc = playedTrackSrc === streamUrl;
   const showSoundIcon =
-    trackIndex === index && isPlaying && playedTrackSrc === streamUrl;
+    ((isAlbum && trackIndex === index) || isTrack) && isPlaying && isSameSrc;
   const isSameIndex = index === playedTrackIndex;
-  const trackIsPlaying = isSameIndex && playedTrackSrc === streamUrl;
+  const trackIsPlaying = ((isAlbum && isSameIndex) || isTrack) && isSameSrc;
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -48,13 +49,25 @@ const Track = ({
     setIsHovering(false);
   };
 
+  const isNotPlayingAndNotPaused = !isPlaying && !pauseTrack;
+  const isPlayingAndNotPaused = isPlaying && !pauseTrack;
+  const isPlayingAndPaused = isPlaying && pauseTrack;
+  const isSameAlbumTrack = isAlbum && isSameIndex;
+  const isDifferentAlbumTrack = isAlbum && !isSameSrc;
+  const isSameTrack = isTrack && isSameSrc;
+  const isDifferentTrack = isTrack && !isSameSrc;
+
   const handleOnClick =
-    !isPlaying && pauseTrack === false
+    isNotPlayingAndNotPaused ||
+    (isPlayingAndNotPaused && (isDifferentAlbumTrack || isDifferentTrack))
       ? () => handleOnPlayClick()
-      : isPlaying && isSameIndex && !pauseTrack
+      : isPlayingAndNotPaused && (isSameTrack || isSameAlbumTrack)
       ? () => setPauseTrack(true)
-      : isPlaying && !isTrack && !isSameIndex && !pauseTrack
-      ? () => handleOnPlayClick()
+      : isPlayingAndPaused && (isSameAlbumTrack || isSameTrack)
+      ? () => {
+          setPauseTrack(false);
+          handleOnPlayClick();
+        }
       : () => {
           setPauseTrack(false);
           handleOnPlayClick();
