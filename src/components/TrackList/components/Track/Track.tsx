@@ -49,17 +49,25 @@ const Track = ({
     setIsHovering(false);
   };
 
+  const isNotPlayingAndNotPaused = !isPlaying && !pauseTrack;
+  const isPlayingAndNotPaused = isPlaying && !pauseTrack;
+  const isPlayingAndPaused = isPlaying && pauseTrack;
+  const isSameAlbumTrack = isAlbum && isSameIndex;
+  const isDifferentAlbumTrack = isAlbum && !isSameSrc;
+  const isSameTrack = isTrack && isSameSrc;
+  const isDifferentTrack = isTrack && !isSameSrc;
+
   const handleOnClick =
-    !isPlaying && pauseTrack === false
+    isNotPlayingAndNotPaused ||
+    (isPlayingAndNotPaused && (isDifferentAlbumTrack || isDifferentTrack))
       ? () => handleOnPlayClick()
-      : isPlaying && isAlbum && isSameIndex && !pauseTrack
+      : isPlayingAndNotPaused && (isSameTrack || isSameAlbumTrack)
       ? () => setPauseTrack(true)
-      : isPlaying && isTrack && !pauseTrack && isSameSrc
-      ? () => setPauseTrack(true)
-      : isPlaying && isAlbum && isSameIndex && pauseTrack
-      ? () => handleOnPlayClick()
-      : isPlaying && isTrack && pauseTrack
-      ? () => handleOnPlayClick()
+      : isPlayingAndPaused && (isSameAlbumTrack || isSameTrack)
+      ? () => {
+          setPauseTrack(false);
+          handleOnPlayClick();
+        }
       : () => {
           setPauseTrack(false);
           handleOnPlayClick();
