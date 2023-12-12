@@ -41,23 +41,31 @@ const TrackPlayer = () => {
   }, [pauseTrack]);
 
   useEffect(() => {
-    setArtistName(
-      albumIsPlaying
-        ? album.artist.name
-        : trackIsPlaying
-        ? track.artist.name
-        : ""
-    );
+    if (!albumIsPlaying && !trackIsPlaying) {
+      return;
+    }
 
-    setTrackName(
-      albumIsPlaying
-        ? album?.tracks[trackIndex].name
-        : trackIsPlaying
-        ? track.name
-        : ""
-    );
+    if (albumIsPlaying) {
+      setArtistName(album.artist.name);
+      setTrackName(album.tracks[trackIndex].name);
+    }
+
+    if (trackIsPlaying) {
+      setArtistName(track.artist.name);
+      setTrackName(track.name);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src]);
+
+  // console.log("------------------");
+  // console.log("src", src);
+  // console.log("albumIsPlaying", albumIsPlaying);
+  // console.log("trackIsPlaying", trackIsPlaying);
+  // console.log("artistName", artistName);
+  // console.log("trackName", trackName);
+  // console.log("track", track);
+  // console.log("------------------");
 
   return (
     <div className={styles.trackPlayer}>
