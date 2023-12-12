@@ -58,15 +58,6 @@ const TrackPlayer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src]);
 
-  // console.log("------------------");
-  // console.log("src", src);
-  // console.log("albumIsPlaying", albumIsPlaying);
-  // console.log("trackIsPlaying", trackIsPlaying);
-  // console.log("artistName", artistName);
-  // console.log("trackName", trackName);
-  // console.log("track", track);
-  // console.log("------------------");
-
   return (
     <div className={styles.trackPlayer}>
       <div className={styles.details}>
