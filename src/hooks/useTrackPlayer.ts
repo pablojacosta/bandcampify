@@ -32,6 +32,7 @@ const useTrackPlayer = () => {
   const handleOnPlayClickTrack = (streamUrl: string) => {
     setStreamUrl(streamUrl);
     setShowPlayer(true);
+    setIsAlbum(false);
   };
 
   return { handleOnPlayClickAlbum, handleOnPlayClickTrack };

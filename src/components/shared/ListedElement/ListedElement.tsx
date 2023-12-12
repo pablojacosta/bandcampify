@@ -2,7 +2,6 @@ import { IListedElement } from "interfaces/listedElement";
 import styles from "./ListedElement.module.scss";
 import { BiPlay } from "react-icons/bi";
 import { EListedElementTypes } from "@constants/enums";
-import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import { useAutoPlayStore } from "@store/useAutoPlayStore";
 
 const ListedElement = ({
@@ -24,7 +23,6 @@ const ListedElement = ({
     paddingLeft: "0.15rem",
   };
   const tag = !isTrack ? type : artist ? artist : album?.substring(3);
-  const { track } = useSelectedTrackStore();
   const { setIsAutoPlay } = useAutoPlayStore();
 
   return (
@@ -46,15 +44,7 @@ const ListedElement = ({
             {!isArtist && (
               <div
                 className={styles.playButton}
-                onClick={
-                  isTrack && track
-                    ? () => {
-                        setIsAutoPlay(true);
-                      }
-                    : () => {
-                        setIsAutoPlay(true);
-                      }
-                }
+                onClick={() => setIsAutoPlay(true)}
               >
                 <BiPlay style={iconStyle} />
               </div>

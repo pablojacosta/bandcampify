@@ -2,10 +2,16 @@
 
 .trackPlayer {
   position: fixed;
-  bottom: 3.8rem;
+  bottom: 0;
   width: 100%;
-  @include mixins.flex_container(row, center, center);
+  height: 13rem;
+  @include mixins.flex_container(column, center, center);
   background-color: var(--color-black);
+
+  .details {
+    padding: 1rem 0;
+    text-transform: capitalize;
+  }
 
   .footerSpace {
     height: 6.6rem;
