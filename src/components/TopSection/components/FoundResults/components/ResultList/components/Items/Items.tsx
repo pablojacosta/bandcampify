@@ -31,7 +31,6 @@ const Items = ({ items, type }: IItems) => {
           setShowTracks(true);
           setAlbumUrl(item.url);
           setHideAlbums(true);
-          setIsTrack(false);
           setIsAlbum(true);
         };
 
@@ -41,7 +40,6 @@ const Items = ({ items, type }: IItems) => {
           setShowTracks(true);
           setHideAlbums(true);
           setIsTrack(true);
-          setIsAlbum(false);
         };
 
         return (
