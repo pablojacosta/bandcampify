@@ -13,7 +13,7 @@
   width: 3rem;
   transform: translate(0%, 100%);
   top: 22%;
-  left: 0.5%;
+  left: -1%;
   z-index: 100;
   cursor: pointer;
 
@@ -31,7 +31,23 @@
     padding: 1rem 0.2rem 0.2rem 1rem;
   }
 
+  @include responsives.resolution__laptop__l {
+    left: -0.5%;
+  }
+
   @include responsives.resolution__tablet {
     top: 10%;
+  }
+
+  @include responsives.resolution__mobile__s {
+    left: -12%;
+  }
+
+  @include responsives.resolution__mobile__xxs {
+    left: -8%;
+  }
+
+  @include responsives.resolution__mobile__tiny {
+    left: -45%;
   }
 }
