@@ -1,3 +1,9 @@
+@mixin resolution__mobile__tiny {
+  @media only screen and (max-width: 325px) {
+    @content;
+  }
+}
+
 @mixin resolution__mobile__xxs {
   @media only screen and (max-width: 370px) {
     @content;
