@@ -50,6 +50,12 @@ export const sliderSettings = (length: number) => {
           slidesToScroll: 1,
         },
       },
+      {
+        breakpoint: 325,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
     ],
   };
 };

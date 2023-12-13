@@ -30,5 +30,21 @@
   .slider {
     margin: 3rem 0;
     padding-left: 2rem;
+
+    @include responsives.resolution__laptop__l {
+      padding-left: 1rem;
+    }
+
+    @include responsives.resolution__mobile__s {
+      padding-left: 3rem;
+    }
+
+    @include responsives.resolution__mobile__xxs {
+      padding-left: 2rem;
+    }
+
+    @include responsives.resolution__mobile__tiny {
+      padding-left: calc((100vw - 8rem) / 2);
+    }
   }
 }
