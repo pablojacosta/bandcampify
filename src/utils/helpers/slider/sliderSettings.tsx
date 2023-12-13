@@ -20,7 +20,19 @@ export const sliderSettings = (length: number) => {
         },
       },
       {
-        breakpoint: 650,
+        breakpoint: 1396,
+        settings: {
+          slidesToShow: length >= 6 ? 6 : length,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: length >= 5 ? 5 : length,
+        },
+      },
+      {
+        breakpoint: 720,
         settings: {
           slidesToShow: length >= 4 ? 4 : length,
         },
@@ -32,7 +44,7 @@ export const sliderSettings = (length: number) => {
         },
       },
       {
-        breakpoint: 370,
+        breakpoint: 426,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
