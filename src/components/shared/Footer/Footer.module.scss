@@ -2,6 +2,8 @@
 @use "@styles/_mixins" as mixins;
 
 .footer {
+  position: relative;
+  z-index: 2000;
   padding: 0.5rem 0 0.5rem 0;
   position: fixed;
   bottom: 0;
