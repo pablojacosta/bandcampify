@@ -10,6 +10,7 @@ import { IAlbumTrack } from "interfaces/albumTrack";
 import { formatDuration } from "@utils/helpers/formatDuration";
 import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
 import HorizontalLoader from "@components/shared/HorizontalLoader";
+import ShareIcon from "@components/elements/Icons/ShareIcon";
 
 const AlbumData = () => {
   const isMobileBreakpoint = useMediaQuery(563);
@@ -65,6 +66,9 @@ const AlbumData = () => {
               {itemTracks?.length ? "songs" : "song"},
               <span className={styles.duration}>
                 {formatAlbumTotalDuration(itemTotalDuration)}
+              </span>
+              <span className={styles.shareIcon}>
+                <ShareIcon />
               </span>
             </>
           ) : (
