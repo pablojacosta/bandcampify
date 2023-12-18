@@ -10,7 +10,7 @@
   z-index: 2000;
 
   &.isMinimized {
-    bottom: -4.5%;
+    bottom: calc(1vh - 52px);
     left: calc(100vw / 2 - 160px);
     width: 18.75rem;
     border-radius: 1rem;
