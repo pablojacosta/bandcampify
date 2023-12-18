@@ -5,6 +5,9 @@ import "react-h5-audio-player/src/styles.scss";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import { useAutoPlayStore } from "@store/useAutoPlayStore";
 import { useEffect, useRef, useState } from "react";
+import MaximizeIcon from "@components/elements/Icons/MaximizeIcon";
+import MinimizeIcon from "@components/elements/Icons/MinimizeIcon";
+import useMediaQuery from "@hooks/useMediaQuery";
 
 const TrackPlayer = () => {
   const { streamUrl, track } = useSelectedTrackStore();
@@ -18,6 +21,8 @@ const TrackPlayer = () => {
   const trackIsPlaying = !isAlbum && track;
   const [artistName, setArtistName] = useState("");
   const [trackName, setTrackName] = useState("");
+  const [isMaximized, setIsMaximized] = useState(true);
+  const isMobileBreakpoint = useMediaQuery(463);
 
   const handleClickPrevious = () => {
     setTrackIndex(trackIndex > 0 ? trackIndex - 1 : 0);
@@ -59,9 +64,27 @@ const TrackPlayer = () => {
   }, [src]);
 
   return (
-    <div className={styles.trackPlayer}>
-      <div className={styles.details}>
-        {playedArtistName} - {playedTrackName}
+    <div
+      className={`${styles.trackPlayer} ${
+        !isMaximized ? styles.isMinimized : ""
+      }`}
+    >
+      <div
+        className={`${styles.details} ${
+          !isMaximized ? styles.isMinimized : ""
+        }`}
+      >
+        <p>
+          {isMaximized && !isMobileBreakpoint
+            ? `${playedArtistName} - ${playedTrackName}`
+            : `${playedTrackName}`}
+        </p>
+        <div
+          onClick={() => setIsMaximized((prevState) => !prevState)}
+          className={styles.sizeIcon}
+        >
+          {isMaximized ? <MinimizeIcon /> : <MaximizeIcon />}
+        </div>
       </div>
       <AudioPlayer
         autoPlay
@@ -80,6 +103,13 @@ const TrackPlayer = () => {
           setIsPlaying(false, trackIndex, src, artistName, trackName)
         }
         ref={player}
+        style={
+          !isMaximized
+            ? {
+                width: "300px",
+              }
+            : undefined
+        }
       />
       <div className={styles.footerSpace} />
     </div>
