@@ -9,13 +9,14 @@ import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import { IAlbumTrack } from "interfaces/albumTrack";
 import { formatDuration } from "@utils/helpers/formatDuration";
 import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import HorizontalLoader from "@components/shared/HorizontalLoader";
 import ShareIcon from "@components/elements/Icons/ShareIcon";
 
 const AlbumData = () => {
   const isMobileBreakpoint = useMediaQuery(563);
   const { isTrack } = useSelectedTrackStore();
-  const { album } = useSelectedAlbumStore();
+  const { album, albumUrl } = useSelectedAlbumStore();
   const { artistImage, artistName, fetchArtist } = useSelectedArtistStore();
   const [itemArtist, setItemArtist] = useState("");
   const [itemReleaseDate, setItemReleaseDate] = useState("");
@@ -67,9 +68,11 @@ const AlbumData = () => {
               <span className={styles.duration}>
                 {formatAlbumTotalDuration(itemTotalDuration)}
               </span>
-              <span className={styles.shareIcon}>
-                <ShareIcon />
-              </span>
+              <CopyToClipboard text={albumUrl}>
+                <span className={styles.shareIcon}>
+                  <ShareIcon />
+                </span>
+              </CopyToClipboard>
             </>
           ) : (
             <>
