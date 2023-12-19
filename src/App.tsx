@@ -6,7 +6,7 @@ import TrackList from "@components/TrackList";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import useGetSearchData from "@hooks/useGetSearchData";
 import { useFoundResultsStore } from "@store/useFoundResultsStore";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import TopSection from "@components/TopSection";
 import styles from "./App.module.scss";
 import Footer from "@components/shared/Footer";
@@ -15,12 +15,13 @@ import { useSearchStore } from "@store/useSearchStore";
 import AlbumsList from "@components/TopSection/components/AlbumsList";
 import { ALBUMS, HOME, TRACKS } from "@constants/routes";
 import TrackPlayer from "@components/shared/TrackPlayer";
+import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 
 const App = () => {
   const { wakeServer } = useWakeRenderServerUp();
   const { getSearchData } = useGetSearchData();
   const { foundResults } = useFoundResultsStore();
-  const { hideArtists, artistInfo } = useSelectedArtistStore();
+  const { hideArtists, artistInfo, setHideArtists } = useSelectedArtistStore();
   const { search, setSearch } = useSearchStore();
   const {
     showTracks,
@@ -31,9 +32,11 @@ const App = () => {
     setHasAlbums,
     setShowTrackList,
     showTrackList,
+    setHideAlbums,
   } = useSelectedAlbumStore();
   const albums = artistInfo?.albums;
   const { showPlayer } = useSelectedAlbumStore();
+  const { setIsTrack, setTrack } = useSelectedTrackStore();
 
   const showAlbumsList = hasAlbums && !hideAlbums;
   const showFoundResults =
@@ -68,9 +71,21 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const restore = () => {
+    setHideAlbums(true);
+    setHasAlbums(false);
+    setHideArtists(true);
+    setShowTrackList(false);
+    setIsTrack(false);
+    setTrack(null);
+    setSearch("");
+  };
+
   return (
     <div className={styles.app}>
-      <h1 className={styles.header}>Bandcampify</h1>
+      <Link to={HOME} onClick={restore} className={styles.headerContainer}>
+        <h1 className={styles.header}>Bandcampify</h1>
+      </Link>
       <Container>
         <Routes>
           <Route
