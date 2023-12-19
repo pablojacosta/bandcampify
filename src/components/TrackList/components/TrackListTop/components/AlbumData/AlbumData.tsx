@@ -10,6 +10,8 @@ import { IAlbumTrack } from "interfaces/albumTrack";
 import { formatDuration } from "@utils/helpers/formatDuration";
 import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
 import HorizontalLoader from "@components/shared/HorizontalLoader";
+import { Link } from "react-router-dom";
+import { ALBUMS } from "@constants/routes";
 
 const AlbumData = () => {
   const isMobileBreakpoint = useMediaQuery(563);
@@ -58,7 +60,9 @@ const AlbumData = () => {
               <picture className={styles.artistImage}>
                 <img src={artistImage} alt="artist image" />
               </picture>
-              <span className={styles.artistName}>{itemArtist}</span>
+              <span className={styles.artistName}>
+                <Link to={ALBUMS}>{itemArtist}</Link>
+              </span>
               <span className={styles.dot}>•</span>
               {formatReleaseDate(itemReleaseDate)}
               <span className={styles.dot}>•</span> {itemTracks?.length ?? 1}{" "}
