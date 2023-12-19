@@ -63,7 +63,12 @@ const AlbumData = () => {
                 <img src={artistImage} alt="artist image" />
               </picture>
               <span className={styles.artistName}>
-                <Link to={ALBUMS}>{itemArtist}</Link>
+                <Link
+                  to={ALBUMS}
+                  onClick={() => getAlbumsForArtist(itemArtist)}
+                >
+                  {itemArtist}
+                </Link>
               </span>
               <span className={styles.dot}>•</span>
               {formatReleaseDate(itemReleaseDate)}
