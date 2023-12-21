@@ -7,13 +7,15 @@ import { ESearchResultTypes } from "@constants/enums";
 
 const useGetAlbumsForArtist = () => {
   const { setShowLoader } = useLoaderStore();
-  const { setHideArtists, setArtistInfo } = useSelectedArtistStore();
+  const { setHideArtists, setArtistInfo, setFetchArtist } =
+    useSelectedArtistStore();
   const { setHideAlbums } = useSelectedAlbumStore();
 
   const getAlbumsForArtist = async (artist: string) => {
     setShowLoader(true);
     setHideArtists(true);
     setHideAlbums(true);
+    setFetchArtist(false);
 
     const getAlbums = async (artistUrl: string) => {
       const getAlbumsOptions: AxiosRequestConfig<any> = {
