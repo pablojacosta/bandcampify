@@ -4,18 +4,22 @@ import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import { ESearchResultTypes } from "@constants/enums";
+import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 
 const useGetAlbumsForArtist = () => {
   const { setShowLoader } = useLoaderStore();
   const { setHideArtists, setArtistInfo, setFetchArtist } =
     useSelectedArtistStore();
   const { setHideAlbums } = useSelectedAlbumStore();
+  const { setIsTrack, setTrack } = useSelectedTrackStore();
 
   const getAlbumsForArtist = async (artist: string) => {
     setShowLoader(true);
     setHideArtists(true);
     setHideAlbums(true);
     setFetchArtist(false);
+    setIsTrack(false);
+    setTrack(null);
 
     const getAlbums = async (artistUrl: string) => {
       const getAlbumsOptions: AxiosRequestConfig<any> = {

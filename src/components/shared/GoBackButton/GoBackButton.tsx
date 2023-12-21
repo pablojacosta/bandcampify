@@ -31,9 +31,6 @@ const GoBackButton = ({ isAlbums = false }: IGoBackButton) => {
     setTrack(null);
   };
 
-  console.log("fetchArtist", fetchArtist);
-  console.log("isAlbums", isAlbums);
-
   return (
     <div className={styles.goBackButton}>
       <button onClick={handleGoBackClick}>
