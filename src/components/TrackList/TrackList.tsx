@@ -8,15 +8,17 @@ import Loader from "@components/shared/Loader";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useEffect, useState } from "react";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
+import { useParams } from "react-router-dom";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
+import { formatSharedAlbumUrl } from "@utils/helpers/formatSharedAlbumUrl";
 
 const TrackList = () => {
   const { showLoader } = useLoaderStore();
-
   const isMobileBreakpoint = useMediaQuery(563);
   const [isLoading, setIsLoading] = useState(true);
   const { isTrack } = useSelectedTrackStore();
-  const { albumUrl } = useSelectedAlbumStore();
+  const { albumUrl } = useParams();
+  const { setAlbumUrl } = useSelectedAlbumStore();
 
   useEffect(() => {
     if (showLoader) {
@@ -26,7 +28,15 @@ const TrackList = () => {
     setIsLoading(false);
   }, [showLoader]);
 
-  console.log("albumUrl", albumUrl);
+  useEffect(() => {
+    if (!albumUrl) {
+      return;
+    }
+
+    setAlbumUrl(formatSharedAlbumUrl(albumUrl));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [albumUrl]);
 
   return (
     <>
