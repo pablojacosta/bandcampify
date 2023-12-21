@@ -2,7 +2,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
-import { SERVER_URL } from "@constants/env";
 
 const useGetArtistData = () => {
   const { setShowLoader } = useLoaderStore();
@@ -13,7 +12,7 @@ const useGetArtistData = () => {
 
     const getArtistDataOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: `${SERVER_URL}/artist`,
+      url: "http://149.50.135.185:3001/artist",
       params: { artistUrl },
     };
 

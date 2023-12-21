@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { SERVER_URL } from "@constants/env";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
@@ -19,7 +18,7 @@ const useGetAlbum = () => {
 
     const getAlbumsOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: `${SERVER_URL}/album`,
+      url: "http://149.50.135.185:3001/album",
       params: { albumUrl },
     };
 
