@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { SERVER_URL } from "@constants/env";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
@@ -12,7 +13,7 @@ const useGetTrack = () => {
 
     const getTrackOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "https://bandcampify.onrender.com/track",
+      url: `${SERVER_URL}/track`,
       params: { trackUrl },
     };
 

@@ -5,6 +5,7 @@ import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import { ESearchResultTypes } from "@constants/enums";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
+import { SERVER_URL } from "@constants/env";
 
 const useGetAlbumsForArtist = () => {
   const { setShowLoader } = useLoaderStore();
@@ -24,7 +25,7 @@ const useGetAlbumsForArtist = () => {
     const getAlbums = async (artistUrl: string) => {
       const getAlbumsOptions: AxiosRequestConfig<any> = {
         method: "GET",
-        url: "https://bandcampify.onrender.com/albums",
+        url: `${SERVER_URL}/albums`,
         params: { artistUrl },
       };
 
@@ -44,7 +45,7 @@ const useGetAlbumsForArtist = () => {
 
     const getAlbumsForArtistOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "https://bandcampify.onrender.com/search",
+      url: `${SERVER_URL}/search`,
       params: { artist },
     };
 

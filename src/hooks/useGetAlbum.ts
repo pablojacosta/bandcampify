@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { SERVER_URL } from "@constants/env";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
@@ -18,7 +19,7 @@ const useGetAlbum = () => {
 
     const getAlbumsOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "https://bandcampify.onrender.com/album",
+      url: `${SERVER_URL}/album`,
       params: { albumUrl },
     };
 
