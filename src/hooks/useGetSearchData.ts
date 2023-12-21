@@ -4,6 +4,7 @@ import { useFoundResultsStore } from "@store/useFoundResultsStore";
 import { useLoaderStore } from "@store/useLoaderStore";
 import { useSelectedArtistStore } from "@store/useSelectedArtistStore";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
+import { SERVER_URL } from "@constants/env";
 
 const useGetSearchData = () => {
   const { setFoundResults } = useFoundResultsStore();
@@ -18,7 +19,7 @@ const useGetSearchData = () => {
 
     const getSearchDataOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "https://bandcampify.onrender.com/search",
+      url: `${SERVER_URL}/search`,
       params: { artist: search },
     };
 

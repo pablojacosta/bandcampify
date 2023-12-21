@@ -7,3 +7,4 @@ export const FB_MESSAGING_SENDER_ID = import.meta.env
   .VITE_FB_MESSAGING_SENDER_ID;
 export const FB_APP_ID = import.meta.env.VITE_FB_APP_ID;
 export const FB_MEASUREMENT_ID = import.meta.env.VITE_FB_MEASUREMENT_ID;
+export const SERVER_URL = import.meta.env.VITE_SERVER_URL;
