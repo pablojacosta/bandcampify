@@ -11,6 +11,9 @@ import { formatDuration } from "@utils/helpers/formatDuration";
 import { getAlbumTotalDuration } from "@utils/helpers/getAlbumTotalDuration";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import HorizontalLoader from "@components/shared/HorizontalLoader";
+import { Link } from "react-router-dom";
+import { ALBUMS } from "@constants/routes";
+import useGetAlbumsForArtist from "@hooks/useGetAlbumsForArtist";
 import ShareIcon from "@components/elements/Icons/ShareIcon";
 
 const AlbumData = () => {
@@ -24,6 +27,7 @@ const AlbumData = () => {
   const [itemTotalDuration, setItemTotalDuration] = useState("");
   const { track } = useSelectedTrackStore();
   const [showHorizontalLoader, setShowHorizontalLoader] = useState(true);
+  const { getAlbumsForArtist } = useGetAlbumsForArtist();
 
   useEffect(() => {
     if (album) {
@@ -60,7 +64,14 @@ const AlbumData = () => {
               <picture className={styles.artistImage}>
                 <img src={artistImage} alt="artist image" />
               </picture>
-              <span className={styles.artistName}>{itemArtist}</span>
+              <span className={styles.artistName}>
+                <Link
+                  to={ALBUMS}
+                  onClick={() => getAlbumsForArtist(itemArtist)}
+                >
+                  {itemArtist}
+                </Link>
+              </span>
               <span className={styles.dot}>•</span>
               {formatReleaseDate(itemReleaseDate)}
               <span className={styles.dot}>•</span> {itemTracks?.length ?? 1}{" "}
@@ -79,7 +90,14 @@ const AlbumData = () => {
               <picture className={styles.artistImage}>
                 <img src={artistImage} alt="artist image" />
               </picture>
-              <span className={styles.artistName}>{itemArtist}</span>
+              <span className={styles.artistName}>
+                <Link
+                  to={ALBUMS}
+                  onClick={() => getAlbumsForArtist(itemArtist)}
+                >
+                  {itemArtist}
+                </Link>
+              </span>
             </>
           )}
         </h4>
