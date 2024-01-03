@@ -96,7 +96,7 @@ const App = () => {
           />
           <Route path={ALBUMS} element={<AlbumsList />} />
           <Route path={TRACKS} element={<TrackList />} />
-          <Route path={`${SHARE}/:albumUrl`} element={<TrackList />} />
+          <Route path={`${SHARE}/:sharedAlbumUrl`} element={<TrackList />} />
         </Routes>
       </Container>
       {showPlayer && <TrackPlayer />}
