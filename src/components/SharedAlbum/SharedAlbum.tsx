@@ -1,6 +1,6 @@
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import { useEffect } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { formatSharedAlbumUrl } from "@utils/helpers/formatSharedAlbumUrl";
 import useGetAlbum from "@hooks/useGetAlbum";
