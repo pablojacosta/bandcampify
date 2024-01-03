@@ -14,6 +14,8 @@ import useGetAlbum from "@hooks/useGetAlbum";
 import { useNavigate } from "react-router-dom";
 import { TRACKS } from "@constants/routes";
 import useGetArtistData from "@hooks/useGetArtistData";
+import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
+import useGetArtistAlbums from "@hooks/useGetArtistAlbums";
 
 const TrackList = () => {
   const { showLoader } = useLoaderStore();
@@ -24,6 +26,8 @@ const TrackList = () => {
   const { getAlbum } = useGetAlbum();
   const { getArtistData } = useGetArtistData();
   const navigate = useNavigate();
+  const { setAlbumUrl } = useSelectedAlbumStore();
+  const { getAlbums } = useGetArtistAlbums();
 
   useEffect(() => {
     if (showLoader || sharedAlbumUrl) {
@@ -42,8 +46,16 @@ const TrackList = () => {
       0,
       sharedAlbumUrl?.indexOf("---")
     );
-    getArtistData(`https://${artistName}.bandcamp.com`);
-    getAlbum(formatSharedAlbumUrl(sharedAlbumUrl)).then(() => navigate(TRACKS));
+    const formattedAlbumUrl = formatSharedAlbumUrl(sharedAlbumUrl);
+    const artistUrl = `https://${artistName}.bandcamp.com`;
+    getArtistData(artistUrl).then(() =>
+      getAlbum(formattedAlbumUrl)
+        .then(() => navigate(TRACKS))
+        .finally(() => {
+          setAlbumUrl(formattedAlbumUrl);
+          getAlbums(artistUrl);
+        })
+    );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sharedAlbumUrl]);
