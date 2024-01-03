@@ -18,7 +18,7 @@ const useGetAlbum = () => {
 
     const getAlbumsOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "http://149.50.135.185:3001/album",
+      url: "https://api.bandcampify.com/album",
       params: { albumUrl },
     };
 
