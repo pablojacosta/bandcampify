@@ -43,18 +43,4 @@
       object-fit: cover;
     }
   }
-
-  .shareIcon {
-    cursor: pointer;
-
-    svg {
-      &:hover {
-        transform: scale(1.3);
-      }
-
-      &:active {
-        color: var(--color-green);
-      }
-    }
-  }
 }
