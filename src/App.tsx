@@ -15,6 +15,7 @@ import AlbumsList from "@components/TopSection/components/AlbumsList";
 import { ALBUMS, HOME, SHARE, TRACKS } from "@constants/routes";
 import TrackPlayer from "@components/shared/TrackPlayer";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
+import SharedAlbum from "@components/SharedAlbum";
 
 const App = () => {
   const { getSearchData } = useGetSearchData();
@@ -96,7 +97,7 @@ const App = () => {
           />
           <Route path={ALBUMS} element={<AlbumsList />} />
           <Route path={TRACKS} element={<TrackList />} />
-          <Route path={`${SHARE}/:sharedAlbumUrl`} element={<TrackList />} />
+          <Route path={`${SHARE}/:sharedAlbumUrl`} element={<SharedAlbum />} />
         </Routes>
       </Container>
       {showPlayer && <TrackPlayer />}

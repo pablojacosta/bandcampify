@@ -1,0 +1,7 @@
+@use "@styles/_mixins" as mixins;
+
+.sharedAlbum {
+  .loader {
+    @include mixins.flex_container(row, center, center);
+  }
+}
