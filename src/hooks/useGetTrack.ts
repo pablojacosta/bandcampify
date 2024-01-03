@@ -12,7 +12,7 @@ const useGetTrack = () => {
 
     const getTrackOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "https://bandcampify.onrender.com/track",
+      url: "https://api.bandcampify.com/track",
       params: { trackUrl },
     };
 

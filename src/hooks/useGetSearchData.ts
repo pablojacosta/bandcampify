@@ -18,7 +18,7 @@ const useGetSearchData = () => {
 
     const getSearchDataOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "https://bandcampify.onrender.com/search",
+      url: "https://api.bandcampify.com/search",
       params: { artist: search },
     };
 

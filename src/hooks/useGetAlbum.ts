@@ -18,7 +18,7 @@ const useGetAlbum = () => {
 
     const getAlbumsOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "https://bandcampify.onrender.com/album",
+      url: "https://api.bandcampify.com/album",
       params: { albumUrl },
     };
 
