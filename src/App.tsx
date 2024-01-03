@@ -10,7 +10,6 @@ import { Routes, Route, Link } from "react-router-dom";
 import TopSection from "@components/TopSection";
 import styles from "./App.module.scss";
 import Footer from "@components/shared/Footer";
-import useWakeRenderServerUp from "@hooks/useWakeRenderServerUp";
 import { useSearchStore } from "@store/useSearchStore";
 import AlbumsList from "@components/TopSection/components/AlbumsList";
 import { ALBUMS, HOME, TRACKS } from "@constants/routes";
@@ -18,7 +17,6 @@ import TrackPlayer from "@components/shared/TrackPlayer";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 
 const App = () => {
-  const { wakeServer } = useWakeRenderServerUp();
   const { getSearchData } = useGetSearchData();
   const { foundResults } = useFoundResultsStore();
   const { hideArtists, artistInfo, setHideArtists } = useSelectedArtistStore();
@@ -65,11 +63,6 @@ const App = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [albums]);
-
-  useEffect(() => {
-    wakeServer();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const restore = () => {
     setHideAlbums(true);
