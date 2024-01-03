@@ -16,6 +16,7 @@ import { TRACKS } from "@constants/routes";
 import useGetArtistData from "@hooks/useGetArtistData";
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
 import useGetArtistAlbums from "@hooks/useGetArtistAlbums";
+import Helmet from "react-helmet";
 
 const TrackList = () => {
   const { showLoader } = useLoaderStore();
@@ -26,7 +27,7 @@ const TrackList = () => {
   const { getAlbum } = useGetAlbum();
   const { getArtistData } = useGetArtistData();
   const navigate = useNavigate();
-  const { setAlbumUrl } = useSelectedAlbumStore();
+  const { setAlbumUrl, album } = useSelectedAlbumStore();
   const { getAlbums } = useGetArtistAlbums();
 
   useEffect(() => {
@@ -67,12 +68,21 @@ const TrackList = () => {
           <Loader />
         </div>
       ) : (
-        <div className={styles.trackList}>
-          <GoBackButton />
-          <TrackListTop />
-          {!isMobileBreakpoint && !isTrack && <TrackListHeader />}
-          <ListedTracks />
-        </div>
+        <>
+          <Helmet>
+            <title>Bandcampify</title>
+            <meta name="description" content={album?.artist.name} />
+            <meta property="og:title" content={album?.name} />
+            <meta property="og:description" content={album?.artist.name} />
+            <meta property="og:image" content={album?.imageUrl} />
+          </Helmet>
+          <div className={styles.trackList}>
+            <GoBackButton />
+            <TrackListTop />
+            {!isMobileBreakpoint && !isTrack && <TrackListHeader />}
+            <ListedTracks />
+          </div>
+        </>
       )}
     </>
   );
