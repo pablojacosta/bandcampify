@@ -13,11 +13,12 @@ import HorizontalLoader from "@components/shared/HorizontalLoader";
 import { Link } from "react-router-dom";
 import { ALBUMS } from "@constants/routes";
 import useGetAlbumsForArtist from "@hooks/useGetAlbumsForArtist";
+import ShareAlbum from "./components/ShareAlbum";
 
 const AlbumData = () => {
   const isMobileBreakpoint = useMediaQuery(563);
   const { isTrack } = useSelectedTrackStore();
-  const { album } = useSelectedAlbumStore();
+  const { album, albumUrl } = useSelectedAlbumStore();
   const { artistImage, artistName, fetchArtist } = useSelectedArtistStore();
   const [itemArtist, setItemArtist] = useState("");
   const [itemReleaseDate, setItemReleaseDate] = useState("");
@@ -77,6 +78,7 @@ const AlbumData = () => {
               <span className={styles.duration}>
                 {formatAlbumTotalDuration(itemTotalDuration)}
               </span>
+              <ShareAlbum albumUrl={albumUrl} />
             </>
           ) : (
             <>
@@ -91,6 +93,7 @@ const AlbumData = () => {
                   {itemArtist}
                 </Link>
               </span>
+              <ShareAlbum albumUrl={albumUrl} />
             </>
           )}
         </h4>

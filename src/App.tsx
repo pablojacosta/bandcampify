@@ -12,7 +12,7 @@ import styles from "./App.module.scss";
 import Footer from "@components/shared/Footer";
 import { useSearchStore } from "@store/useSearchStore";
 import AlbumsList from "@components/TopSection/components/AlbumsList";
-import { ALBUMS, HOME, TRACKS } from "@constants/routes";
+import { ALBUMS, HOME, SHARE, TRACKS } from "@constants/routes";
 import TrackPlayer from "@components/shared/TrackPlayer";
 import { useSelectedTrackStore } from "@store/useSelectedTrackStore";
 
@@ -96,6 +96,7 @@ const App = () => {
           />
           <Route path={ALBUMS} element={<AlbumsList />} />
           <Route path={TRACKS} element={<TrackList />} />
+          <Route path={`${SHARE}/:sharedAlbumUrl`} element={<TrackList />} />
         </Routes>
       </Container>
       {showPlayer && <TrackPlayer />}

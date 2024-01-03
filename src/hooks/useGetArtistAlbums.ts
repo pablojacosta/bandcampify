@@ -15,12 +15,15 @@ const useGetArtistAlbums = () => {
   const { setHideAlbums } = useSelectedAlbumStore();
   const { setShowLoader } = useLoaderStore();
 
-  const getAlbums = async (artistUrl: string, artistImage: string) => {
+  const getAlbums = async (artistUrl: string, artistImage?: string) => {
     setShowLoader(true);
     setFetchArtist(false);
     setArtistUrl(artistUrl);
     setHideArtists(true);
-    setArtistImage(artistImage);
+
+    if (artistImage) {
+      setArtistImage(artistImage);
+    }
 
     const getAlbumsOptions: AxiosRequestConfig<any> = {
       method: "GET",
