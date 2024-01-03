@@ -61,10 +61,6 @@ const TrackList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sharedAlbumUrl]);
 
-  console.log("-----------------------");
-  console.log("album", album);
-  console.log("-----------------------");
-
   return (
     <>
       {isLoading ? (
