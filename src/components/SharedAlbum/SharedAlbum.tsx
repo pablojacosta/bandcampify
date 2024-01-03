@@ -1,6 +1,6 @@
 import { useSelectedAlbumStore } from "@store/useSelectedAlbumStore";
-import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import { useEffect, useState } from "react";
+import Helmet from "react-helmet";
 import { useParams } from "react-router-dom";
 import { formatSharedAlbumUrl } from "@utils/helpers/formatSharedAlbumUrl";
 import useGetAlbum from "@hooks/useGetAlbum";
@@ -10,6 +10,7 @@ import useGetArtistData from "@hooks/useGetArtistData";
 import useGetArtistAlbums from "@hooks/useGetArtistAlbums";
 import Loader from "@components/shared/Loader";
 import styles from "./SharedAlbum.module.scss";
+import { IAlbum } from "interfaces/album";
 
 const SharedAlbum = () => {
   const { sharedAlbumUrl } = useParams();
@@ -18,6 +19,7 @@ const SharedAlbum = () => {
   const navigate = useNavigate();
   const { setAlbumUrl, album } = useSelectedAlbumStore();
   const { getAlbums } = useGetArtistAlbums();
+  const [albumForHelmet, setAlbumForHelmet] = useState<IAlbum>();
 
   useEffect(() => {
     if (!sharedAlbumUrl) {
@@ -31,26 +33,42 @@ const SharedAlbum = () => {
     const formattedAlbumUrl = formatSharedAlbumUrl(sharedAlbumUrl);
     const artistUrl = `https://${artistName}.bandcamp.com`;
     getArtistData(artistUrl).then(() =>
-      getAlbum(formattedAlbumUrl)
-        .then(() => navigate(TRACKS))
-        .finally(() => {
-          setAlbumUrl(formattedAlbumUrl);
-          getAlbums(artistUrl);
-        })
+      getAlbum(formattedAlbumUrl).then(() => {
+        setAlbumUrl(formattedAlbumUrl);
+        getAlbums(artistUrl);
+      })
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sharedAlbumUrl]);
 
+  useEffect(() => {
+    if (!album) {
+      return;
+    }
+
+    setAlbumForHelmet(album);
+
+    if (albumForHelmet) {
+      setTimeout(() => navigate(TRACKS), 100);
+    }
+  }, [album, navigate, albumForHelmet]);
+
   return (
     <div className={styles.sharedAlbum}>
-      <Helmet>
-        <title>Bandcampify</title>
-        <meta name="description" content={album?.artist.name} />
-        <meta property="og:title" content={album?.name} />
-        <meta property="og:description" content={album?.artist.name} />
-        <meta property="og:image" content={album?.imageUrl} />
-      </Helmet>
+      {albumForHelmet && (
+        <Helmet>
+          <meta
+            property="og:title"
+            content={`${albumForHelmet.name}, by ${albumForHelmet.artist.name}`}
+          />
+          <meta
+            property="og:description"
+            content={`${albumForHelmet.tracks.length} track album`}
+          />
+          <meta property="og:image" content={albumForHelmet.imageUrl} />
+        </Helmet>
+      )}
       <div className={styles.loader}>
         <Loader />
       </div>
