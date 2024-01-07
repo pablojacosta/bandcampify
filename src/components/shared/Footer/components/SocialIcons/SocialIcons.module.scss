@@ -5,11 +5,19 @@
   @include mixins.flex_container(row, center, center);
   gap: 1rem;
 
-  .githubIcon,
-  .linkedinIcon {
+  .facebookIcon {
+    color: var(--color-white);
+    width: 2.5rem;
+    height: auto;
+  }
+
+  .githubIcon {
     width: 2rem;
     height: auto;
+  }
 
+  .githubIcon,
+  .facebookIcon {
     &:hover {
       filter: drop-shadow(0 0 0.5rem var(--color-white));
       transform: scale(1.1);
