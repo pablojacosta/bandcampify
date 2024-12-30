@@ -27,7 +27,7 @@ const useGetArtistAlbums = () => {
 
     const getAlbumsOptions: AxiosRequestConfig<any> = {
       method: "GET",
-      url: "https://api.bandcampify.com/albums",
+      url: "/albums",
       params: { artistUrl },
     };
 
